@@ -1,0 +1,22 @@
+<%= form_for([favority,site],html: { html: "form-horizontal" }, remote: true) do |f| %>
+  <p>
+    <b>name</b>
+    <%= f.text_field :name %> <%= link_to "Title", "javascript:void(0);", class: "nolink", onclick: "chk_title()" %>
+  </p>
+  <p>
+    <b>url</b>
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <b>logo</b>
+    <%= f.text_field :logo %>
+  </p>
+  <p>
+    <b>desc</b>
+    <%= f.text_area :desc, rows: 5 %>
+  </p>
+  <p>
+    <%= f.submit "submit", class: "btn btn-primary" %>
+  </p>
+<% end %>
+

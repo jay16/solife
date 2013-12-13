@@ -1,0 +1,28 @@
+<xml>
+<ToUserName><![CDATA[<%= @weixin.from_user_name %>]]></ToUserName>
+<FromUserName><![CDATA[<%= @weixin.to_user_name %>]]></FromUserName>
+<CreateTime><%= Time.now.to_i %></CreateTime>
+<MsgType><![CDATA[news]]></MsgType>
+<Content><![CDATA[]]></Content>
+<ArticleCount>3</ArticleCount>
+<Articles>
+  <item>
+    <Title><![CDATA[MailHok 邮件确达服务]]></Title>
+    <Description><![CDATA[IntFocus 企业级群发邮件服务]]></Description>
+    <PicUrl><![CDATA[http://xsolife.com/photos/f6326272-2513-304e-83a8-c39f5063ca71/bd4d432b-6cab-389a-a0fe-e20d7b7e7fb5.png]]></PicUrl>
+    <Url><![CDATA[http://main.intfocus.com/users/sign_in]]></Url>
+  </item>
+  <item>
+    <Title><![CDATA[SOLife 微信]]></Title>
+    <Description><![CDATA[SOLife微主测试明细]]></Description>
+    <PicUrl><![CDATA[http://xsolife.com/photos/f6326272-2513-304e-83a8-c39f5063ca71/a09c60fb-f73e-300a-9fce-49e4c0d0165e.jpg]]></PicUrl>
+    <Url><![CDATA[http://xsolife.com/weixin]]></Url>
+  </item>
+  <item>
+    <Title><![CDATA[<%= "您的[#{@weixin.msg_type}]消息详情" %>]]></Title>
+    <Description><![CDATA[<%= "您的[#{@weixin.msg_type}]消息已收到.\n查看详情清点击: http://xsolife.com/weixin/#{@record.id}" %>]]></Description>
+    <PicUrl><![CDATA[http://xsolife.com/photos/f6326272-2513-304e-83a8-c39f5063ca71/a09c60fb-f73e-300a-9fce-49e4c0d0165e.jpg]]></PicUrl>
+    <Url><![CDATA[<%= "http://xsolife.com/weixin/#{@record.id}" %>]]></Url>
+  </item>
+<Articles>
+</xml>

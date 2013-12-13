@@ -1,0 +1,244 @@
+
+  <%= stylesheet_link_tag    "bootstrap.css" %>
+  <%= javascript_include_tag "bootstrap.js" %>
+  <%= stylesheet_link_tag    "bootstrap-datepicker.css" %>
+  <%= javascript_include_tag "bootstrap-datepicker.js" %>
+<style>
+p {
+    margin: 0 0 3px;
+}
+</style>
+<style>
+.fn-checkin-btn-v4 {
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+    height: 54px;
+    margin-bottom: 14px;
+    position: relative;
+    width: 208px;
+}
+.fn-checkin-btn-v4 .checkin-btn {
+    border-style: solid;
+    border-width: 0 0 1px 5px;
+    height: 52px;
+    position: relative;
+    width: 203px;
+}
+.checkin-btn .ck-time {
+    border-left-style: solid;
+    border-left-width: 1px;
+    display: block;
+    height: 51px;
+    left: 0;
+    margin-left: 2px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 62px;
+}
+.checkin-btn .ck-time .ck-week {
+    display: inline-block;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    margin-top: 5px;
+    width: 100%;
+}
+.checkin-btn .ck-time .ck-day {
+    display: inline-block;
+}
+.checkin-btn .ck-btn {
+    display: inline-block;
+    font-family: "微软雅黑";
+    font-size: 22px;
+    height: 51px;
+    left: 0;
+    line-height: 51px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    top: 0;
+    vertical-align: middle;
+    width: 202px;
+    z-index: 2;
+}
+.checkin-btn .ck-count {
+    height: 46px;
+    overflow: hidden;
+    padding-left: 13px;
+    padding-top: 5px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 38px;
+}
+.checkin-btn .ck-count .ck-count-bg {
+    display: inline-block;
+    font-family: 'checkin';
+    font-size: 80px;
+    font-style: normal;
+    font-weight: normal;
+    opacity: 0.5;
+    position: absolute;
+    right: -20px;
+    text-align: center;
+    text-decoration: inherit;
+    top: -39px;
+}
+.checkin-btn .ck-count .ck-count-num {
+    display: block;
+    font-size: 18px;
+    line-height: 14px;
+    margin-top: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+.checkin-btn .ck-count .ck-count-word {
+    font-size: 8px;
+    left: 12px;
+    line-height: 1.3;
+    position: absolute;
+    text-align: center;
+    text-transform: capitalize;
+    top: 28px;
+    width: 40px;
+}
+.checkin-btn .ck-flag {
+    border-style: solid;
+    border-width: 3px 8px 2px;
+    bottom: -5px;
+    display: inline-block;
+    height: 0;
+    position: absolute;
+    right: 11px;
+    width: 0;
+}
+</style>
+
+<div class="container clearfix">
+  <div class="span12">
+  <div class="row">
+    
+
+     <div class="span7 offset1">
+
+        <% @lives.each do |life| %>
+          <div class="lives">
+            <div class="life" id="life_<%= life.id %>"> 
+		 <div class="title"><%= life.title%></div>
+
+		 <div class="subtitle"><%= life.subtitle %></div>
+
+		 <div class="info"><%= life.info %></div>
+		 
+		 <div class="edit-pane hide">
+		   <% if user_signed_in? %>
+		     <%= link_to "Edit", lives_edit_path(life.id), :remote => true, :class => "btn btn-mini" %>
+		     <%= link_to "NewSegment", segments_new_path(life.id), :remote => true, :class => "btn btn-mini" %>
+		     <a class="btn btn-mini">add tag</a>
+		   <% end %>
+		   <a class="btn btn-mini">reply</a>
+		 </div>
+            </div>
+            
+            <%= render :partial => "segments/life", :locals => { :life => life } %>
+            
+          </div>
+        <% end %>
+    </div>
+
+    <div class="span3" style="margin-left:15px;">
+      <div class="row">
+        <% now = Time.now %>
+	<div class="fn-checkin-btn-v4 bor2 c_tx" style="margin-left:30px;">
+		<div class="checkin-btn bor2 m5d7">
+			<div class="ck-time lbor">
+				<span class="ck-week"><%= now.strftime("%a") %></span>
+				<span class="ck-day"><%= now.strftime("%m.%d") %></span>			
+			</div>
+			<a class="ck-btn"><%= now.strftime("%H:%M") %></a>
+			<div class="ck-count">
+				<span class="ck-count-bg c_tx">o</span>
+				<span class="ck-count-num"><%= now.strftime("%U") %></span>
+				<span class="ck-count-word"><%= now.strftime("%p") %></span>
+			</div>
+			<span class="ck-flag c_tx4"></span>
+			<div class="ck-new-flag"></div>
+		</div>
+      </div>
+    
+      <div class="row">
+        <div id="sidebar_posts">
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="sidebar_tags">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="span8 offset2 hidden" id="segment_new">
+      loadding...
+    </div>
+  </div>
+  <div class="row">
+    <div class="span8 offset2 hidden" id="segment_edit">
+      loadding...
+    </div>
+  </div>
+
+
+ </div>
+</div>
+  
+
+
+
+<script>
+ 
+ $(function(){
+    $("#dp3").datepicker();
+
+    $(".lives").each(function(){
+       var $lives   = $(this);
+       var $life    = $lives.children(".life:first");
+       var $title   = $life.children(".title:first");
+       var $segments  = $lives.children(".segment");
+       var $life_edit = $life.children(".edit-pane:first");
+       
+       //默认隐藏编辑选项框
+       //$title_edit.addClass("");
+       
+       $title.dblclick(function(){ 
+          $life_edit.toggleClass("hide"); 
+       });
+       
+       $segments.each(function(){
+         var $segment = $(this);
+         var $segment_content = $segment.children(".content:first");
+         var $segment_edit    = $segment.children(".edit-pane:first");
+         
+         //默认隐藏编辑选项框
+         //$segment_edit.addClass("hide");
+         
+         $segment_content.dblclick(function(){ 
+            //首先隐藏所有编辑选项框再显示当前选项框
+            var isHide = $segment_edit.hasClass("hide");
+            $(".edit-pane").addClass("hide");
+            isHide ? $segment_edit.removeClass("hide") : $segment_edit.addClass("hide")
+         });
+         
+       });
+  
+    });
+    
+ });
+
+</script>
+

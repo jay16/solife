@@ -1,0 +1,69 @@
+<%= javascript_include_tag "jquery" %>
+<%= javascript_include_tag "jquery_ujs" %>
+<%= stylesheet_link_tag "bootstrap" %>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+
+
+<%= form_tag(taggroups_build_path(), :remote => true ) do %>
+
+       <%= select_tag "taggroup_id", options_from_collection_for_select(@taggroups, "id", "label",@taggroups.first.id),{:include_blank => true, :style => "width: 220px", :class => "chzn-select-deselect", :"data-placeholder" => "查找邮件列表", :onchange=>"taggroup_list(this.value)"} %><br>
+
+    <div id="taggroups_zone">
+	    <% nogrouptags = @tags %>
+	    <table class="table table-bordered">
+	      <% @taggroups.each do |taggroup| %>
+	      <% nogrouptags = nogrouptags - taggroup.tags %>
+		<tr>
+		  <td> <%= "#{taggroup.label}(#{taggroup.tags.size})" %></td>
+		  <td>
+		    <% taggroup.tags.each_with_index do |tag, index| %>
+		      <span class="label label-info"><%= tag.label %></span>
+		      <input type="checkbox" name="tags_list_<%= tag.id %>" id="tag_<%= tag.id %>" <%= @taggroups.first.tags.include?(tag) ? "checked=checked" : "" %>/>
+		    <% end  %>
+		  </td>
+		 </tr>
+		<% end %>
+		<tr><td>nogroups</td>
+		 <td><%= nogrouptags.map{|tag| tag.label}.join(",") %></td>
+		</tr>
+	     </table>
+     </div>
+
+
+  <%= submit_tag "Submit", :class => "btn"%>
+<% end %>
+
+<script>
+ function taggroup_list(dd) {
+	var strhost = window.location.host;
+	var strprotocol = window.location.protocol;
+	var strurl = strprotocol + "//" + strhost + "/taggroups/list";
+	$.ajax({
+		type: 'GET',
+		url: strurl,
+		data: { "taggroup_id":dd },
+		contentType: 'multipart/form-data',
+		datatype: 'json',
+		success:function(data)
+		{
+		  $("#taggroups_zone").html(data);
+		},
+		error:function(xhr,r,e)
+		{
+		}
+	});
+ }
+</script>
+
+<%= link_to "新建tag", tags_new_path(), :remote => true, :class => "btn btn-mini" %>
+<span id="tags_list">
+  <span class="tag_form">
+  </span>
+</span>
+
+
+   </div>
+  </div>
+</div>

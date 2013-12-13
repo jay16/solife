@@ -1,0 +1,21 @@
+<%= javascript_include_tag "consume" %>
+
+<%= simple_form_for consume, input_html: { class: "form-horizontal" }, remote: true  do |f| %>
+  <%= f.input :volue, as: :float, label: t("form.value"), input_html: { class: "span9" }, placeholder: "消费数值" %>
+
+  <%= f.input :created_at, label: t("form.created_at") do %>
+    <%= f.input_field :created_at, as: :string, class: "span6", disabled: true, value: (consume.created_at.nil? ? Time.now : consume.created_at).strftime("%Y-%m-%d %H:%M:%S") %>
+
+    <%= link_to "+","javascript:void(0);", type: :button, class: "btn btn-mini date-add", onclick: "add_plus_date('add');" %>
+    <%= link_to "-","javascript:void(0);",  type: :button, class: "btn btn-mini date-plus",  onclick: "add_plus_date('plus');" %>
+  <% end %>
+
+  <%= f.input :msg, as: :text, label: t("form.msg"), placeholder: "消费描述", input_html: { class: "span9", size: "13x7"}  %>
+
+  <div class="control-group">
+    <%= render :partial => "taggroups/grouptype", locals: { taggroups: @taggroups, target: consume } %>
+  </div>
+
+  <%= f.submit t("btn.submit"), class: "btn btn-primary btn-success pull-right", 
+      onclick: "$('.loading').css('display','block');" %>
+<% end %>

@@ -1,0 +1,5 @@
+<% unless @reply.errors.any? %>
+  $(".replies").append("<%= j render partial: "replies/reply", locals: { reply: @reply } %>");
+<% end %>
+
+$("#reply_zone").hide().html("<%= j render partial: "replies/form", locals: { segment: @segment, reply: (@reply.errors.any? ? @reply :  @segment.replies.new) } %>").fadeIn();

@@ -1,0 +1,15 @@
+    <div class="span2" id="<%= dom_id folder %>">
+      <a class="album-cover" href="<%= folder_path(folder) %>">
+        <% if folder.photos.size > 0 %> 
+	  <% cover_path = File.join('photos',folder.folder_name,folder.photos.first.path) %>
+        <% else %> 
+	  <% cover_path = "" %>
+        <% end %> 
+        <img src="<%= cover_path %>">
+
+        <div class="photo-num"><%= folder.photos.size %></div>
+      </a>
+      <a class="album-title">
+        <%= folder.name %>
+      </a>
+    </div>

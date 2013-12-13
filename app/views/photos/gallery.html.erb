@@ -1,0 +1,89 @@
+<%= stylesheet_link_tag "3d-gallery" %>
+<%= javascript_include_tag "modernizr.custom" %>
+<%= javascript_include_tag "3d-gallery" %>
+<!--        <a href="http://tympanus.net/codrops/2012/02/06/3d-gallery-with-css3-and-jquery/">3D Gallery with CSS3 and jQuery</a> -->
+
+<style>
+.photo-cover {
+    background-color: transparent;
+    display: block;
+    height: 130px;
+    margin: 4px;
+    overflow: hidden;
+    width: 154px;
+    text-align: center;
+    cursor: none;
+}
+.photo-cover img {
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+#modal, #modal .modal-body {
+  width: auto;
+  max-width: 600px;
+  height: auto;
+  max-height: 700px;
+}
+</style>
+
+<div class="center">
+  <h2><%= @folder.name %>-
+    <small><a href="http://tympanus.net/codrops/2012/02/06/3d-gallery-with-css3-and-jquery/">3D Gallery with CSS3 and jQuery</a></small>
+  </h2>
+</div>
+
+<section id="dg-container" class="dg-container" style="margin-top:50px;">
+    <div class="dg-wrapper">
+      <% @folder.photos.each do |photo| %>
+	<a class="photo-cover"> 
+	    <img src="<%= File.join('/photos',photo.folders.first.folder_name,photo.path)%>">
+	    <div  style="font-size:13px;line-height:13px;bottom:none;"><%= photo.name %></div>
+	</a>
+      <% end %>
+    </div>
+
+    <nav>	
+	<span class="dg-prev">&lt;</span>
+	<span class="dg-next">&gt;</span>
+    </nav>
+</section>
+
+<%= render partial: "modal" %>
+
+<script type="text/javascript">
+$(function() {
+  $('#dg-container').gallery();
+
+  $(".photo-cover img").each(function(){
+    var tmp_img = new Image();
+    $img = $(this)
+    tmp_img.src = $img.attr("src");
+    var width = tmp_img.width;
+    var height = tmp_img.height;
+
+    if(width >= height) {
+      var mini_width = parseInt(width/(height/260), 10);
+      var more_width = parseInt((mini_width - 480)/2,10);
+      $img.css({"width":String(mini_width)+"px","height":"260px"});
+    } else {
+      var mini_height = parseInt(height/(width/480),10);
+      var more_height = parseInt((mini_height - 260)/2,10);
+      $img.css({"height":String(mini_height)+"px","width":"480px"}); 
+    }
+  });
+
+  $(".photo-cover img").click(function(){
+    var $img = $(this);
+    $("#modal").modal("show");
+    $("#modal .modal-body img").css("src",$img.attr("src"));
+    $("#modal .modal-body img").attr("src",$img.attr("src"));
+  });
+
+});
+</script/>
+

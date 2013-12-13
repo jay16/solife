@@ -1,0 +1,43 @@
+<!--
+       _             _       ____   ___  _     _  __      
+      | | __ _ _   _( )___  / ___| / _ \| |   (_)/ _| ___ 
+   _  | |/ _` | | | |// __| \___ \| | | | |   | | |_ / _ \
+  | |_| | (_| | |_| | \__ \  ___) | |_| | |___| |  _|  __/
+   \___/ \__,_|\__, | |___/ |____/ \___/|_____|_|_|  \___|
+               |___/       
+   _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ _____ 
+  |_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|_____|
+                                                                                       
+  App Environments:
+  --------------------------------------------------------
+  Ruby:  <%= RUBY_VERSION %><%= "-p#{RUBY_PATCHLEVEL}" if defined? RUBY_PATCHLEVEL %>
+  Rails: <%= Rails.version %>
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SOLife</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="jay_li" name="author">
+    <meta content="xsolife.com - Segment Of Jay's Life..." name="description">
+    <meta content="xsolife.com - linux ruby rails" name="keywords">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="320" name="MobileOptimized">
+    <meta content="width=device-width,minimum-scale=1,maximum-scale=1" name="viewport">
+    <meta property="qc:admins" content="563117170741656375" />
+    <link rel="icon" href="/assets/favicon.so.ico">
+    <link href="http://solife.com/" rel="canonical">
+
+    <%= stylesheet_link_tag    "layout_v2", :media => "all" %>
+    <%= javascript_include_tag "layout_v2" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <%= render :partial => "layouts/layout_v2/header" %>
+    <%= render :partial => "layouts/layout_v2/layout" %>
+    <%= render :partial => "layouts/footer" %> 
+    <%= render :partial => "layouts/google-analytics" %> 
+  </body>
+</html>
+

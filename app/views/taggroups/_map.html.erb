@@ -1,0 +1,26 @@
+     <%= select_tag "taggroups_list", options_from_collection_for_select(@taggroups, "id", "label",@taggroups.first.id),{:include_blank => true, :style => "width: 220px", :class => "chzn-select-deselect", :"data-placeholder" => "查找邮件列表", :onchange=>"taggroup_list(this.value)"} %><br> 
+
+    <% nogrouptags = @tags %>
+    <table class="table table-bordered">
+      <% @taggroups.each do |taggroup| %>
+      <% nogrouptags = nogrouptags - taggroup.tags %>
+	<tr>
+	  <td> <%= "#{taggroup.label}(#{taggroup.tags.size})" %></td>
+	  <td>
+	    <% taggroup.tags.each_with_index do |tag, index| %>
+	      <span class="label label-info"><%= tag.label %></span>
+	      <input type="checkbox" name="tags_list_<%= tag.id %>" id="tag_<%= tag.id %>" />
+	    <% end  %>
+	  </td>
+	 </tr>
+	<% end %>
+	<tr><td>nogroups</td>
+	 <td><%= nogrouptags.map{|tag| tag.label}.join(",") %></td>
+	</tr>
+     </table>
+
+<script>
+ function taggroup_list(dd) {
+   alert(dd);
+ }
+</script>

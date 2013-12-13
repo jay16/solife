@@ -1,0 +1,7 @@
+<xml>
+<ToUserName><![CDATA[<%= @weixin.from_user_name %>]]></ToUserName>
+<FromUserName><![CDATA[<%= @weixin.to_user_name %>]]></FromUserName>
+<CreateTime><%= Time.now.to_i %></CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[<%= @weixin.event == "subscribe" ? "欢迎关注SOLife微信./::~" : "谢谢您的使用./::~" %>]]></Content>
+</xml>

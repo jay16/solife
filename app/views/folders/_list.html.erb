@@ -1,0 +1,16 @@
+<table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Desc</th>
+      <th>Photos</th>
+      <th>Show</th>
+    </tr>
+  <% @folders.each_with_index do |folder, index| %>
+    <tr>
+      <td><%= folder.name %></td>
+      <td><%= Kramdown::Document.new(folder.desc.to_s).to_html.html_safe %></td>
+      <td><%= folder.photos.size %></td>
+      <td><%= link_to "show", folder %></td>
+    </tr>
+  <% end if @folders %>
+</table>

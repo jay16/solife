@@ -1,0 +1,33 @@
+<h2>
+  <%= t("layout.user") %>
+  <small>
+  <%= link_to t("btn.new"), new_user_path, :remote => true, class: "btn btn-primary" %>
+  </small>
+</h3>
+ 
+<table class="table">
+  <tr>
+    <th><%= t("member.name") %></th>
+    <th><%= t("member.email") %></th>
+    <th><%= t("member.type") %></th>
+    <th><%= t("member.detail") %></th>
+    <th><%= t("member.edit") %></th>
+  </tr>
+ 
+<% @users.each do |user| %>
+  <tr id="<%= dom_id user %>">
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td>
+       <% user.tags.each do |tag| %>
+         <span class="label label-info"><%= tag.label %></span>
+       <% end %>
+    </td>
+    <td><%= link_to t("btn.show"), user, remote: true, class: "btn btn-mini btn-info" %></td>
+    <td><%= link_to t("btn.edit"), edit_user_path(user), remote: true,class: "btn btn-mini btn-success" %></td>
+  </tr>
+<% end if @users %>
+</table>
+ 
+
+<%= render :partial => "users/modal", formats: [:html], hander: [:erb]  %>

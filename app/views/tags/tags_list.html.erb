@@ -1,0 +1,7 @@
+<% tags = (@segment_id ? tags_list(@segment_id) : []) %>
+<% tags_list.each do |tag| %>
+  <span class="label label-info">
+   <%= tag.label %>
+  </span>
+  <input type="checkbox" name="solife_tags" id="tag_<%= tag.id %>" checked="<%= tags.include?(tag.id) %>" />
+<% end %>

@@ -1,0 +1,26 @@
+<% row_cols = 4
+   photos   = @folder.photos
+   grid_num = (photos.size/row_cols+1)*row_cols -1
+%>
+<style>
+.photo-box {
+  list-style: none outside none;
+}
+.photo {
+  border: 1px solid #E2E2E2;
+  width: 205px;
+  height: 135px;
+  padding: 5px;
+}
+</style>
+
+<table class="table">
+  <% (0..grid_num).each do |index| %>
+    <% photo = photos[index] %>
+    <% if index%row_cols == 0 %> <tr> <% end %>
+     <td>
+      <%=  render :partial => "folders/photo", :locals => { :photo => photo } if photo %>
+     </td>
+    <% if index%row_cols == row_cols -1 %> </tr> <% end %>
+  <% end %>
+</table>

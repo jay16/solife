@@ -1,0 +1,64 @@
+<div class="row" id="statuses_<%=h id %>">
+
+    
+    <div class="span5" style="padding:5px;margin:0;">
+        <div class="row">
+            <div class="span5">
+                <div>
+                    <!--判断有无用户-->
+                    <% if weibo.user? %>
+                    <a data-toggle="modal" href="#<%= weibo.user.id %>_user_info_modal">
+                         <%=h weibo.user.screen_name if weibo.user? %></a>
+                    <% else %>
+                      <a><%=h weibo.id if weibo.id? %></a>
+                    <% end %>
+                      <%=h weibo.text if weibo.text? %><br>
+                      <img id="<%=h weibo.id %>_thumbnail_pic" src="<%=h weibo.thumbnail_pic if weibo.thumbnail_pic? %>">
+                   </div>
+
+                   <!--转发、评论后提示-->
+                    <div class="alert" id="<%=h weibo.id %>_after_pane" style="display:none;">
+                         <button type="button" class="close" data-dismiss="alert">&times;</button>
+                         <strong>Well done!</strong><span> You successfully comment!.</span>
+                    </div>
+                    <!--转发-->
+
+                </div>
+         </div>
+         <!--有转发微博-->
+         <!---->
+         <span style="color:gray;">
+              <% day = Time.now.strftime("%m月%d日") == DateTime.parse(weibo.created_at).strftime("%m月%d日") ? "今天 " : "%m月%d日 " %>
+               <% if day == "今天 " %>
+                 <% c_min = DateTime.parse(weibo.created_at).strftime("%M").to_i %>
+                 <% if (Time.now).hour == DateTime.parse(weibo.created_at).strftime("%H").to_i %>
+                 <% m_d = (Time.now).min - c_min %>
+                 <% min = m_d == 0 ? "刚刚" : "#{m_d}分钟前" %>
+                 <% else %>
+                    <% min = "%H:%M" %>
+                 <% end %>
+               <% else %>
+                 <% min = "%H:%M" %>
+               <% end %> 
+               (<%=h DateTime.parse(weibo.created_at).strftime("#{day}#{min}") %>)
+         </span>
+         <!--判断来源-->
+         <% if weibo.source? %>
+                <% source = weibo.source.match(/"(.*?)"/mi)[0] %>
+                <% source_name = weibo.source.gsub(/<a(.*?)>|<\/a>/mi,"") %>
+                <span style="color:gray;">来自<a src="<%=h source %>"><%= source_name %></a></span>
+         <% end %>
+         <!---->
+             <span style="float:right;margin-right:10px;">
+               <a data-toggle="modal" href="#<%=h weibo.id %>_repost_modal" >
+                 转发(<%= weibo.reposts_count? ? weibo.reposts_count : 0%>)</a> | 
+               <a id="<%=h weibo.id %>_repost_list" href="javascript:void(0)" onclick="comments_list(<%=h weibo.id %>,'false');$('#<%=h weibo.id %>_comment_pane').css('display','block');$('#<%=h weibo.id %>_comment').val('想说点什么....');" >
+                 评论(<%= weibo.comments_count? ? weibo.comments_count : 0%>)</a>
+             </span>
+         <!--评论模板-->
+         <% if weibo.comments_count? %>
+         <% end %>
+    </div>
+    <!--span5 end -->
+</div>
+

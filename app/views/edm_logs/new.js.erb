@@ -1,0 +1,4 @@
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("New Site");
+$("#modal .modal-body").html("<%= j render partial: 'form', formats: [:html], handler: [:erb], locals: { site: @site, favority: @favority } %>"); 
+

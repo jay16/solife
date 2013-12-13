@@ -1,0 +1,35 @@
+<table class="table">
+  <tr>
+    <td>todo:</td>
+    <td><%= @todo.todo %></td>
+  </tr>
+  <tr>
+    <td>desc:</td>
+    <td><%= @todo.desc %></td>
+  </tr>
+  <tr>
+    <td>分类:</td>
+    <td>
+        <% @todo.tags.each do |tag| %>
+          <span class="label label-info"><%= tag.label %></span>
+        <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>state:</td>
+    <td><%= @todo.isover %></td>
+  </tr>
+  <tr>
+    <td>创建时间:</td>
+    <td><%= @todo.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <td>修改时间:</td>
+    <td><%= @todo.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <td>操作</td>
+    <td><%= link_to t("btn.edit"), edit_todo_path(@todo), remote: true, class: "btn btn-mini btn-success" %>
+        <%= link_to t("btn.del"), @todo, method: :delete, remote: true, data: { confirm: "Are you sure?" }, class: "btn btn-mini btn-danger" %></td>
+  </tr>
+</table>

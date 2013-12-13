@@ -1,0 +1,28 @@
+<h2>[标签组]管理 <small>
+  <%= link_to "新建标签组", new_taggroup_path, remote: true, class: "btn btn-primary" %></small>
+</h2>
+
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+      <% @taggroups.first.mappings.each_with_index do |type, index| %>
+	<%  taggroups = @taggroups.select { |group| group.type == type[0][0].to_s } %>
+	<% next if taggroups.empty? %>
+	  <li class="<%= index == 0 ? 'active' : '' %>">
+	      <a data-toggle="tab" href="#<%= type[0][0] %>"><%= type[0][1].capitalize %></a>
+	  </li>
+      <% end %>
+  </ul>
+
+  <div class="tab-content">
+      <% @taggroups.first.mappings.each_with_index do |type, index| %>
+	<%  taggroups = @taggroups.select { |group| group.type == type[0][0].to_s } %>
+	<% next if taggroups.empty? %>
+	<div id="<%= type[0][0] %>" class="tab-pane <%= index == 0 ? 'active' : '' %>">
+	    <%= render :partial => "taggroups/taggroup", locals: { taggroups: taggroups } %>
+        </div>
+      <% end if @taggroups %>
+  </div>
+</div>
+
+
+<%= render :partial => "taggroups/modal", formats: [:html], handler: [:erb] %>

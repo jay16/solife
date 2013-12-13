@@ -1,0 +1,142 @@
+
+<div class="container clearfix layout_outer">
+  <div class="span12 layout_outer">
+
+  <div class="row">
+    <div class="span11 layout_inner">
+    <div class="row bg">
+
+     <div class="span8 main">
+       <div class="lives">
+         <%= yield %>
+       </div>    
+     </div>
+     <!--span8-->
+
+    <div class="span3 side">
+
+      <!-- search文章 -->
+      <div class="row" style="margin-left: 0px;margin-top:15px;">
+        <div class="banner">搜索文章</div>
+        <div class="line-separator"></div>
+
+        <div class="span3">
+           <%= render :template => "segments/search" %>
+        </div>
+      </div>
+      <!-- search文章 -->
+
+      <!-- 近期文章 -->
+      <div class="row" style="margin-left: 0px;margin-top:15px;">
+        <div class="banner">近期文章</div>
+
+        <div class="line-separator"></div>
+        
+        <div class="span3">
+           <%= render :template => "segments/lastest_segments" %>
+        </div>
+      </div>
+      <!-- 近期文章 -->
+
+      <!-- 标签云 -->
+      <div class="row" style="margin-left: 0px;">
+        <div class="banner">标签云</div>
+
+        <div class="line-separator"></div>
+        
+        <div class="span3" style="padding:5px;">
+           <%= render :template => "tags/tags_cloud" %>
+        </div>
+      </div>
+      <!-- 标签云 -->
+
+      <!-- 用户登陆 -->
+      <div class="row" style="margin-left: 0px;">
+          <div class="banner">
+             <%= session[:user_id].nil? ? "用户登陆" : current_user.email %>
+             <%= link_to ">>","javascript:void(0);",:onclick=>"toggle_show(this,'.login-form','&gt;&gt;','&lt;&lt;','hidden')",:class=>"nolink" %>
+          </div>
+
+        <div class="line-separator"></div>
+
+        <div class="span3 login-form">
+           <% if session[:user_id] then %>
+             <%= link_to "写日志", segments_new_path(), :class=>"btn btn-primary", :style => "color: black;width:100px;" %>
+           <% end %>
+        </div>
+      </div>
+      <!-- 用户登陆 -->
+
+    </div> <!-- span3 -->
+    </div>
+    </div>
+    
+    <!-- span1---> 
+    <div class="span1 slider">
+     <div class="row roll">
+       <div id="roll_top" title="回到顶部"></div>
+       <div id="roll_middle" title="回到中部"></div>
+       <div id="roll_bottom" title="转到底部"></div>
+     </div>
+    </div>
+   <!--span1-->
+
+
+  </div>
+  <!--row-->
+
+
+<script>
+ $(function(){
+
+        var screenWidth = $(window).width();
+        var screenHeight = $(window).height(); //当前浏览器窗口的 宽高
+        var scrolltop = $(document).scrollTop();//获取当前窗口距离页面顶部高度
+        var objLeft = (screenWidth - 2)/2 ;   //2 可以根据需要修改
+        var objTop = (screenHeight - 500)/2 + scrolltop;  //100可以根据需要修改
+    $('#roll_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+    $('#roll_middle').click(function(){$('html,body').animate({scrollTop: objTop}, 800);});
+    $('#roll_bottom').click(function(){$('html,body').animate({scrollTop:$('.footer').offset().top}, 800);}); 
+
+    $(".content table:not(.CodeRay)").addClass("table table-bordered");
+    $(".CodeRay").parent().css({"width":"100%","overflow-x":"auto","overflow-y":"hidden","margin-bottom":"15px"});
+
+    $(".lives").each(function(){
+       var $lives   = $(this);
+       var $life    = $lives.children(".life:first");
+       var $title   = $life.children(".title:first");
+       var $segments  = $lives.children(".segment");
+       var $life_edit = $life.children(".edit-pane:first");
+       
+       //默认隐藏编辑选项框
+       //$title_edit.addClass("");
+       
+       $title.dblclick(function(){ 
+          $life_edit.toggleClass("hide"); 
+       });
+       
+       $segments.each(function(){
+         var $segment = $(this);
+         var $segment_content = $segment.children(".content:first");
+         var $segment_edit    = $segment.children(".edit-pane:first");
+         
+         //默认隐藏编辑选项框
+         //$segment_edit.addClass("hide");
+         
+         $segment_content.dblclick(function(){ 
+            //首先隐藏所有编辑选项框再显示当前选项框
+            var isHide = $segment_edit.hasClass("hide");
+            $(".edit-pane").addClass("hide");
+            isHide ? $segment_edit.removeClass("hide") : $segment_edit.addClass("hide")
+         });
+         
+       });
+  
+    });
+    
+  $(".login-form").addClass('hidden'); 
+ });
+</script>
+
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<style>
+.top-index {
+  top: 0;
+}
+.shell-output {
+  width:100%;
+  margin: 0 auto;
+  line-height: 14px;
+}
+.shell-output tr td {
+    background: none repeat scroll 0 0 #000000;
+    color: #F0F0F0;
+    font-family: courier,fixed,swiss,monospace,sans-serif;
+    font-size: 14px;
+    line-heihgt: 14px;
+}
+</style>
+
+<div class="span12">
+  <table style="width:90%;margin: 0 auto;">
+      <tbody>
+         <tr>
+	   <td>
+	     <%= form_tag("/demo/shell_input",:remote => true) do %>
+	       <%= text_field_tag "shell-input",nil,:style=>"width:90%;margin:0px;" %>
+	       <%= submit_tag "提交", :class => "btn" %>
+	     <% end %>
+	   </td>
+	 </tr>
+         <tr>
+           <td>
+	     <%#= content_tag(:div, nil, :id => "output", :style=>"width:100%;min-height:300px;max-height:350px;overflow:auto;") %>
+               <div id="output" style="width:100%;min-height:300px;max-height:350px;overflow:auto;">
+	         <table  class="shell-output" cellspacing="0" cellpadding="0" border="0">
+		     <tr><td>jay.li@slife# warn</td></tr>
+		     <tr><td>only allow the command below:</td></tr>
+		     <tr><td>whois,figlet,date,which,whereis,echo</td></tr>
+		 </table>
+	         <table class="taken shell-output" cellspacing="0" cellpadding="0" border="0">
+                   <% (1..17).each do |i| %>
+		     <tr><td>&nbsp;</td></tr>
+                   <% end %>
+		 </table>
+	       </div>
+	   </td>
+	 </tr>
+      </tbody>
+  </table> 
+</div>

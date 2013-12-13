@@ -1,0 +1,2 @@
+$("#modal").modal("hide");
+$(".<%= dom_id @tag %>").replaceWith("<%= j render template: "/tags/tag", formats: [:html], handler: [:erb], locals: { taggroup: @taggroup, tag: @tag } %>");

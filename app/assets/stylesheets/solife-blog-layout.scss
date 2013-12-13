@@ -1,0 +1,225 @@
+.dlives {
+    background-color: transparent;
+   // border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    margin: 15px 0;
+    padding: 39px 19px 14px;
+    position: relative;
+  &:after {
+    background-color: transparent;
+    //border: 1px solid #DDDDDD;
+    border-radius: 4px 0 4px 0;
+    color: #9DA0A4;
+    content: "segments";
+    font-size: 12px;
+    font-weight: bold;
+    left: -1px;
+    padding: 3px 7px;
+    position: absolute;
+    top: -1px;
+  }
+  .info {
+      font-size: 13px;
+      line-height: 20px;
+      color: black;
+  }
+}
+.container {
+  box-shadow:0 0 1em blue;  
+}
+.segment,
+thumbnail {
+    background-color: white;
+}
+.segment_box .thumbnail {
+    border-top: 1px solid #DDDDDD;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    display: block;
+    line-height: 20px;
+    padding-bottom:25px;
+    transition: all 0.2s ease-in-out 0s;
+}
+.segment h4 {
+    font-size: 18px;
+}
+.segment .content,
+.thumbnail .content {
+//    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px 4px 4px 4px;
+}
+.segment .content p,
+.thumbnail .content p{
+  text-indent: 20px;
+}
+dd{
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.content p {
+   margin: 0 0 5px;;
+}
+.content strong {
+  letter-spacing: 0px;
+}
+.content blockquote p {
+  letter-spacing: 0px;
+  word-spacing: -5px;
+  font-family: Consolas,"Liberation Mono",Courier,monospace;
+}
+.lives .edit-pane {
+  border-radius: 0px 0px 4px 4px;
+  margin-right:0px;
+  margin-bottom: 5px;
+    background:  #E7E7E7;
+    height: 20px;
+    overflow: hidden;
+    padding: 5px 15px;
+}
+.edit-pane span {
+  padding-right: 14px;
+}
+/*
+.edit-pane .user {
+    background: url("/assets/author.png") no-repeat scroll 0 0 transparent;
+    color: #888888;
+    padding-left: 15px;
+}
+
+.edit-pane .user:hover {
+    background: url("/assets/author.png") no-repeat scroll 0 -16px transparent;
+    color: #FFFFFF;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .category {
+    background: url("/assets/category.png") no-repeat scroll 0 0 transparent;
+    color: #888888;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .category:hover {
+    background: url("/assets/category.png") no-repeat scroll 0 -16px transparent;
+    color: #FFFFFF;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .comments {
+    background: url("/assets/comments.png") no-repeat scroll 0 0 transparent;
+    color: #888888;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .comments:hover {
+    background: url("/assets/comments.png") no-repeat scroll 0 -16px transparent;
+    color: #FFFFFF;
+    height: 16px;
+    padding-left: 15px;
+}
+*/
+.content pre {
+    background-color: transparent;
+    border: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.segment {
+//    background: url("segment_bg.png") repeat-y scroll 0 0 transparent;
+    padding: 5px 10px 30px 30px;
+}
+.readmore:hover,.readless:hover {
+    cursor: pointer;
+}
+.segment_box .edit-pane span a {
+  background: url("/assets/glyphicons-halflings.png") no-repeat scroll 0 0 transparent;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+  margin-top: 1px;
+}
+.segment_box .edit-pane span .solife-user {
+  background-position: -168px 0px;
+}
+.segment_box .edit-pane span .solife-tag {
+  background-position: -240px 0px;
+}
+.segment_box .edit-pane span .solife-reply {
+  background-position: -47px -118px; 
+}
+.timestamp-box {
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    height: 34px;
+    margin-bottom: 0px;
+    position: relative;
+    width: 108px;
+}
+.timestamp-box .timestamp-detail {
+    border-style: solid;
+    border-width: 0 0 1px 5px;
+    border-color: lightgray;
+    height: 32px;
+    position: relative;
+    width: 103px;
+}
+.timestamp-detail .timestamp-date {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-color: lightgray;
+    display: block;
+    height: 31px;
+    right: 0;
+    margin-right: 3px;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    width: 42px;
+    line-height: 95%;
+}
+.timestamp-detail .timestamp-date .timestamp-week {
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+    width: 100%;
+    color: gray;
+}
+.timestamp-detail .timestamp-date .timestamp-day {
+    display: inline-block;
+    line-height: 90%;
+    margin-top: 0px;
+    font-size: 12px;
+    color: gray;
+}
+
+.timestamp-detail .timestamp-time {
+    display: block;
+    font-family: "微软雅黑";
+    font-size: 18px;
+    height: 31px;
+    left: 0;
+    line-height: 31px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    vertical-align: top;
+    width: 40px;
+    z-index: 2;
+    padding-left:10px;
+    padding-top: 0px;
+    color: gray;
+}
+
+

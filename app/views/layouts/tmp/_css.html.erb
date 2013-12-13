@@ -1,0 +1,235 @@
+
+  <%= stylesheet_link_tag    "bootstrap.css" %>
+  <%= javascript_include_tag "bootstrap.js" %>
+  <%= stylesheet_link_tag    "bootstrap-datepicker.css" %>
+  <%= javascript_include_tag "bootstrap-datepicker.js" %>
+
+<style>
+body {
+  margin-top: -10px;
+  font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+}
+.span8 {
+    width: 760px;
+    max-width: 760px;
+    min-width: 760px;
+    margin-left: 25px;
+}
+.span3 {
+    width: 255px;
+    max-width: 255px;
+    min-width: 255px;
+    margin-left: 5px;
+}
+.thumbnail {
+  padding-bottom: 5px;
+}
+.thumbnail .thumbnail_box {
+    border: 1px solid #CCCCCC;
+    float: left;
+    height: 80px;
+    margin: 17px 10px 8px;
+    padding: 4px;
+    width: 140px;
+}
+
+.header {
+    -moz-border-colors: none;
+    border-colors: none;
+    background: url("/assets/header-bg.png") repeat scroll left top transparent;
+    border-color: -moz-use-text-color rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+    border-image: none;
+    border-radius: 0 0 8px 8px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    line-height: 70px;
+    margin: 0 auto 20px;
+    position: relative;
+    width: 1124px;
+}
+.logo,.blog-ame, header {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+.blog-name {
+  padding-top:15px;
+}
+
+.blog-name a {
+    color: #E7E7E7;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 15px 0 0 30px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    font-family: 'Open Sans',sans-serif;
+}
+.blog-name small {
+  height: 100%;
+  margin-bottom: 5px;
+  //float: right;
+  color: lightgray;
+  font-size: 45%;
+}
+.segment h4 {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+ul, ol {
+    margin: 0 0 10px 5px;
+    padding: 0;
+}
+
+.roll {
+    height: 250px;
+    display: block;
+    position: fixed;
+    padding-left: 20px;
+    top: 30%;
+    width: 15px;
+}
+#roll_top {
+    background: url("/assets/roll.png") no-repeat scroll 0 0 transparent;
+    height: 93px;
+}
+#roll_bottom {
+    background: url("/assets/roll.png") no-repeat scroll 0 -146px transparent;
+    height: 93px;
+}
+#roll_middle {
+    background: url("/assets/roll.png") no-repeat scroll 0 -93px transparent;
+    height: 53px;
+}
+#roll_top,#roll_middle,#roll_bottom {
+    cursor: pointer;
+    position: relative;
+    width: 11px;
+}
+.container {
+ min-height: 800px;
+}
+.layout {
+    margin: 0 auto 40px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    text-align: left;
+}
+.segment_box pre {
+   line-height: 15px;
+}
+
+.line-numbers {
+    background: none repeat scroll 0 0 transparent;
+    border-right: 1px solid gray;
+    margin-right: 10px;
+    padding-right: 5px;
+}
+.line-numbers pre {
+  border: none;
+}
+.string .content {
+  display: inline;
+  font-size: 14px;
+    line-height: 1.2em;
+    margin: 0;
+    padding: 0px
+}
+[class*="span"] {
+  margin: 0;
+}
+.row {
+  margin: 0px;
+}
+.layout_outer {
+  max-width:1100px;
+  width:1100px;
+}
+.layout_inner {
+  width:1024px;
+  margin-left:25px;
+}
+.container .bg {
+  background: url('/assets/content-bg.png') repeat-y scroll 0 0 #F5F5F5;
+  border-radius:5px;
+}
+.container .main {
+   max-width:768px;
+   width:763px;
+}
+.container .side {
+  height:500px;
+  max-width:262px;
+  width:259px;
+  min-height: 650px;
+}
+.container .slider {
+  margin-left:0px;
+  width:15px;
+}
+.segment pre{
+    background: transparent;
+    color: #586E75;
+    font-size: 14px;
+    line-height: 1.2em;
+    margin-bottom: 0.5em;
+    padding: 0.8em 1em;
+    white-space: pre-wrap
+    border: 0;
+    border-radius: none;
+    box-shadow: none;
+}
+ .entry-title { font-size: 25px; }
+ h2 { font-size: 20px; }
+.content h1 {
+  font-size: 25px;
+}
+.content h3 {
+  font-size: 18px; 
+}
+.segment .content p code,
+ .thumbnail .content p code {
+  text-indent: 0;
+}
+</style>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>

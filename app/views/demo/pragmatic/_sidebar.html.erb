@@ -1,0 +1,82 @@
+<aside class="sidebar" style="top: 50px;">
+  <section id="search">
+    <form action="" class="form-search">
+      <input type="text" tabindex="1" placeholder="搜索" class="search-query">
+    </form>
+  </section>
+
+  <section class="myTickets">
+    <h4 rel="tooltip" class="active" data-original-title="我的任务显示所有分配给我的任务">
+      <i class="icon tickets"></i>我的任务
+    </h4>
+  </section>
+
+  <section id="iterations"><h4 rel="tooltip" data-original-title="任务列表里显示所有属于该任务列表的任务" class="">
+  <i class="icon iterations"></i>任务列表
+</h4>
+<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto; max-height: 74.5px;"><div class="lists" style="overflow: hidden; width: auto; height: auto; max-height: 74.5px;">
+  <ul class="unstyled list">
+  <li class="item" draggable="true" id="iteration-6e2a33c8a57d"><div class="counter">0</div>
+<div class="indicator"></div>
+<a href="/projects/01cb061315f2/iterations/6e2a33c8a57d">用户教程</a>
+</li></ul>
+  <ul class="unstyled backlog">
+    <li rel="tooltip" draggable="true" class="item" data-original-title="收件箱里显示所有不属于任何任务列表的任务">
+      <div class="counter">8</div>
+      <div class="indicator"></div>
+      <a href="#">收件箱</a>
+    </li>
+  </ul>
+</div><div class="slimScrollBar ui-draggable" style="background: none repeat scroll 0% 0% rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; border-radius: 7px 7px 7px 7px; z-index: 99; right: 1px; height: 57.8767px; display: none;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px 7px 7px 7px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+</section>
+
+  <section id="team"><h4 rel="tooltip" data-original-title="团队成员里显示所有分配给该成员的任务">
+  <i class="icon team"></i>团队成员
+</h4>
+<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto; max-height: 74.5px;"><ul class="unstyled" style="overflow: hidden; width: auto; height: auto; max-height: 74.5px;">
+<li class="item" draggable="true" id="user-8c724bdfe8a8"><div class="counter">4</div>
+<a class="people" href="/projects/01cb061315f2/users/8c724bdfe8a8">jay</a>
+</li><li class="item active" draggable="true" id="user-c1580b499c39"><div class="counter">4</div>
+<a class="people" href="/projects/01cb061315f2/users/c1580b499c39">solife</a>
+</li></ul><div class="slimScrollBar ui-draggable" style="background: none repeat scroll 0% 0% rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; border-radius: 7px 7px 7px 7px; z-index: 99; right: 1px; height: 57.8767px; display: none;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px 7px 7px 7px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+</section>
+
+  <div class="projectAction guide-spot">
+    <ul>
+      <li>
+        <a title="新建任务列表" data-backdrop="true" href="#new-iteration" data-toggle="modal" id="btn-new-iteration">
+          <i class="icon add-iteration"></i>
+        </a>
+      </li>
+      <li>
+        <a title="邀请团队成员" data-backdrop="true" href="#users-invite" data-toggle="modal" id="btn-invite-user" class="hide">
+          <i class="icon add-user"></i>
+        </a>
+      </li>
+      <li id="btn-more-action" class="sit-right dropdown dropup">
+        <a title="管理任务列表和团队成员" href="#moreAction" data-toggle="dropdown" class="dropdown-toggle">
+          <i class="icon admin-ico"></i>
+        </a>
+
+        <ul class="dropdown-menu">
+          <li>
+            <a id="li-manage-iterations" data-backdrop="true" data-toggle="modal" href="#manage-iterations">
+              管理任务列表
+            </a>
+          </li>
+          <li>
+            <a id="li-manage-team" data-backdrop="true" data-toggle="modal" href="#manage-team" style="display: none;">
+              管理团队成员
+            </a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#" id="btn-toggle-archive">
+              显示归档的任务列表
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</aside>

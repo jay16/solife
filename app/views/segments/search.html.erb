@@ -1,0 +1,10 @@
+<style>
+.segments-search {
+  width:190px;
+}
+</style>
+ <%= form_tag(segments_search_path(), :remote => true, :style=> "margin-bottom: 0px;padding-left:5px;") do %>
+   <input name="keywords" type="text" placeholder="关键字搜索" style="width:190px;" value=""/>   
+   <%= submit_tag "搜索", :class => "label label-success" %>
+ <% end %>
+ <div id="segments_results"></div>

@@ -1,0 +1,25 @@
+<% if @segments.size > 0 %>
+	<%= javascript_include_tag "paginate" %>
+	<style>
+	.pager span {
+	    padding: 1px 10px;
+	}
+        .paginated li {
+            text-decoration: none; 
+        }
+	</style>
+
+	<ul class="paginated"> 
+	  <% @segments.each_with_index do |segment, index| %>
+	   <li style="display:none;" segmentid="<%= segment.id %>"><%= index+1 %>. <%= link_to segment.title,segments_permlink(segment) %></li>
+	  <% end %>
+	</ul>
+
+	<script>
+	$(function(){
+	 $("ul.paginated").paginate({childNodeName: 'li'});
+	});
+	</script>
+<% else %>
+  <div class="center">没有相关文章!</div>
+<% end %>

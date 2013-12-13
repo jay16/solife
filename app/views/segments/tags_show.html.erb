@@ -1,0 +1,16 @@
+
+<div style="border: solid 2px lightgray;-moz-border-radius:10px; border-radius:10px;margin:0 auto 10px;padding-top:10px;width:650px;height:25px;">
+   <span style="float:left;margin-left:5px;">搜索关键字:[<span style="color:green;"><%= params[:tags] %></span>] 
+   结果: [<span style="color:green;"><%= @segments.size %></span>]条</span>
+</div>
+
+<div>
+<table class="table table-hover">
+  <% @segments.each do |segment| %>
+    <tr>
+      <td><%= segment.title %></td>
+      <td><%= link_to "阅读全文", segment.permlink_path, class: "label label-info" %></td>
+    </tr>
+  <% end %>
+</table>
+</div>

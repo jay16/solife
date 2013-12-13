@@ -1,0 +1,48 @@
+<%= render :partial => "demo/resume_style.html.erb" %>
+
+<body data-spy="scroll" data-target=".bs-docs-sidebar" data-offset="0">
+
+    <!-- Docs nav
+    ================================================== -->
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav affix" id="resume_navbar">
+          <li><a  href="#about_me"><i class="icon-chevron-right"></i>关于Jay</a></li>
+          <li><a  href="#about_solife"><i class="icon-chevron-right"></i>关于SOLife</a></li>
+          <li><a  href="#about_contact"><i class="icon-chevron-right"></i>联系方式</a></li>
+          <li><a  href="#about_work"><i class="icon-chevron-right"></i>个人简历</a></li>
+        </ul>
+      </div>
+      <div class="span7">
+           <div class="toggle-show" id="about_me">
+	      <div class="page-header">
+		<h1>关于jay</h1>
+	      </div> 
+              <%= render :partial => "demo/resume_user.html.erb" %>
+           </div>
+
+           <div class="toggle-show" id="about_solife">
+	      <div class="page-header">
+		<h1>关于solife</h1>
+	      </div> 
+              <%= render :partial => "demo/resume_solife.html.erb" %>
+	   </div>
+
+
+           <div class="toggle-show" id="about_contact">
+	      <div class="page-header">
+		<h1>联系方式</h1>
+	      </div> 
+              <%= render :partial => "demo/resume_contact.html.erb" %>
+           </div>
+
+           <div class="toggle-show" id="about_work">
+	     <div class="page-header">
+               <h1>个人简历</h1>
+             </div> 
+             <%= render :partial => "demo/resume_work.html.erb" %>
+           </div>
+
+
+</div>
+
+</body>

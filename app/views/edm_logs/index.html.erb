@@ -1,0 +1,21 @@
+<h2>EdmLogs</h2>
+ 
+<table class="table">
+  <tr>
+    <th>From</th>
+    <th>To</th>
+    <th>Statu</th>
+    <th>Date</th>
+  </tr>
+ 
+<% @edm_logs.each do |edm_log| %>
+  <tr id="<%= dom_id edm_log %>">
+    <td><%= edm_log.from %></td>
+    <td><%= edm_log.to %></td>
+    <td><%= edm_log.statu %></td>
+    <td><%= edm_log.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+<% end if @edm_logs %>
+</table>
+ 
+

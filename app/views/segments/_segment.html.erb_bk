@@ -1,0 +1,104 @@
+<style>
+code pre,.code pre,pre {
+    white-space: none;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+</style>
+
+               <div id="<%= dom_id segment %>_box" class="segment_box"> 
+		  <!-- thumbnail -->
+		  <div class="thumbnail" id="<%= dom_id segment %>_thumbnail">
+		      <table style="width:680px;">
+			<tr width="100%">
+			   <td width="90%" style=" border-bottom:1px solid #F2F2F2;">
+			     <h4><%= segment.title %></h4> 
+			   </td>
+			   <td width="10%">
+			      <div class="timestamp-box">
+				<div class="timestamp-detail">
+				  <div class="timestamp-time"  ><%= segment.created_at.strftime("%H:%M") %></div>
+       
+				  <div class="timestamp-date">
+				    <span class="timestamp-week"><%= segment.created_at.strftime("%a") %></span>
+				    <span class="timestamp-day"><%= segment.created_at.strftime("%b %d") %></span>            
+				  </div>
+				</div>
+			      </div>
+			   </td>
+			</tr>
+		      </table>
+
+
+		   
+		     <!-- thumbnail image -->
+		      <table>
+			<tr>
+			  <td style="vertical-align:top;display:none;">
+			      <div class="thumbnail_box">
+				<div class="thumbanil_img" style="width:140px;height:80px;">
+				   <%#= image_tag("thumbnail_img#{Integer(rand())%3}.png", :size => "140x80") %>
+				</div>
+			      </div>
+			  </td>
+			  <td style="vertical-align:top;">
+			      <div class="right" style="width:680px;"><!--width:500px-->
+                                                      <!-- Kramdown::Document.new()-->
+				<div class="content"><pre><%= escape(segment.content[0..80]).html_safe %></pre></div>
+			      </div>
+			  </td>
+			</tr>
+		      </table>
+		     <!-- thumbnail image -->
+                     <span style="padding:9.5px">......<span>
+  		      <div class="right readmore badge badge-info" onclick="thumbnail_toggle(<%= segment.id %>,true)">快速阅读</div>
+		      <%= link_to "全屏阅读", segments_permlink(segment), :class => "right readmore badge badge-info" %>
+		  </div>
+
+		  <!-- thumbnail -->
+
+		  <!-- segment -->
+		  <div class="segment" style="display:none;" id="<%= dom_id segment %>">
+		   
+		    <header>
+		      <h1 class="entry-title"><%= segment.title %></h1>
+		    </header>
+
+		    <div class="tags-zone">
+			<% segment.tags.each do |tag| %>
+			   <span class="label label-info"><%= tag.label %></span>
+			<% end %>
+		    </div>
+		     
+		     <div class="content"><%= (segment.markdown.nil? ? markdown(segment) : segment.markdown).html_safe %></div>
+		     
+      
+		    
+		    <div class="right readless badge badge-info" onclick="thumbnail_toggle(<%= segment.id %>,false)">返回缩略</div>
+		  </div>
+                  
+                  <div class="replies">
+                     <h2>评论</h2>
+                     <ul>
+                        <% segment.replies.each do |reply| %>
+                          <li><%= reply.content+" " + reply.created_at.strftime("%Y-%m-%d %H:%M%S") %></li>
+                        <% end %>
+                     </ul>
+                  </div>
+
+		    <div class="edit-pane">
+			<% if user_signed_in? %>
+			    <%= link_to "Edit", segments_edit_path(segment.permlink),:class=>"btn btn-mini" %>
+                            <%= link_to "Append",segments_append_path(segment.id),:class=>"btn btn-mini", :remote => true %>
+			    <%= link_to "AddTag", tags_list_path(segment.id),:remote => true, :class => "btn btn-mini" %>
+			    <%= link_to "Del",segments_destory_path(segment.id), :class => "btn btn-mini", :remote => true, :confirm => "Destory cannot restore, Are you sure?!" %>
+			<% end %>
+                       
+                        <span class="user">jay</span> 
+                        <span class="category">undefine</span>
+                        <span class="comments">
+		          <%= link_to "comments(#{segment.replies.count})", replies_new_path(segment.id), :remote => true %>
+                        </span>
+		    </div>
+
+                 </div>

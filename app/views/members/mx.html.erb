@@ -1,0 +1,16 @@
+<table class="table">
+  <tr>
+    <th>index</th>
+    <th>exchange</th>
+    <th>proviaty</th>
+  </tr>
+
+  <% @mxes.each_with_index do |mx, index| %>
+    <tr>
+      <td><%= index+1 %></td>
+      <td><%= mx.exchange %></td>
+      <td><%= mx.preference %></td>
+    </tr>
+  <% end if @mxes %>
+
+</table>

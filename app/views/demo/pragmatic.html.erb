@@ -1,0 +1,58 @@
+
+<style>
+.row-fluid [class*="span"]  {
+  margin: 0px;
+}
+.row-fluid [class="span3"],
+.row-fluid [class="span4"],
+.row-fluid [class="span5"] {
+  min-height: 400px;
+  box-shadow:0 1px 3px rgba(0, 0, 0, 0.5);
+  border:medium none;
+}
+.row-fluid [class="span3"] {
+  width: 25%;
+}
+.row-fluid [class="span4"] {
+  width: 33.3%;
+}
+.row-fluid [class="span5"] {
+  width: 41.7%;
+}
+section h4 {
+    background-color: #E7E7E7;
+    background-image: -moz-linear-gradient(center top , #F7F7F7, #CFCFCF);
+    background-repeat: repeat-x;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 1px 0 0 rgba(0, 0, 0, 0.2);
+    height: 31px;
+    line-height: 31px;
+    margin-bottom: 1px;
+}
+ section h4 i {
+    margin: 5px 5px 5px 10px;
+}
+ section:not([id="team"]) h4 {
+    cursor: pointer;
+}
+ section:not([id="team"]) h4:hover {
+    background-color: #ECF2F5;
+    background-image: -moz-linear-gradient(center top , #F4FAFD, #E0E5E8);
+    background-repeat: repeat-x;
+}
+ section:not([id="team"]) h4.active,  section:not([id="team"]) h4.active:hover {
+    background-color: #E5EEF3;
+    background-image: -moz-linear-gradient(center top , #DEE7EC, #F0F9FE);
+    background-repeat: repeat-x;
+}
+</style>
+<div class="dashboard">
+  <div class="span3">
+    <%= render :partial => "demo/pragmatic/sidebar" %>
+  </div>
+  <div class="span4" style="background:lightgreen;">
+    <%= render :partial => "demo/pragmatic/todo" %>
+  </div>
+  <div class="span5" style="background:lightblue;">
+    <%= render :partial => "demo/pragmatic/detail" %>
+  </div>
+</div>

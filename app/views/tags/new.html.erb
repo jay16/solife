@@ -1,0 +1,6 @@
+<%= form_tag(tags_create_path(),:remote => true) do %>
+  <label class="control-label" for="label">Label
+     <%= text_field_tag 'label', @tag.label, :placeholder => 'Label'  %>
+     <%= submit_tag "submit",:class=>"btn btn-mini" %>
+  </label>
+<% end %>

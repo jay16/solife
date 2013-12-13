@@ -1,0 +1,16 @@
+<div class="footer">
+  <div class="center">
+    Copyright © 2013 <a href="http://xsolife.com" class="nolink" data-placement="top" data-toggle="tooltip" data-original-title=<%=t("tooltip.solife") %>>solife</a>. All Rights Reserved.
+  </div>
+
+  <% lastest_file = Rails.root.join("tmp/lastest-updated.txt") %>
+  <% lastest = IO.readlines(lastest_file) if File.exists?(lastest_file)  %>
+  <% modal_info = (lastest and lastest[0] ? lastest[0] : "data-unreached") %>
+  <% view_info = (lastest and lastest[1] ? lastest[1] : "data-unreached") %>
+  <% controller_info = (lastest and lastest[2] ? lastest[2] : "data-unreached") %>
+
+  <div class="center">
+     Desgined by <a href="http://xsolife.com/resume#about_me" class="nolink" data-placement="top" data-toggle="tooltip" data-original-title=<%= t("tooltip.jay_li") %>>jay_li</a>. 
+     <a class="nolink" data-placement="top" data-toggle="tooltip" data-original-title="modal:<%= modal_info  %>view:<%= view_info  %>controller:<%= controller_info  %>">lastest updated</a> <%= modal_info %>
+  </div>
+</div>

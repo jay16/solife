@@ -1,0 +1,2 @@
+$("#modal").modal("hide");
+$(".row-fluid").append("<%= j render template: "/taggroups/create", formats: [:html], handler: [:erb], locals: { taggroup: @taggroup } %>")

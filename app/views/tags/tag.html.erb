@@ -1,0 +1,6 @@
+  <tr class="<%= dom_id tag %>">
+    <td><%= tag.label %></td>
+    <td><%= tag.saze %></td>
+    <td><%= link_to "明细", taggroup_tag_path(taggroup,tag), remote: true, class: "btn btn-mini btn-info" %></td>
+    <td><%= link_to "编辑", edit_taggroup_tag_path(taggroup,tag), remote: true, class: "btn btn-mini btn-success" %></td>
+  </tr>

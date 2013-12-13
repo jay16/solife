@@ -1,0 +1,36 @@
+<html><!DOCTYPE html>
+<head>
+  <title><%= full_title(params[:permlink]) %></title>
+  <link rel="icon" href="/assets/favicon.so.ico">
+  <link href="http://solife.com/" rel="canonical">
+
+  <%= javascript_include_tag "blog-segment" %>
+  <%= stylesheet_link_tag    "blog-segment" %>
+
+  <%= render :partial => "layouts/blog_script" %>
+  <%= csrf_meta_tags %>
+
+<body>
+ <%= render :partial => "layouts/normal" %>
+ <%= render :partial => "segments/modal", locals: { segment: @segment } %>
+
+  <div id="main">
+    <div id="content">
+      <div>
+         <article role="article">
+            <%=  yield %>
+         </article>
+      </div>
+
+      <span class="toggle-sidebar"></span>
+
+      <aside class="sidebar">
+        <div> </div>
+      </aside>
+    </div>
+  </div>
+  <%= render :partial => "layouts/footer" %>
+  <%= render :partial => "layouts/google-analytics" %>
+</body>
+</html>
+

@@ -1,0 +1,32 @@
+	<%= form_tag(photos_update_path(@photo.id), :multipart=>true, :remote => true) do %>
+<table>
+<tbody>
+	    <tr>
+		<td>
+		      <img src="<%= File.join("/photos",@photo.folders.first.folder_name,@photo.path) %>" width=200>
+		</td>
+	    </tr>
+	    
+	    <tr>
+		<td>
+	    <input name="name" type="text" placeholder="folder name" size="40" value="<%= @photo.name %>"/>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+	    <input name="desc" type="text" placeholder="description" size="40" value="<%= @photo.desc %>"/>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+	       <input name="path" type="text" placeholder="store name" size="40" value="<%= @photo.path %>"/>
+		</td>
+	    </tr>
+	    <tr>
+		<td>
+	       <%= submit_tag "Submit", :class => "btn" %>
+		</td>
+	    </tr>
+</tbody>
+</table>
+	<% end %> 

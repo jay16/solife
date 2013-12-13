@@ -1,0 +1,96 @@
+<style>
+.row {
+  margin-left: 0px;
+}
+[class*="span"] {
+    margin-left: 0px;
+}
+.row-fluid [class*="span"] {
+    margin-left: 0;
+}
+.thumbnail_pic:hover {
+  cursor: hand;
+}
+</style>
+<div class="span9">
+
+   <% @statuses.friends_timeline.statuses.each_with_index do |statuse, index| %>
+      <div class="row">
+        <div class="span1"> 
+	    <img src="<%= statuse.user.profile_image_url %>">
+	</div>
+	<div class="span11" style="padding-left:15px;">
+	    <!--微博用户名称 -->
+	    <strong><%= statuse.user.screen_name %></strong><br>
+	    <%= statuse.text %> <br>
+            <% if statuse.thumbnail_pic %>
+	    <img class="thumbnail_pic" id="<%=h statuse.id %>_thumbnail_pic" src="<%=h statuse.thumbnail_pic %>" onclick="view_original_pic('<%= h statuse.original_pic %>');">
+            <% end %>
+
+	    <!--转载的原微博-->
+	    <% if statuse.retweeted_status %>
+	      <div class="row" style="border: solid 1px #D2D2D2;background: #F2F2F2;"> 
+	        <div class="span1"> 
+		    <img src="<%= statuse.retweeted_status.user.profile_image_url %>">
+		</div>
+		<div class="span11" style="padding-left:15px;">
+		    <strong><%= statuse.retweeted_status.user.screen_name %></strong><br>
+		    <%= statuse.retweeted_status.text %> <br>
+                    <% if statuse.retweeted_status.thumbnail_pic %>
+			  <img class=".thumbnail_pic" id="<%=h statuse.retweeted_status.id %>_thumbnail_pic" src="<%=h statuse.retweeted_status.thumbnail_pic %>" onclick="view_original_pic('<%=h statuse.retweeted_status.original_pic %>');">
+                    <% end %>
+                    <br>
+		    <span class="timeago"><%= Time.parse(statuse.retweeted_status.created_at).strftime("%m月%d日 %H:%M") %></span>
+		     <% if statuse.retweeted_status.source %>
+			   <span style="color:gray;">来自<%= statuse.retweeted_status.source.html_safe %></span>
+		     <% end %>
+		</div>
+	      </div>
+	    <% end %><br>
+	    <span class="timeago"><%= Time.parse(statuse.created_at).strftime("%m月%d日 %H:%M") %></span>
+	       <% if statuse.source %>
+		     <% source = statuse.source.match(/"(.*?)"/mi)[0] %>
+		     <% source_name =statuse.source.gsub(/<a(.*?)>|<\/a>/mi,"") %>
+		     <span style="color:gray;">来自<%= statuse.source.html_safe %></span>
+               <% end %>
+	</div>
+      </div><hr>
+   <% end %>
+
+</div> 
+
+<div class="span3"> 
+   <div class="row">
+       <div class="span8">
+	  <div><img src="<%=h @user.avatar_large %>" title="<%=h @user.screen_name %>" ></div>
+
+	  <div class="row">
+	      <div class="span12">
+	      <span style="font-size:18;font-weight:bold;color:blue;"><%= @user.friends_count %> | <%= @user.followers_count %> | <%= @user.statuses_count %></span><br>
+	      关注|粉丝|微博<br>
+	      </div>
+	  </div>
+       </div>
+       <div class="span4">
+	    <span style="font-size:18;color:blue;"><%=h @user.screen_name %></span><br>
+	    <span><%=h @user.location %></span>
+       </div>
+    </div>
+</div> 
+
+<%= render :partial => "modal" %>
+
+<!--<script type="text/javascript" src="http://timeago.yarp.com/jquery.timeago.js"></script>-->
+<script>
+$(function(){
+ // $(".timeago").timeago(); 
+});
+  function view_original_pic(src) {
+      $("#modal .modal-header h3").remove();
+      $("#modal .modal-header").css("height","13px");
+      $("#modal .modal-footer").remove();
+      var img = "<img src='"+src+"'>";
+      $("#modal .modal-body").html(img);
+      $("#modal").modal("show");
+  }
+</script>

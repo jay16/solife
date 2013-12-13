@@ -1,0 +1,5 @@
+ <tr id="<%= dom_id @site %>">
+    <td><%= @site.name %></td>
+    <td><%= link_to "link", @site.url, target: "_blank" %></td>
+    <td><%= link_to "show", favority_site_path(@favority,@site), remote: true %></td>
+  </tr>

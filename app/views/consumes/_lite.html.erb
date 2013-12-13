@@ -1,0 +1,45 @@
+<!--按月分群显示-->
+<% consume_months = consumes.select { |c| c.year == consume_year }
+    .map { |c| c.month }.uniq.sort 
+%>
+<div id="consume_list_<%= consume_year %>">
+    <ol>
+      <%= consume_months.each do |consume_month| %>
+         <li id="<%= consume_year %>_<%= consume_month %>">
+                <h2><span><%= "#{consume_year}/#{consume_month}" %></span></h2>
+                <div>
+                 <figure id="<%= consume_year %>_<%= consume_month %>_figure">
+		      <% consumes.select { |c| c.year == consume_year and c.month == consume_month }
+			  .sort { |x, y| x.day <=> y.day }.each do |consume| %>
+	               <span id="consume_<%= consume.year %>_<%= consume.month %>_<%= consume.day %>" class="span2 label label-<%= label_level(consume.sum_value) %>">
+			  <%= "day#{consume.day} :#{consume.sum_value}元" %>
+			  <%= link_to "", consume_detail_path("#{consume_year}#{consume_month}#{consume.day}"), class: "icon-list", remote: true, onclick: "$('.loading').css('display','block');" %>
+		       </span>
+		      <% end %>
+                         <figcaption class="ap-caption"><%= "#{consume_year}/#{consume_month}" %></figcaption>
+                 </figure>
+                </div>
+         </li>
+      <% end %>
+    </ol>
+</div>
+
+<script>
+(function($, d) { 
+    $("#consume_list_<%= consume_year %>").liteAccordion({
+            onTriggerSlide : function() { 
+             this.find('figcaption').fadeOut();
+            },
+            onSlideAnimComplete : function() { 
+             this.find('figcaption').fadeIn();
+            },
+            autoPlay : false,
+            pauseOnHover : true,
+            firstSlide: <%= consume_months.size %>,
+            theme : 'stitch',
+            rounded : true,
+            enumerateSlides : true
+    }).find('figcaption:last').show();
+
+})(jQuery, document);
+</script>

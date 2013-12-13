@@ -1,0 +1,28 @@
+<h2>
+  <%= t("layout.consume") %>
+  <small>
+    <%= link_to t("btn.new"), new_consume_path, remote: true, class: "btn btn-primary",
+          onclick: "$('.loading').css('display','block');" if user_signed_in? %>
+  </small>
+</h2>
+
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+      <% @consumes.first.taggroups.each_with_index do |taggroup, index| %>
+          <li class="<%= index == 0 ? 'active' : '' %>">
+              <a data-toggle="tab" href="#consume_<%=  dom_id taggroup %>"><%= taggroup.label %></a>
+          </li>
+      <% end if @consumes %>
+  </ul>
+
+  <div class="tab-content">
+      <% @consumes.first.taggroups.each_with_index do |taggroup, index| %>
+        <div id="consume_<%=  dom_id taggroup %>" class="tab-pane <%= index == 0 ? 'active' : '' %>">
+            <%= render :template => "consumes/consume", locals: { taggroup: taggroup.label } %>
+        </div>
+      <% end if @consumes %>
+  </div>
+</div>
+
+<%= render :partial => "consumes/modal", formats: [:html], hander: [:erb]  %>
+

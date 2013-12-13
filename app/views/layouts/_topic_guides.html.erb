@@ -1,0 +1,49 @@
+<style>
+#header {
+    color: #FFFFFF;
+    padding: 1.5em 0;
+    z-index: 99;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+#header .wrapper, #topNav .wrapper, #feature .wrapper {
+    max-width: 960px;
+    padding-left: 1em;
+}
+.clearfix {
+    display: block;
+}
+.clearfix {
+    display: inline-block;
+}
+#guides {
+    background: none repeat scroll 0 0 #980905;
+    border-radius: 1em 1em 1em 1em;
+    color: #F1938C;
+    display: block;
+    padding: 2em 2em 1.5em;
+    position: absolute;
+    right: 0;
+    top: -0.25em;
+    width: 27em;
+    z-index: 10;
+}
+</style>
+
+<div id="header">
+  <div class="wraper clearfix">
+
+    <div id="guides"
+	 <ul>
+	  <% (0..10).each do |i| %>
+	  <li>hhhhh<%= i %></li>
+	  <% end %>
+	 </ul>
+    </div>
+  </div>
+</div>

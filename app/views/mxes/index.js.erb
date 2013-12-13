@@ -1,0 +1,4 @@
+$("#modal .modal-header h3").html("List Mxes");
+$("#modal .modal-body").html("<%= j render template: '/mxes/index.html.erb' %>");
+$("#modal .modal-body h2").remove();
+$("#modal").modal("show");

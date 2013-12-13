@@ -1,0 +1,8 @@
+hideLoading();
+
+$("#modal").css({"max-width":"600px","width":"600px"});
+$("#modal .modal-body").css({"max-width":"600px","width":"600px","padding":"0px;"});
+
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("上传图片");
+$("#modal .modal-body").html("<%= j render partial: 'upload', formats: [:html], handler: [:erb] %>");

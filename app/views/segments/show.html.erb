@@ -1,0 +1,17 @@
+<%= render partial: "segments/segment", formats: [:html], handler: [:erb], :locals => { :segment => @segment } %>
+
+<div class="replies">
+   <h2>评论</h2>
+   <% for reply in @segment.replies.order("updated_at desc") %>
+     <%= render :partial => "replies/reply", :locals => { :reply => reply } if reply.content %>
+   <% end if @segment.replies %>
+</div>
+
+<hr>
+ <h2 style="display:inline;">回复</h2>
+<br>
+
+<div id="reply_zone">
+  <%= render :partial => "replies/form.html.haml", locals: { :segment => @segment, :reply => @reply } %>
+</div>
+

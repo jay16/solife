@@ -1,0 +1,114 @@
+<%= stylesheet_link_tag "3d-gallery" %>
+<%= javascript_include_tag "modernizr.custom" %>
+<%= javascript_include_tag "3d-gallery" %>
+<!--        <a href="http://tympanus.net/codrops/2012/02/06/3d-gallery-with-css3-and-jquery/">3D Gallery with CSS3 and jQuery</a> -->
+
+<style>
+.photo-cover {
+    background-color: transparent;
+    display: block;
+    height: 130px;
+    margin: 4px;
+    overflow: hidden;
+    width: 154px;
+    text-align: center;
+    cursor: none;
+}
+.photo-cover img {
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    vertical-align: middle;
+    margin: 0 auto;
+}
+#view_large_modal, #view_large_modal .modal-body {
+  width: auto;
+  max-width: 600px;
+  height: auto;
+  max-height: 700px;
+}
+#view_large_modal .prev {
+  background-position: left;
+  background-image: url(/photos/a0b6ec67-69c5-3957-bcbb-75f3e1e5e0ab/3cd58410-2b02-3a38-9dd7-176dc5dde17f.png);
+  display: block;
+  height: 56px;
+  position: absolute;
+  width: 56px;
+  top: 35%;
+  left: 5px;
+}
+#view_large_modal .next {
+  background-position: right;
+  background-image: url(/photos/a0b6ec67-69c5-3957-bcbb-75f3e1e5e0ab/55d9505a-326f-3d8a-83c7-c486be49499e.png);
+  display: block;
+  height: 56px;
+  position: absolute;
+  width: 56px;
+  top: 35%;
+  right: 5px;
+}
+#view_large_modal .prev:hover,
+#view_large_modal .next:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 10px;
+  border: 1px solid white;
+}
+</style>
+
+<div class="center">
+  <h2><%= @folder.name %>-
+    <small><a href="http://tympanus.net/codrops/2012/02/06/3d-gallery-with-css3-and-jquery/">3D Gallery with CSS3 and jQuery</a></small>
+  </h2>
+</div>
+
+<section id="dg-container" class="dg-container" style="margin-top:50px;">
+  <div class="dg-wrapper">
+    <% @folder.photos.each do |photo| %>
+       <a class="photo-cover"> 
+	  <img src="<%= File.join('/photos',photo.folders.first.folder_name,photo.path)%>">
+	  <div style="font-size:13px;line-height:13px;bottom:none;"><%= photo.name %></div>
+       </a>
+    <% end %>
+  </div>
+
+  <nav>	
+      <span class="dg-prev">&lt;</span>
+      <span class="dg-next">&gt;</span>
+  </nav>
+</section>
+
+<%= render partial: "view_large_modal" %>
+
+<script type="text/javascript">
+$(function() {
+  $('#dg-container').gallery();
+
+  $(".photo-cover img").each(function(){
+    var tmp_img = new Image();
+    $img = $(this)
+    tmp_img.src = $img.attr("src");
+    var width = tmp_img.width;
+    var height = tmp_img.height;
+
+    if(width >= height) {
+      var mini_width = parseInt(width/(height/260), 10);
+      var more_width = parseInt((mini_width - 480)/2,10);
+      $img.css({"width":String(mini_width)+"px","height":"260px"});
+    } else {
+      var mini_height = parseInt(height/(width/480),10);
+      var more_height = parseInt((mini_height - 260)/2,10);
+      $img.css({"height":String(mini_height)+"px","width":"480px"}); 
+    }
+  });
+
+  $(".photo-cover img").click(function(){
+    var $img = $(this);
+    $("#view_large_modal").modal("show");
+    $("#view_large_modal .modal-body img").css("src",$img.attr("src"));
+    $("#view_large_modal .modal-body img").attr("src",$img.attr("src"));
+  });
+});
+</script/>
+

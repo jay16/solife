@@ -1,0 +1,19 @@
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#lister">相集</a></li>
+    <li class=""><a data-toggle="tab" href="#generater">创建相集</a></li>
+    <li><a data-toggle="tab" href="#uploader">上传图片</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="lister" class="tab-pane active">
+      <%= render partial: "folders/list" %>
+    </div>
+    <div id="generater" class="tab-pane">
+      <%= render partial: "folders/form", locals: { folder: @folder} %>
+    </div>
+    <div id="uploader" class="tab-pane">
+      <%= render partial: "folders/upload" %>
+    </div>
+  </div>
+</div>

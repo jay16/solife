@@ -1,0 +1,2 @@
+//window.location.reload();
+$("#segment_<%= @segment.id %>_box").replaceWith("<%= j render :partial => 'segments/segment', :locals => { :segment => @segment} %>");

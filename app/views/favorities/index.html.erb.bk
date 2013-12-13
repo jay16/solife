@@ -1,0 +1,65 @@
+<h2><%= t("layout.favorwall") %>
+  <small><%= link_to t("btn.new"), new_favority_path, :remote => true %></small>
+</h2>
+ 
+ 
+<% @favorities.each do |favority| %>
+  <table class="table" id="<%= dom_id favority %>">
+      <tr>
+        <th colspan="4"> <%= favority.label %>  | <%= link_to "Add Site", new_favority_site_path(favority), :remote => true %></th>
+      </tr>
+      <tr>
+        <td width="60%">Site</td>
+	<td width="20%">Link</td>
+	<td width="20%">Show</td>
+      </tr>
+
+    <% favority.sites.each do |site| %>
+      <tr id="<%= dom_id site %>">
+	<td><%= site.name %></td>
+	<td><%= link_to "link", site.url, target: "_blank" %></td>
+	<td><%= link_to "show", favority_site_path(favority,site), remote: true %></td>
+      </tr>
+    <% end if favority.sites %>
+  </table>
+<% end if @favorities %>
+ 
+<br />
+
+<%= render :partial => "favorities/modal", formats: [:html], hander: [:erb]  %>
+
+<script>
+ //创建site时,输入url后，点击后自动获取title
+ function chk_title(){
+   var strhost = window.location.host;
+   var strprotocol = window.location.protocol;
+   var strport = window.location.port;
+   if(strport > 0){
+     if(strhost.indexOf(strport)==-1){
+      strhost = strhost + ":"+String(strport)
+     }
+   }
+   var strurl = strprotocol+"//"+strhost+"/sites/site_title";
+   var siteurl = $("#site_url").val();
+
+    $.ajax({
+    type: 'POST',
+    url: strurl,
+    contentType: 'multipart/form-data',
+     headers: {
+           'X-Transaction': 'POST Example',
+           'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+         },
+    datatype: 'json',
+    data:{"url": siteurl},
+    success:function(data)
+    {
+       $("#site_name").val(data);
+    },
+    error:function(xhr,r,e)
+    {
+       alert("Create Tag Fail!");
+    }
+   });
+}
+</script>

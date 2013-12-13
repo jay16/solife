@@ -1,0 +1,3 @@
+$("#modal_<%= dom_id @segment %>").modal("show");
+$("#modal_<%= dom_id @segment %> .modal-header h3").html("标签管理<small>[<%= @segment.title %>]</small>");
+$("#modal_<%= dom_id @segment %> .tags-zone").html("<%= j render :partial => "taggroups/grouptype", locals: { taggroups: @taggroups, target: @segment } %>");

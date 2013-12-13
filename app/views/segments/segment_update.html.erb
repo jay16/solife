@@ -1,0 +1,26 @@
+  <%= stylesheet_link_tag    "bootstrap.min.css" %>
+  <%= stylesheet_link_tag    "bootstrap-markdown.min.css" %>
+  <%= javascript_include_tag "bootstrap.min.js" %>
+  <%= javascript_include_tag "bootstrap-markdown.min.js" %>
+  
+<hr/>
+<style>
+form .btn-group { 
+display: inline-block;
+    font-size: 0;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+ }
+</style>
+
+<%= form_tag("/lives/segment_update?segment_id=#{@segment.id}",:remote => true) do %>
+    <input name="title" type="text" placeholder="Title?" value="<%= @segment.title %>" />
+    <textarea name="content" data-provide="markdown" rows="10"><%= @segment.content %></textarea>
+
+    <div class="md-footer" style="float:right;">
+       <%= submit_tag "Submit", :class => "btn" %>
+    </div>
+<% end %> 
+
+

@@ -1,0 +1,9 @@
+<tr id="<%= dom_id edm %>">
+    <td><%= edm.name %></td>
+    <td><%= edm.subject %></td>
+    <td><%= edm.from %></td>
+    <td><%= edm.template_id %></td>
+    <td><%= link_to "Show", edm, remote: true %></td>
+    <td><%= link_to "Edit", edit_edm_path(edm), remote: true %></td>
+    <td><%= link_to "Remove", edm, method: :delete, remote: true, data: { confirm: "Are you sure?" } %></td>
+</tr>

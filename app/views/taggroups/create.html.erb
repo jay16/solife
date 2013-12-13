@@ -1,0 +1,17 @@
+  <table class="table" id="<%= dom_id taggroup %>">
+
+      <tr style="background:lightgray;">
+        <th width="20%"><%= taggroup.label %></th>
+        <th width="20%"><%= link_to "AddTag", new_taggroup_tag_path(taggroup), :remote => true %></th>
+        <th width="20%"><%= link_to "Show", taggroup, :remote => true %></th>
+        <th wdith="20%"><%= link_to "Edit", edit_taggroup_path(taggroup), :remote => true %></th>
+        <th width="20%">remove</th>
+      </tr>
+      <tr>
+        <td>label</td>
+        <td>type</td>
+        <td>segments</td>
+        <td>edit</td>
+        <td>remove</td>
+      </tr>
+  </table>
