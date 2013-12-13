@@ -39,7 +39,7 @@ $(document).ready ->
     reg = /^ *(\d{4})-(\d{1,2})-(\d{1,2}) +(\d{1,2}):(\d{1,2}):(\d{1,2}) *$/
     match = source.value.match(reg)
     old_date = new Date(match[1],parseInt(match[2])-1,match[3],match[4],match[5],match[6])
-    tmp_date = old_date.valueOf() + (if add_or_plus then +1 else -1)*24*60*60*1000 
+    tmp_date = old_date.valueOf() + (if add_or_plus=="add" then +1 else -1)*24*60*60*1000 
     new_date = new Date(tmp_date)
     year  = new_date.getFullYear()
     month = new_date.getMonth() + 1
