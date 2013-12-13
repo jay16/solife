@@ -1,0 +1,193 @@
+/*
+ *= require bootstrap
+ *= require ./blog/screen.css
+ *= require ./blog/fonts.googleapis.css  
+ *= require ./blog/coderay.scss          
+ *= require solife-base
+ *= require reply
+ *= require_self
+ * 对样式的重定义
+ */
+
+body {
+  font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+}
+.entry-title { font-size: 30px; }
+.line-numbers {
+    background: none repeat scroll 0 0 transparent;
+    margin-right: 10px;
+    padding-right: 5px;
+}
+.segment_box pre {
+   line-height: 13px;
+}
+aside.sidebar section {
+    font-size: 1em;
+    line-height: 1.2em;
+    margin-bottom: 0.1em;
+}
+
+.code pre,pre,code pre {
+    background: transparent;
+    color: #586E75;
+    font-size: 14px;
+    line-height: 1.2em;
+    margin-bottom: 0.5em;
+    overflow: auto;
+    padding: 1em 1em 0;
+    white-space: pre;
+    border: 0;
+    border-radius: none;
+    box-shadow: none;
+}
+.mono, pre, code, tt, p code, li code {
+    font-family: Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+}
+.xsolife-code {
+  border: 1px solid #E5E5E5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+  width: 100%; 
+  overflow-x: auto; 
+  overflow-y: hidden;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+body > nav a[href="/"] {
+    background-image: none;
+    text-indent: 0px;
+    width: 500px;
+}
+.main-navigation small {
+    color: lightgray;
+    font-size: 65%;
+    height: 100%;
+    margin-bottom: 0px;
+}
+
+blockquote {
+    font-style: normal;
+    margin-bottom: 0em;
+}
+
+blockquote p,
+.segment .content blockquote p,
+.thumbnail .content blockquote p {
+  text-indent: 0em;
+  padding-bottom: 10px;
+}
+
+section {
+  h3 {
+    margin-bottom: 0.5em;
+  }
+
+  margin-bottom: 0em;
+}
+.content {
+  h1 { 
+    font-size: 1.5em;
+  }
+  h3 {
+      font-size: 1em
+  }
+}
+.force-wrap, article a, 
+aside.sidebar a{
+    font-size: 0.9em;
+}
+
+.segment_box {
+  .tags-zone {
+    display:block;
+    height:20px;
+    margin-top:-55px;
+    float:right;
+  }
+}
+
+.CodeRay {
+  pre {
+    margin: 0px;
+  }
+  .line-numbers {
+      border-right: 3px solid #008000;
+      margin: 0;
+      padding: 0;
+      width: 1px;
+  }
+  background-color: #FFF;
+  border: 1px solid #CCC;
+  font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+  color: #000;
+  padding: 1em 0px 1em 1em;
+}
+
+span.CodeRay { white-space: pre; border: 0px; padding: 2px }
+
+table.CodeRay { 
+  border-collapse: collapse; 
+  width: 100%; 
+  padding: 2px;
+  td {
+    padding: 0.1em 0.2em;
+    vertical-align: top;
+  }
+}
+
+/*网页顶部 header样式*/
+.header {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-image: none;
+    border-radius: 0 0 8px 8px;
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1);
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto 0px;
+    position: relative;
+    width: 100%;
+}
+.logo, 
+.blog-ame, 
+header {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+.blog-name {
+  padding-top: 0px;
+  a {
+      color: #E7E7E7;
+      font-family: 'Open Sans',sans-serif;
+      font-size: 25px;
+      font-weight: 300;
+      margin: 15px 0 0 30px;
+      text-decoration: none;
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  }
+  small {
+      color: #D3D3D3;
+      font-size: 15px;
+      height: 100%;
+      margin-bottom: 5px;
+  }
+}
+.xsolife-set {
+    color: #CECECE;
+    cursor: pointer;
+    display: inline-block;
+    outline: medium none;
+    position: absolute;
+    text-decoration: none;
+    width: 9px;
+  &:hover {
+     cursor: pointer;
+     text-decoration:none;
+  }
+}

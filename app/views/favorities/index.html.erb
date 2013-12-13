@@ -1,0 +1,83 @@
+<style>
+.wall h3 {
+  text-align: center;
+}
+
+.wall .dot {
+}
+.wall .span3 {
+  margin: 5px 1px;
+  padding: 8px 10px;
+}
+</style>
+
+<h2><%= t("layout.favorwall") %>
+  <small>
+    <%= link_to t("btn.new"), new_favority_path, :remote => true, class: "btn btn-primary",
+        onclick: "$('.loading').css('display','block');" if user_signed_in?  %>
+  </small>
+</h2>
+ 
+<div class="wall span12">
+  <% @favorities.each do |favor| %>
+    <h3>
+        <%= favor.label %> 
+	<%= link_to t("btn.new"), new_favority_site_path(favor), :remote => true, class: "btn btn-mini btn-primary",
+            onclick: "$('.loading').css('display','block');" if user_signed_in? %> 
+    </h3>
+
+    <div class="row" id="<%= dom_id favor %>">     
+
+      <% favor.sites.each do |site| %>
+
+	<div class="span3 dot label label-info" id="<%= dom_id site %>">
+	   <%= site.name %>
+	   <%= link_to "", favority_site_path(favor,site), remote: true, class: "icon-list",
+               onclick: "$('.loading').css('display','block');" %>
+	</div>
+
+      <% end if favor.sites %>
+
+    </div>
+
+  <% end if @favorities %>
+</div>
+ 
+
+<%= render :partial => "favorities/modal", formats: [:html], hander: [:erb]  %>
+
+<script>
+ //创建site时,输入url后，点击后自动获取title
+ function chk_title(){
+   var strhost = window.location.host;
+   var strprotocol = window.location.protocol;
+   var strport = window.location.port;
+   if(strport > 0){
+     if(strhost.indexOf(strport)==-1){
+      strhost = strhost + ":"+String(strport)
+     }
+   }
+   var strurl = strprotocol+"//"+strhost+"/sites/site_title";
+   var siteurl = $("#site_url").val();
+
+    $.ajax({
+    type: 'POST',
+    url: strurl,
+    contentType: 'multipart/form-data',
+     headers: {
+           'X-Transaction': 'POST Example',
+           'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+         },
+    datatype: 'json',
+    data:{"url": siteurl},
+    success:function(data)
+    {
+       $("#site_name").val(data);
+    },
+    error:function(xhr,r,e)
+    {
+       alert("Create Tag Fail!");
+    }
+   });
+}
+</script>

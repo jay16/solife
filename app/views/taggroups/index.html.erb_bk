@@ -1,0 +1,40 @@
+<h1>Tags <small>
+  <%= link_to "Add TagGroup", new_taggroup_path, :remote => true %></small>
+</h1>
+ 
+ 
+<% @taggroups.each do |taggroup| %>
+
+  <table class="table" id="<%= dom_id taggroup %>">
+
+      <tr style="background:lightgray;">
+        <th width="20%"><%= taggroup.label %></th>
+	<th width="20%"><%= link_to "AddTag", new_taggroup_tag_path(taggroup), :remote => true %></th>
+	<th width="20%"><%= link_to "Show", taggroup, :remote => true %></th>
+	<th wdith="20%"><%= link_to "Edit", edit_taggroup_path(taggroup), :remote => true %></th>
+	<th width="20%">remove</th>
+      </tr>
+      <tr>
+        <td>label</td>
+        <td>type</td>
+        <td>segments</td>
+	<td>edit</td>
+	<td>remove</td>
+      </tr>
+
+    <% taggroup.tags.each do |tag| %>
+      <!--可能多个taggoup含此tag，应该使用class标识-->
+      <tr class="<%= dom_id tag %>">
+	<td><%= tag.label %></td>
+	<td><%= tag.type %></td>
+	<td><%= tag.segments.size %></td>
+	<td><%= link_to "Edit", edit_taggroup_tag_path(taggroup,tag), remote: true %></td>
+	<td><%= link_to "Remove", [taggroup,tag], method: :delete, remote: true, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end if taggroup.tags %>
+  </table>
+<% end if @taggroups %>
+ 
+<br />
+
+<%= render :partial => "taggroups/modal", formats: [:html], handler: [:erb] %>

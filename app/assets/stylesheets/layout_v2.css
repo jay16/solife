@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ * require_tree .
+ **把require_self放在最后,这样里面设置的样式优先级最高
+
+ *= require bootstrap
+ *= require bootstrap-datepicker
+ *= require chosen
+ *= require solife-base
+ *= require jquery.atwho
+ *= require ./layout_v2/base
+ *= require_self
+*/
+
+body {
+  background: #A5CAD6;
+  /*
+  background-color: #2D67A3;
+  background-image: linear-gradient(to bottom, #3270B0, #26598F);
+  background-repeat: repeat-x;
+  */
+  font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+}
+/*覆盖原来图上位置*/
+[class^="icon-"], [class*=" icon-"] {
+    background-image: url('/assets/glyphicons-halflings.png');
+}
+
+/*notice alert所有行，无最小高度*/
+.flash .span12{
+  min-height: 0px;
+}
+.main {
+  min-height: 480px;
+}
+
+
+/*首页样式独立设置*/
+.page-header h1 {
+  color: black;
+}
+.footer {
+  color: gray;
+}

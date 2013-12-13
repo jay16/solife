@@ -1,0 +1,63 @@
+<%#= stylesheet_link_tag    "ace" %>
+
+<style type="text/css">
+#editor {
+  height: 450px;
+  width: 95%;
+  border-radius:4px;
+  box-shadow: 1px 1px 20px;
+}
+#preview {
+  height: 450px;
+  width: 95%;
+  border-radius:4px;
+  overflow:auto;
+  font-size:12px;
+  background:white;
+  color:black;
+  box-shadow: 1px 1px 20px;
+}
+#preview pre {
+  font-size: 12px;
+  line-height: 12px;
+}
+</style>
+
+  <div class="span6" style="width:50%;margin:0px;padding:0">
+    <div id="editor"><%=  render template: "demo/md" %></div>
+  </div>
+  <div class="span6" style="width:50%;margin:0px;padding:0">
+    <div id="preview"></div>
+  </div>
+
+<script>
+$(function(){
+    function getScrollHeight(e) {
+        return e[0].scrollHeight !== undefined ? e[0].scrollHeight : e.find("html")[0].scrollHeight !== undefined && e.find("html")[0].scrollHeight !== 0 ? e.find("html")[0].scrollHeight : e.find("body")[0].scrollHeight
+    }
+    function syncPreview() {
+        var e = ace.edit("editor"),
+            t = $("#preview"),
+            converter = new Showdown.converter();
+            
+        content = converter.makeHtml(e.getValue());
+        t.html(content);
+        
+        var r = getScrollHeight(t),
+            n = e.getSession().getLength(),
+            i = e.getFirstVisibleRow() / n;
+            t.scrollTop(i * r)
+    }
+
+    var editor = ace.edit("editor"),
+        t = $("#preview"),
+        converter = new Showdown.converter();
+
+    t.html(converter.makeHtml(editor.getValue()));
+
+    editor.getSession().setUseWrapMode(true);
+    editor.session.on("changeScrollTop", syncPreview);
+    editor.session.selection.on("changeCursor", syncPreview);
+});
+</script>
+  

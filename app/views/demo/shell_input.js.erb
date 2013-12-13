@@ -1,0 +1,8 @@
+//移除点位符table
+$(".taken").remove();
+$(".top-index").remove();
+
+var output = $("#output");
+output.prepend("<%= j render :partial => 'demo/shell_output' %>");
+//滚动条置底
+output.scrollTop = 0

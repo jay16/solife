@@ -1,0 +1,42 @@
+  <header role="banner" id="guides" class="hidden">
+    <table>
+    <tr>
+      <td>
+	 <hgroup>
+	   <h1><a href="/">soLife</a></h1>
+	 </hgroup>
+      </td>
+       <td>
+         <% if user_signed_in? %>
+	   <ul>
+	     <li><%= link_to "写日志", new_segment_path(), :class=>"btn btn-primary", :style => "color: black;width:100px;" %>
+	     </li>
+	     <li><%= link_to "编辑", edit_segment_path(@segment), :class=>"btn btn-primary", :style => "color: black;width:100px;" %>
+	     </li>
+	     <li><%= link_to "贴标签", segment_attach_tags_path(@segment),:remote => true, :class => "btn btn-primary", :style => "color: black;width:100px;" %>
+	     </li>
+	   </ul>
+	 <% else %>
+	   <ul>
+	     <li>
+		 <%= link_to "登陆", "/users/sign_in", remote: true , class: "nolink" %>
+	     </li>
+	   </ul>
+         <% end %>
+      </td>
+    </tr>
+    </table>
+  </header>
+
+<div class="header">
+  <div class="logo">
+    <span>
+      <h1 class="blog-name"><a href="http://xsolife.com" title="SOLife">SOLife</a><small>    - Segment Of Jay's Life</small></h1>
+    </span>
+    <span style="position: absolute;top:0;right:30px;padding-top:15px" class="right">
+       <div class="xsolife-set" onclick='toggle_show(this,"#guides","≡","Ζ","hidden")'>≡</div>
+    </span>
+  </div>
+  <%= render partial: "shared/login-modal" %>
+</div>
+

@@ -1,0 +1,31 @@
+<div class="solife-login-form">
+  <div class="solife-login-inner">
+
+    <div class="social-login">
+      <div class="btn-google btn-auth">
+        <img src="/assets/solife-BIT.png">
+      </div>
+      <span class="sorry">Sorry</span>
+    </div>
+
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+       <div class="error-message-field">
+	 <%= alert %>
+       </div>
+
+	<%= f.input :email, wrapper: :prepend, label: false do %>
+          <%= content_tag :span, content_tag(:span, "", class: "solife-login login-user"), class: "add-on" %>
+          <%= f.input_field :email, placeholder: "登陆邮箱", autofocus: true %>
+        <% end %>
+
+	<%= f.input :password,wrapper: :prepend, label: false do %>
+	  <%= content_tag :span, content_tag(:span, "", class: "solife-login login-pwd"), :class => "add-on" %>
+	  <%= f.input_field :password, placeholder: "密码" %>
+	<% end %>
+
+	<%= f.input_field :remember_me, :as => :boolean, inline_label: "记住密码" if devise_mapping.rememberable? %>
+	<%= f.button :submit, "登陆", class: "btn-primary btn-info right" %>
+    <% end %>
+
+  </div>
+</div>

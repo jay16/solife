@@ -1,0 +1,132 @@
+
+<script type="text/javascript">
+$(function(){
+  $('.slide-out-div').tabSlideOut({
+    tabHandle: '.handle',                     //class of the element that will become your tab
+    pathToTabImage: '/assets/javascript/ruby_in_100_minutes/images/feedback_tabv2.png', //path to the image for the tab //Optionally can be set using css
+    imageHeight: '130px',                     //height of tab image           //Optionally can be set using css
+    imageWidth: '36px',                       //width of tab image            //Optionally can be set using css
+    tabLocation: 'left',                      //side of screen where tab lives, top, right, bottom, or left
+    speed: 300,                               //speed of animation
+    action: 'click',                          //options: 'click' or 'hover', action to trigger animation
+    topPos: '200px',                          //position from the top/ use if tabLocation is left or right
+    leftPos: '20px',                          //position from left/ use if tabLocation is bottom or top
+    fixedPosition: true                      //options: true makes it stick(fixed position) on scroll
+    });
+});
+</script>
+
+<style>
+.entry-title { font-size: 30px; }
+aside.sidebar section {
+    font-size: 1em;
+    line-height: 1.4em;
+    margin-bottom: 0.5em;
+    font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+}
+.segment .content p code,
+ .thumbnail .content p code {
+    text-indent: 0px;
+}
+body > nav a[href="/"] {
+    background-image: none;
+    text-indent: 0px;
+    width: 500px;
+}
+.blog-name {
+    padding-top: 15px;
+}
+.main-navigation small {
+    color: lightgray;
+    font-size: 65%;
+    height: 100%;
+    margin-bottom: 0px;
+}
+blockquote {
+    font-style: normal;
+    margin-bottom: 0em;
+}
+blockquote p,
+.segment .content blockquote p,
+.thumbnail .content blockquote p {
+  text-indent: 0em;
+  padding-bottom: 10px;
+}
+section {
+    margin-bottom: 0em;
+}
+section h3 {
+    margin-bottom: 0.5em;
+}
+.content h1 { 
+    font-size: 1.5em;
+}
+.content h3 {
+    font-size: 1em
+}
+aside.sidebar section {
+    margin-bottom: 0.2em;
+}
+.force-wrap, article a, aside.sidebar a{
+    font-size: 0.9em;
+}
+.center {
+    float: left;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+.segment_box .tags-zone {
+    display:block;
+    height:20px;
+    margin-top:-55px;
+    float:right;
+}
+.nolink {
+   text-decoration: none;
+}
+.nolink:hover {
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.CodeRay .line-numbers {
+    border-right: 3px solid #008000;
+    margin: 0;
+    padding: 0;
+    width: 1px;
+}
+</style>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+

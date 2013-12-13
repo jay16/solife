@@ -1,0 +1,9 @@
+//window.location.reload();
+<% if @redirect %>
+        window.location.href = "http://xsolife.com/<%= @redirect %>";
+<% else %>
+	$("#preview").html("<%=  j render :partial => 'segments/draft' %>");
+	$("#preview").css("display","block");
+	$("#out").css("display","none");
+<% end %>
+

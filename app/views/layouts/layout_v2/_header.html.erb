@@ -1,0 +1,21 @@
+
+<div class="header">
+  <div class="logo">
+    <span>
+      <h1 class="blog-name">
+        <a title="SOLife" href="http://xsolife.com">SOLife</a>
+        <small>    - Segment Of Jay's Life</small></h1>
+    </span>
+
+    <span class="right" style="position: absolute;top:0;right:30px;">
+	<%= form_tag(i18_path(), :remote => true, style: "margin:0px;") do %>
+	  <span style="color:darkgray;"><small><%= t("layout.lang") %></small></span>
+          <%= select_tag("locale",options_for_select([[t("lang.english"),"en"],[t("lang.chinese"),"zh-CN"]], I18n.locale),
+            { class: "chosen-select", onchange: "$('#i18_btn').trigger('click');" }) %>
+          <%= submit_tag "", id: "i18_btn", style: "display:none;" %>
+	<% end if %w(home).include?(params[:controller]) %>
+    </span>
+  </div>
+  <%= render partial: "shared/login-modal" %>
+</div>
+

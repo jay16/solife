@@ -1,0 +1,6 @@
+<% if @user %>
+    window.location.reload();
+<% else %>
+    $("#login_modal").modal("hide");
+    alert('<%= t("user.login_fail") %>');
+<% end %>

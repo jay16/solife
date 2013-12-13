@@ -1,0 +1,7 @@
+$("#modal").modal("hide");
+
+$("table tbody").prepend("<%= j render partial: "consume", formats: [:html], handler: [:erb], locals: { consume: @consume } %>");
+
+$("#<%= @consume.created_at.strftime('year_%Y_month_%m') %>_figure .label:last").after("<span id='<%= dom_id @consume %>' class='span2 label label-<%= label_level(@consume.value) %>'><%= @consume.created_at.strftime('第%d天:')+@consume.value.to_s+'元' %></span>");
+
+$(".loading").css("display","none");

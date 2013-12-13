@@ -1,0 +1,21 @@
+  <div id="in">
+     <% pathstr = case
+        when params[:action] == "edit_markdown" then segments_update_markdown_path(@segment.id)
+        when params[:action] == "new"  then segments_create_path()
+        end
+     %>
+     <%= form_tag(pathstr,:remote => true) do %>
+       <textarea id="code" name="content" data-provide="markdown" rows="10"><%= @segment.markdown %></textarea>
+       
+       <table>
+        <tr>
+         <td width="10%" align="right">标题:</td>
+         <td width="55%" align="left">
+           <input name="title" type="text" placeholder="Segment Title" size="40" value="<%= @segment.title %>"/>
+         </td>
+         <td width="15%" align="right"><%= submit_tag "提交更新", :class => "btn btn-primary" %></td>
+         <td width="15%" align="right"><%= link_to "返回主页","/", :class => "btn" %></td>
+        </tr>
+       </table>
+     <% end %> 
+  </div>

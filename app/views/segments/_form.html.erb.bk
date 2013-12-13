@@ -1,0 +1,17 @@
+ <%= form_for(segment,:remote => true) do |f| %>
+   <%= f.text_area "content", "data-provide" => "markdown", :rows => "10" %>
+   <table>
+    <tr>
+     <td width="10%" align="right">标题:</td>
+     <td width="50%" align="left">
+       <%= f.text_field "title" %>
+     </td>
+     <td width="10%" align="right">
+     </td>
+     <td width="15%" align="right">
+       <%= f.submit "提交更新", :class => "btn btn-primary" %></td>
+     <td width="15%" align="right">
+       <%= link_to "返回主页","/", :class => "btn" %></td>
+    </tr>
+   </table>
+ <% end %> 

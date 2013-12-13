@@ -1,0 +1,38 @@
+  <form class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="edit_mail_email">Email</label>
+      <div class="controls">
+        <input type="text" id="edit_mail_email" placeholder="Your Email" value="<%= @mail.email_name %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="edit_mail_pwd">PWD</label>
+      <div class="controls">
+        <input type="text" id="edit_mail_pwd" placeholder="Email PWD" value="<%= @mail.email_pwd %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="edit_mail_pop">POP</label>
+      <div class="controls">
+        <input type="text" id="edit_mail_pop" placeholder="Mail Pop" value="<%= @mail.email_pop %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="pop_port">POP Port</label>
+      <div class="controls">
+        <input type="text" id="edit_pop_port" placeholder="Pop Port" value="<%= @mail.pop_port %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="edit_mail_smtp">SMTP</label>
+      <div class="controls">
+        <input type="text" id="edit_mail_smtp" placeholder="SMTP" value="<%= @mail.email_smtp %>">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="smtp_port">SMTP Port</label>
+      <div class="controls">
+        <input type="text" id="edit_smtp_port" placeholder="SMTP Port" value="<%= @mail.smtp_port %>">
+      </div>
+    </div>
+  </form>

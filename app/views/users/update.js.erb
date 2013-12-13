@@ -1,0 +1,2 @@
+$("#modal").modal("hide");
+$("#<%= dom_id @member %>").replaceWith("<%= j render template: "/members/create.html.erb", locals: { member: @member } %>");

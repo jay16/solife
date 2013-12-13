@@ -1,0 +1,7 @@
+<%= simple_form_for(todo, input_html: { class: "form-horizontal" }, remote: true) do |f| %>
+  <%= f.input :todo  %>
+  <%= f.input :desc, as: :text, input_html: { size: "13x7" }  %>
+  <%= f.input :isover, as: :boolean %>
+  <%= render :partial => "taggroups/grouptype", locals: { taggroups: taggroups, target: todo } %>
+  <%= f.submit t("btn.submit"), class: "btn btn-primary" %>
+<% end %>

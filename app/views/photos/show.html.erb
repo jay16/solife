@@ -1,0 +1,56 @@
+<head>
+<title>相册 - SOLife</title>
+<%= javascript_include_tag "jquery" %>
+<%= javascript_include_tag "jquery_ujs" %>
+<%= stylesheet_link_tag "bootstrap" %>
+
+<style>
+.photo-folder-box {
+  list-style: none outside none;
+}
+.photo-folder {
+  border: 1px solid #E2E2E2;
+  width: 205px;
+  height: 135px;
+  padding: 5px;
+}
+</style>
+</head>
+
+<% row_cols = 4
+   row_num = (@folders.size/row_cols + 1)*row_cols - 1 
+%>
+
+<table class="table">
+  <tbody>
+    <% (0..row_num).each do |index| %>
+       <% if index%row_cols == 0 %> <tr> <% end %>
+
+         <% if @folders[index].nil? %>
+          <td></td>
+         <% else %>
+	    <td>
+             <%= render :partial => "photos/photo_folder", :locals => { :folder => @folders[index] } %>
+	    </td>
+         <% end %>
+
+       <% if index%row_cols == row_cols - 1 %> </tr> <% end %>
+    <% end %>
+  </tbody>
+</table>
+<script>
+$(function(){
+  $("img").each(function(){
+    $img = $(this);
+    
+    var pic_real_width, pic_real_height;
+    $("<img/>") // Make in memory copy of image to avoid css issues
+      .attr("src", $img.attr("src"))
+      .load(function() {
+	  pic_real_width = this.width;   // Note: $(this).width() will not
+	  pic_real_height = this.height; // work for in memory images.
+      });
+    $img.css({"width":String(pic_real_width),"height":String(pic_real_height)});
+  });
+});
+</script>

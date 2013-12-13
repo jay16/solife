@@ -1,0 +1,15 @@
+
+<div class="container clearfix layout_outer">
+  <div class="row-fluid flash">
+    <div class="span12">
+	<div class="notice"><%= notice %></div>
+	<div class="alert"><%= alert %></div>
+	<div class="error"></div>
+        <div class="loading"><%= t("layout.loading") %>...</div>
+    </div> 
+  </div>
+
+  <div class="row-fluid main">
+     <%= yield %>
+  </div>
+</div>

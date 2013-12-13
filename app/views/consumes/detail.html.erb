@@ -1,0 +1,19 @@
+<table class="table">
+  <tr>
+    <td><%= t("form.value") %></td>
+    <td><%= @sum_value %></td>
+  </tr>
+  <tr>
+    <td><%= t("form.msg") %></td>
+    <td><pre><%= @sum_msg %></pre></td>
+  </tr>
+  <tr>
+    <td><%= t("form.tag") %></td>
+    <td>
+      <% @sum_tags.each do |tag| %>
+       <span class="label label-info"><%= tag.label %></span>
+      <% end if @sum_tags %>
+      <%= "no-tag" unless @sum_tags %>
+    </td>
+  </tr>
+</table>

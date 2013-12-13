@@ -1,0 +1,32 @@
+<h2>Listing Tags
+  <small><%= link_to "New Tag", new_tag_path, :remote => true %></small>
+</h2>
+ 
+<table class="table">
+  <tr>
+    <th>index</th>
+    <th>label</th>
+    <th>type</th>
+    <th>segments</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Remove</th>
+  </tr>
+ 
+<% @tags.each_with_index do |tag, index| %>
+  <tr id="<%= dom_id tag %>">
+    <td><%= index %></td>
+    <td><%= tag.label %></td>
+    <td><%= tag.tag_type %></td>
+    <td><%= tag.segments.size%></td>
+    <td><%= link_to "Show", tag, remote: true %></td>
+    <td><%= link_to "Edit", edit_tag_path(tag), remote: true %></td>
+    <td><%= link_to "Remove", tag, method: :delete, remote: true, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end if @tags %>
+</table>
+ 
+<br />
+ 
+
+<%= render :partial => "modal.html.erb" %>

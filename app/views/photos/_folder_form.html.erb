@@ -1,0 +1,17 @@
+<% path_str = case params[:action]
+   when "new"
+     folder_create_path()
+   when "edit"
+     folder_update_path(@folder.id)
+   end
+%>
+<%= form_tag(folder_create_path(),:remote => true) do %>
+   <div>
+    <input name="name" type="text" placeholder="folder name" size="40" value="<%= @folder.name %>"/>
+    <input name="desc" type="text" placeholder="description" size="40" value="<%= @folder.desc %>"/>
+
+    <div class="md-footer" style="float:right;">
+       <%= submit_tag "Submit", :class => "btn" %>
+    </div>
+<% end %> 
+

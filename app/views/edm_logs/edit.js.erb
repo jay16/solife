@@ -1,0 +1,2 @@
+$("#modal .modal-header h3").html("Edit Site");
+$("#modal .modal-body").html("<%= j render partial: 'form', formats: [:html], handler: [:js], locals: { favority: @favority, site: @site } %>"); 

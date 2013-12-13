@@ -1,0 +1,13 @@
+  <tr id="<%= dom_id member %>">
+    <td><%= member.name %></td>
+    <td><%= member.email %></td>
+    <td>
+       <% member.tags.each do |tag| %>
+         <span class="label label-info"><%= tag.label %></span>
+       <% end %>
+    </td>
+    <td><%= link_to t("btn.show"), member, remote: true, class: "btn btn-mini btn-info" %></td>
+    <td><%= link_to "mx", member_mx_path(member), remote: true,class: "btn btn-mini btn-success" %></td>
+    <td><%= link_to t("btn.edit"), edit_member_path(member), remote: true,class: "btn btn-mini btn-success" %></td>
+    <td><%= link_to t("btn.del"), member, method: :delete, remote: true, data: { confirm: "Are you sure?" },class: "btn btn-mini btn-danger" %></td>
+  </tr>

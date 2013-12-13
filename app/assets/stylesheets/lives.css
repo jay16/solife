@@ -1,0 +1,133 @@
+
+ .lives:after {
+    background-color: transparent;
+    //border: 1px solid #DDDDDD;
+    border-radius: 4px 0 4px 0;
+    color: #9DA0A4;
+    content: "segments";
+    font-size: 12px;
+    font-weight: bold;
+    left: -1px;
+    padding: 3px 7px;
+    position: absolute;
+    top: -1px;
+}
+.lives {
+    background-color: transparent;
+   // border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    margin: 15px 0;
+    padding: 39px 19px 14px;
+    position: relative;
+}
+.lives .info {
+    font-size: 13px;
+    line-height: 20px;
+    color: black;
+}
+.segment_box {
+  border: 1px solid purple;
+  box-shadow: inset 0 0 1em green;
+}
+.segment_box .thumbnail {
+     border-top: 1px solid #DDDDDD;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    display: block;
+    line-height: 20px;
+    padding-bottom:25px;
+    transition: all 0.2s ease-in-out 0s;
+}
+.segment h4 {
+    font-size: 18px;
+}
+.segment .content,
+.thumbnail .content {    
+//    background-color: #F5F5F5;
+//    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px 4px 4px 4px;
+    display: block;
+    font-size: 13px;
+    line-height: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace;
+}
+.segment .content p,
+.thumbnail .content p{
+  text-indent: 20px;
+}
+dd{
+    white-space: pre-wrap;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.content p {
+   margin: 0 0 5px;;
+}
+.content strong {
+  letter-spacing: 0px;
+}
+.content blockquote p {
+  letter-spacing: 0px;
+  word-spacing: -5px;
+  font-family: Consolas,"Liberation Mono",Courier,monospace;
+}
+.lives .edit-pane {
+  border-radius: 0px 0px 4px 4px;
+  margin-right:0px;
+  margin-bottom: 5px;
+    background:  #E7E7E7;
+    height: 20px;
+    overflow: hidden;
+    padding: 5px 15px;
+}
+.edit-pane span {
+  padding-right: 14px;
+}
+/*
+.edit-pane .user {
+    background: url("/assets/author.png") no-repeat scroll 0 0 transparent;
+    color: #888888;
+    padding-left: 15px;
+}
+
+.edit-pane .user:hover {
+    background: url("/assets/author.png") no-repeat scroll 0 -16px transparent;
+    color: #FFFFFF;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .category {
+    background: url("/assets/category.png") no-repeat scroll 0 0 transparent;
+    color: #888888;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .category:hover {
+    background: url("/assets/category.png") no-repeat scroll 0 -16px transparent;
+    color: #FFFFFF;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .comments {
+    background: url("/assets/comments.png") no-repeat scroll 0 0 transparent;
+    color: #888888;
+    height: 16px;
+    padding-left: 15px;
+}
+
+.edit-pane .comments:hover {
+    background: url("/assets/comments.png") no-repeat scroll 0 -16px transparent;
+    color: #FFFFFF;
+    height: 16px;
+    padding-left: 15px;
+}
+*/
+.content pre {
+    background-color: transparent;
+    border: none;
+}

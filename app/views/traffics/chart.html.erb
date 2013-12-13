@@ -1,0 +1,10 @@
+    <div  style="margin:0 auto;width:900px;float:none;text-align:center;">
+      <div>
+         <span class="btn" onclick="$('#chart_hour_div').css('display','block');$('#chart_week_div').css('display','none');">Show By Hour</span>
+         <span class="btn" onclick="$('#chart_hour_div').css('display','none');$('#chart_week_div').css('display','block');">Show By Week</span>
+      </div>
+    </div>
+     
+   <div id="chart_hour_div" style="margin:0 auto;width:900px;float:none;text-align:center;">
+     <%= high_chart("high_chart_week", chart(@week_data)) %>
+   </div>

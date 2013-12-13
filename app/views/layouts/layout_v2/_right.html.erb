@@ -1,0 +1,33 @@
+<div class="page-header">
+    <h1><%= t("layout.module") %></h1>
+</div>
+
+<div class="label label-success block-bar">
+   <%= link_to t("layout.blog"),blog_path(), :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.blog") %>
+</div>
+
+<div class="label label-success block-bar">
+  <%= link_to t("layout.consume"),consumes_path(), :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.consume") %>
+</div>
+
+<div class="label label-success block-bar">
+  <%= link_to t("layout.photo"),"/photos", :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.photo") %>
+</div>
+
+<div class="label label-success block-bar">
+  <%= link_to t("layout.editor"),editor_demo_path(), :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.editor") %>
+</div>
+<div class="label label-success block-bar">
+  <%= link_to t("layout.about"),"/resume#about_me", :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.about") %>
+</div>
+<div class="hidden label label-success block-bar"><%= link_to "旧版首页",v1_path(),:class=> "nolink" %></div>
+<% javascript_include_tag "weisay" %>
+<div class=" hidden label label-success block-bar">
+    <div class="search_site addapted" style="overflow: hidden; width: 150px;">
+        <form target="_blank" action="http://zhannei.baidu.com/cse/search" method="get" id="searchform">
+        <input type="hidden" value="6544165569856054450" name="s">
+        <input type="submit" class="button" id="searchsubmit" value="">
+        <input type="text" value="Search" name="q" id="s">
+        </form>					
+    </div>
+</div>

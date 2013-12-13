@@ -1,0 +1,11 @@
+<%= form_for(@folder,html: { html: "form-horizontal" }, remote: true) do |f| %>
+  <p>
+    <%= f.text_field :name, class: "span12", placeholder: "相册名称" %>
+  </p>
+  <p>
+    <%= f.text_area :desc, class: "span12", rows: 10, placeholder: "相册描述" %>
+  </p>
+  <p>
+    <%= f.submit "submit", class: "btn btn-primary" %>
+  </p>
+<% end %>

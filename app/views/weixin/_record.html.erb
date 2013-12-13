@@ -1,0 +1,134 @@
+  <table class="table table-striped">
+    <thead>
+      <th>title</th>
+      <th>content</th>
+    </thead>
+    <tbody>
+      <% if @record.from_user_name %>
+        <tr>
+          <td width="40%">from</td>
+          <td width="20%"><%= @record.from_user_name %></td>
+        </tr>
+      <% end %>
+      <% if @record.created_at %>
+        <tr>
+          <td width="40%">at</td>
+          <td width="60%"><%= @record.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        </tr>
+      <% end %>
+      <% if @record.msg_type %>
+        <tr>
+          <td width="40%">msg-type</td>
+          <td width="60%"><%= @record.msg_type %></td>
+        </tr>
+      <% end %>
+      <% if @record.content %>
+        <tr>
+          <td width="40%">content</td>
+          <td width="60%"><%= @record.content %></td>
+        </tr>
+      <% end %>
+      <% if @record.pic_url %>
+        <tr>
+          <td width="40%">image</td>
+          <td width="60%"><%= image_tag @record.pic_url, style: "width:150px;" %></td>
+        </tr>
+      <% end %>
+      <% if @record.media_id %>
+        <tr>
+          <td width="40%">media_id</td>
+          <td width="60%"><%= @record.media_id %></td>
+        </tr>
+      <% end %>
+      <% if @record.format %>
+        <tr>
+          <td width="40%">format</td>
+          <td width="60%"><%= @record.format %></td>
+        </tr>
+      <% end %>
+      <% if @record.thumb_media_id %>
+        <tr>
+          <td width="40%">thumb_media_id</td>
+          <td width="60%"><%= @record.thumb_media_id %></td>
+        </tr>
+      <% end %>
+      <% if @record.location_x %>
+        <tr>
+          <td width="40%">location_x</td>
+          <td width="60%"><%= @record.location_x %></td>
+        </tr>
+      <% end %>
+      <% if @record.location_y %>
+        <tr>
+          <td width="40%">location_y</td>
+          <td width="60%"><%= @record.location_y %></td>
+        </tr>
+      <% end %>
+      <% if @record.scale %>
+        <tr>
+          <td width="40%">scale</td>
+          <td width="60%"><%= @record.scale %></td>
+        </tr>
+      <% end %>
+      <% if @record.label %>
+        <tr>
+          <td width="40%">label</td>
+          <td width="60%"><%= @record.label %></td>
+        </tr>
+      <% end %>
+      <% if @record.title %>
+        <tr>
+          <td width="40%">title</td>
+          <td width="60%"><%= @record.title %></td>
+        </tr>
+      <% end %>
+      <% if @record.description %>
+        <tr>
+          <td width="40%">descrption</td>
+          <td width="60%"><%= @record.description %></td>
+        </tr>
+      <% end %>
+      <% if @record.url %>
+        <tr>
+          <td width="40%">url</td>
+          <td width="60%"><%= @record.url %></td>
+        </tr>
+      <% end %>
+      <% if @record.event %>
+        <tr>
+          <td width="40%">event</td>
+          <td width="60%"><%= @record.event %></td>
+        </tr>
+      <% end %>
+      <% if @record.event_key %>
+        <tr>
+          <td width="40%">event_key</td>
+          <td width="60%"><%= @record.event_key %></td>
+        </tr>
+      <% end %>
+      <% if @record.ticket %>
+        <tr>
+          <td width="40%">ticket</td>
+          <td width="60%"><%= @record.ticket %></td>
+        </tr>
+      <% end %>
+      <% if @record.latitude %>
+        <tr>
+          <td width="40%">latitude</td>
+          <td width="60%"><%= @record.latitude %></td>
+        </tr>
+      <% end %>
+      <% if @record.longitude %>
+        <tr>
+          <td width="40%">longitude</td>
+          <td width="60%"><%= @record.longitude %></td>
+        </tr>
+      <% end %>
+      <% if @record.precision %>
+        <tr>
+          <td width="40%">precision</td>
+          <td width="60%"><%= @record.precision %></td>
+        </tr>
+      <% end %>
+    </body>
+  </table>

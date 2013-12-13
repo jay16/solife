@@ -1,0 +1,57 @@
+<style>
+ .social-login {
+    border-bottom: 1px solid #CCCCCC;
+    margin: 15px auto 30px;
+    padding: 0 0 30px;
+    position: relative;
+}
+ .social-login .or {
+    background: none repeat scroll 0 0 #FFFFFF;
+    bottom: -14px;
+    color: #AAAAAA;
+    font-size: 18px;
+    left: 50%;
+    margin-left: -30px;
+    position: absolute;
+    text-align: center;
+    width: 60px;
+}
+.btn-google {
+    background: url("https://dn-pragmaticly.qbox.me/assets/landing-sprite.png") no-repeat scroll -460px 0 #396FC5;
+    border-radius: 5px 5px 5px 5px;
+    color: #FFFFFF;
+    display: block;
+    padding: 0;
+}
+.btn-google span {
+    background: none repeat scroll 0 0 #4787ED;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0 -2px rgba(0, 0, 0, 0.1) inset;
+    display: block;
+    margin-left: 58px;
+    padding: 10px 0;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    transition: background 0.25s ease 0s;
+    width: auto;
+}
+.btn-google:hover, .btn-google:focus, .btn-google:active {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.btn-google:hover span, .btn-google:focus span, .btn-google:active span {
+    background: none repeat scroll 0 0 #396FC5;
+}
+</style>
+
+<div class="social-login">
+  <a class="btn-google btn-auth" href="/auth/google"><span>使用 Google 帐号登录</span></a>
+  <span class="or">OR</span>
+</div>
+
+<%= simple_form_for(@user,:remote => true) do |f| %>
+  <%= f.input :email, label: false, placeholder: "your register email" %>
+  <%= f.input :password, label: false, placeholder: "password" %>
+  <%= f.button :submit, "登陆" %>
+<% end %>

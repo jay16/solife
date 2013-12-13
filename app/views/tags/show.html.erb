@@ -1,0 +1,30 @@
+<table class="table">
+  <tr>
+    <td>名单:</td>
+    <td><%= @tag.label %></td>
+  </tr>
+  <tr>
+    <td>分类:</td>
+    <td><%= @tag.klass %></td>
+  </tr>
+  <tr>
+    <td>级别:</td>
+    <td><%= @tag.type %></td>
+  </tr>
+  <tr>
+    <td><%= @tag.klass[0] %></td>
+    <td><%= @tag.saze %>
+        <%= link_to "明细", "javascript:void", remote: true, class: "btn btn-mini btn-info" if @tag.saze > 0%>
+    </td>
+  </tr>
+  <tr>
+    <td>创建时间:</td>
+    <td><%= @tag.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <td>操作:</td>
+    <td>
+    <%= link_to "删除", [@taggroup,@tag], method: :delete, remote: true,class: "btn btn-mini btn-danger", data: { confirm: "Are you sure?" } %>
+    </td>
+  </tr>
+</table>

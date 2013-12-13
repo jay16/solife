@@ -1,0 +1,27 @@
+<h2>ToDo
+  <small><%= link_to t("btn.new"), new_todo_path, :remote => true, class: "btn btn-primary" %></small>
+</h2>
+ 
+<table class="table">
+  <tr>
+    <th>ToDo</th>
+    <th>Klass</th>
+    <th>Detail</th>
+  </tr>
+ 
+  <% @todos.each do |todo| %>
+    <tr id="<%= dom_id todo %>">
+      <td><%= todo.todo %></td>
+      <td>
+          <% todo.tags.each do |tag| %>
+	    <span class="label label-info"><%= tag.label %></span>
+	  <% end %>
+      </td>
+      <td><%= link_to t("btn.show"), todo, remote: true, class: "btn btn-mini btn-info" %></td>
+    </tr>
+  <% end if @todos %>
+</table>
+ 
+
+<%= render :partial => "todos/modal", formats: [:html], hander: [:erb]  %>
+

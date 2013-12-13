@@ -1,0 +1,25 @@
+<h1>Listing Traffics<small>current ip:<%= request.remote_ip %></small></h1>
+ 
+<table class="table">
+  <tr>
+    <th>Controller</th>
+    <th>Action</th>
+    <th>Type</th>
+    <th>Date</th>
+    <th>Show</th>
+    <th>Del</th>
+  </tr>
+<% @traffics.each do |traffic| %>
+  <tr id="<%= dom_id traffic %>">
+    <td><%= traffic.controller %></td>
+    <td><%= traffic.action %></td>
+    <td><%= traffic.type %></td>
+    <td><%= traffic.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+    <td><%= link_to "Show", traffic, remote: true %></td>
+    <td><%= link_to "Remove", traffic, method: :delete, remote: true, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end if @traffics %>
+</table>
+ 
+<%= render :partial => "traffics/modal", formats: [:html], hander: [:erb] %>
+

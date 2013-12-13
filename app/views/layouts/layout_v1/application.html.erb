@@ -1,0 +1,38 @@
+<!--
+  ========================================================
+                                          xsolife.com
+        
+  App Environments:
+  --------------------------------------------------------
+  Ruby:  <%= RUBY_VERSION %><%= "-p#{RUBY_PATCHLEVEL}" if defined? RUBY_PATCHLEVEL %>
+  Rails: <%= Rails.version %>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SOLife</title>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="Jay Li" name="author">
+  <meta content="Segment Of My Life..." name="description">
+  <meta content="True" name="HandheldFriendly">
+  <meta content="320" name="MobileOptimized">
+  <meta content="width=device-width,minimum-scale=1,maximum-scale=1" name="viewport">
+  <link rel="icon" href="/assets/favicon.so.ico">
+  <link href="http://solife.com/" rel="canonical">
+
+  <%= stylesheet_link_tag    "layout_v1", :media => "all" %>
+  <%= javascript_include_tag "layout_v1" %>
+  <%= render :partial => "layouts/layout_v1/coderay_css" %>
+  <%= render :partial => "layouts/layout_v1/css" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render :partial => "layouts/layout_v1/header" %>
+  <%= render :partial => "layouts/layout_v1/layout" %>
+  <%= render :partial => "layouts/layout_v1/footer" %> 
+  <%= render :partial => "layouts/google-analytics" %> 
+
+</body>
+</html>
+

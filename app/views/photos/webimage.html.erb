@@ -1,0 +1,12 @@
+<% @images.each_with_index do |image_src, index| %>
+  <tr class="webimage">
+    <td colspan="2"><img src="<%= image_src %>" style="max-width:500px;max-height:500px;"></td>
+  </tr>
+  <tr class="webimage">
+    <td colspan="2">URL:<%= text_field_tag "imgurl_#{index}", image_src, class: "span12" %> </td>
+  </tr>
+  <tr class="webimage">
+    <td width="90%">Desc:<%= text_field_tag "desc_#{index}", nil,"place-holder" => "what do you want to desc?", class: "span12" %> </td>
+    <td width="10%">Accept:<%= check_box_tag "accepted_#{index}", "accepted", true %></td>
+  </tr>
+<% end if @images %>

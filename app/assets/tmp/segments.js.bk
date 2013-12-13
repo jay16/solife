@@ -1,0 +1,22 @@
+function tthumbnail_toggle(segment_id,readMore){
+  var $thumbnail = $("#segment_"+String(segment_id)+"_thumbnail");
+  var $segment   = $("#segment_"+String(segment_id));
+  var $segment_box = $("#segment_"+String(segment_id)+"_box");
+
+  if(readMore){
+    $(".segment_box").hide();
+    $segment_box.addClass("readmore");
+    $thumbnail.hide();
+    $segment.show();
+    $segment_box.fadeIn();
+  } else {
+    $(".segment_box").show();
+    $segment_box.removeClass("readmore");
+    $thumbnail.show();
+    $segment.hide();
+    $segment_box.fadeIn();
+  }
+
+ // $('html,body').animate({scrollTop:($("#segment_"+String(segment_id)+"_box").offset().top+70)}, 800);
+  $('html,body').animate({scrollTop:70}, 800);
+}

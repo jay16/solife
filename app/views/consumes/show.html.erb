@@ -1,0 +1,36 @@
+<table class="table">
+  <tr>
+    <td><%= t("form.value") %></td>
+    <td><%= @consume.value %></td>
+  </tr>
+  <tr>
+    <td><%= t("form.msg") %></td>
+    <td><pre><%= @consume.msg %></pre></td>
+  </tr>
+  <tr>
+    <td><%= t("form.tag") %></td>
+    <td>
+      <% @consume.tags.each do |tag| %>
+       <span class="label label-success"><%= tag.taggroup(@consume.klass).label %></span>
+       <span class="label label-info"><%= tag.label %></span><br>
+      <% end if @consume.tags %>
+      <%= "no-tag" unless @consume.tags %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= t("form.created_at") %></td>
+    <td><%= f @consume.created_at %></td>
+  </tr>
+  <tr>
+    <td><%= t("form.updated_at") %></td>
+    <td><%= f @consume.updated_at %></td>
+  </tr>
+  <% if user_signed_in? %>
+  <tr>
+    <td><%= t("form.action") %></td>
+    <td><%= link_to t("btn.edit"), edit_consume_path(@consume), remote: true, class: "btn btn-mini btn-success" %>|
+      <%= link_to t("btn.del"), @consume, remote: true, method: :delete, data: { confirm: "确定删除此笔记录?" }, class: "btn btn-mini btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>

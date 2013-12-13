@@ -1,0 +1,21 @@
+<%= form_tag("/users/login",:remote => true,:class=>"form-horizontal width", :id=>"login_form") do%>
+   <!-- login-->
+
+  <div class="control-group">
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-envelope"></i></span>
+      <%= text_field_tag 'name', nil, placeholder: 'Username', :class => "span12"  %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-user"></i></span>
+       <%= password_field_tag 'password', nil, :placeholder => 'Password', :class => "span12"  %>
+    </div>
+  </div>
+
+  <div class="left">
+     <%= submit_tag "登陆", :class=>"btn" %>
+  </div>
+<% end %>

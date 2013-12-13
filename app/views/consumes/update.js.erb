@@ -1,0 +1,3 @@
+$("#modal").modal("hide");
+$("#<%= dom_id @consume %>").replaceWith("<%= j render partial: 'consume', formats: [:html], handler: [:erb], locals: { consume: @consume } %>");
+$(".loading").css("display","none");

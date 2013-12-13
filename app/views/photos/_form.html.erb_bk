@@ -1,0 +1,47 @@
+<style>
+.upload_img {
+  width:150px;
+  height:150px;
+}
+</style>
+<%= form_tag(photo_create_path(), :multipart=>true, :remote => true) do %>
+   <div id="segment_title">
+    <input name="name" type="text" placeholder="folder name" size="40" value="<%= @photo.name %>"/>
+    <input name="desc" type="text" placeholder="description" size="40" value="<%= @photo.desc %>"/>
+    <%= file_field_tag :photo_field, :onchange => "readURL(this)", :multiple=> true, :accept => 'image/png,image/gif,image/jpeg,image/jpg', :class => 'btn' ,:size=>15 %>
+    <table class="table">
+      <% (0..15).each do |index| %>
+        <% if index %4 == 0 %> <tr> <% end %>
+           <td><img class="upload_img" name="photo_pane<%= index %>" id="photo_pane<%= index %>"></td>
+        <% if index %4 == 3 %> </tr> <% end %>
+      <% end %>
+    </table>
+
+    <div class="md-footer" style="float:right;">
+       <%= submit_tag "Submit", :class => "btn" %>
+    </div>
+<% end %> 
+<script>
+function setImgLoad(dd){
+  var input = document.getElementById("photo_field");
+  var reader = new FileReader();
+           reader.onload = function (e) {
+             var dom = '#photo_pane'+String(dd);
+             $(dom).attr('src', e.target.result);
+            //alert(e);
+            //alert(e.target);
+            //alert(e.target.result)
+            }  
+          alert(input);
+          alert(input.files);
+          reader.readAsDataURL(input.files[dd]);    
+}
+
+function readURL(input) {
+    var len = input.files.length;
+    for(var dd = 0; dd < len; dd++){ 
+       setTimeout("setImgLoad("+dd+")",1000);
+                                 
+    } 
+}
+</script>

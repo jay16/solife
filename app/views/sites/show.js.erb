@@ -1,0 +1,4 @@
+$(".loading").css("display","none");
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("<%= @site.name %>");
+$("#modal .modal-body").html("<%= j render template: 'sites/show', formats: [:html], handler: [:erb] %>");

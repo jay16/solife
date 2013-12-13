@@ -1,0 +1,38 @@
+		  <!-- segment -->
+		  <div class="segment" style="display:none;" id="<%= dom_id segment %>">
+		   
+		    <header>
+		      <h1 class="entry-title"><%= segment.title %></h1>
+		    </header>
+
+		    <div class="tags-zone">
+                        <%= render partial: "segments/tag_zone", locals: { segment: segment } %>
+		    </div>
+		     
+		     <div class="content"><%= (segment.markdown.nil? ? markdown(segment) : segment.markdown).html_safe %></div>
+		    
+		    <div class="right readless badge badge-info" onclick="thumbnail_toggle(<%= segment.id %>,false)">返回缩略</div>
+		  </div>
+                  
+
+		    <div class="edit-pane">
+			<% if user_signed_in? %>
+			    <%= link_to "Edit", edit_segment_path(segment),:class=>"btn btn-mini" %>
+			    <%= link_to "attach tags", segment_attach_tags_path(segment),:remote => true, :class => "btn btn-mini" %>
+			    <%= link_to "Del", segment,method: :delete, :class => "btn btn-mini", :remote => true, :confirm => "Destory cannot restore, Are you sure?!" %>
+			<% end %>
+                       
+                        <span>
+                           <%= link_to '','javascript:void(0)', :class=>'solife-user' %>
+		           <%= link_to "jay", "javascript:void(0)", :style=>"color:#4E4E4E;width:50px;" %>
+                        </span> 
+                        <span>
+                           <%= link_to '','javascript:void(0)', :class=>'solife-tag' %>
+		           <%= link_to "solife", "javascript:void(0)", :style=>"color:#4E4E4E;width:50px;" %>
+                        </span>
+                        <span>
+                           <%= link_to '','javascript:void(0)', :class=>'solife-reply' %>
+		           <%= link_to "comments(#{segment.replies.count})", segments_permlink(segment,"reply"), :style=>"color:#4E4E4E;width:100px;" %>
+                        </span>
+		    </div>
+

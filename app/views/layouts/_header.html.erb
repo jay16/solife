@@ -1,0 +1,23 @@
+
+<div class="header">
+  <div class="logo">
+    <span>
+      <h1 class="blog-name"><a title="SOLife" href="http://xsolife.com">SOLife</a><small>    - Segment Of Jay's Life</small></h1>
+    </span>
+    <span class="right" style="position: absolute;top:0;right:30px;padding-top:15px">
+      <%= link_to "主页","http://xsolife.com",:id => "back_2_index", :class => "nolink" %>
+    </span>
+  </div>
+
+<script>
+$(function(){
+ var path = window.location.pathname;
+ if(path=="/"){
+   $("#back_2_index").css("color","gray");
+ } else {
+   $("#back_2_index").css("color","white");
+ }
+});  
+</script>
+</div>
+

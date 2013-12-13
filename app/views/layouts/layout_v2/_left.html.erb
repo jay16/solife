@@ -1,0 +1,33 @@
+<div class="page-header">
+    <h1><%= t("layout.whatido") %></h1>
+</div>
+
+<div class="label label-info block-bar">Qlikviw & Oracle & PLSQL</div>
+<div class="label label-info block-bar">Ruby On Rails & Ruby</div>
+<div class="label label-info block-bar">Kettle & Linux & Crontab</div>
+<div class="label label-info block-bar">
+  <% if user_signed_in? %>
+    <%= link_to "logout", "users/sign_out", class: "nolink", id: "chk_login"  %>
+  <% else %>
+    <%= link_to "sign in", "/users/sign_in", remote: true , class: "nolink" %>
+  <% end %>
+</div>
+
+<% if user_signed_in? %>
+  <div style="padding-left:20px;" >
+    <%= link_to "兴趣墙", favorities_path(), class: "btn btn-success", target: "_blank" %>
+    <%= link_to "标签", taggroups_path(), class: "btn btn-success", target: "_blank" %>
+    <%= link_to "消费记录", consumes_path(), class: "btn btn-success", target: "_blank" %>
+    <%= link_to "EDM", edms_path(), class: "btn btn-success", target: "_blank" %>
+  </div>
+  <div style="padding-left:20px;">
+  <%= link_to "写博客", new_segment_path, class: "btn btn-primary" %>
+  </div>
+
+  <div style="padding-left:20px;">
+  <%= link_to "login", "demo/login", remote: true, class: "btn btn-primary", onclick: "$('.loading').css('display','block')" %><br>
+  </div>
+<% end %>
+
+<%= render partial: "shared/modal", formats: [:html], handler: [:erb] %>
+

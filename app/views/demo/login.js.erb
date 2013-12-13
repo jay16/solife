@@ -1,0 +1,6 @@
+$(".notice").delay(5000).fadeOut("slow");
+$(".notice").html("hello world");
+$(".loading").css("display","none");
+
+$("#modal").modal("show");
+$("#modal .modal-body").html("<%= j render :partial => 'demo/login' %>");

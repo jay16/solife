@@ -1,0 +1,15 @@
+<ul class="lastest list-group">
+  <% lastest.each do |segment| %>
+    <li class="list-group-item">
+      <% if segment.title.nil? %>
+	<%= link_to "无标题", segments_permlink(segment), :style => "color:darkgreen;" %>
+      <% elsif segment.title.length>25 %>
+	<%= link_to segment.title[0..20]+"...", segments_permlink(segment), "data-toggle" => "tooltip", "data-original-title" => "#{segment.title}", :title => "", "data-placement"=>"left", :style => "color:darkgreen;" %>
+      <% else %>
+	<%= link_to segment.title, segments_permlink(segment), :style => "color:darkgreen;" %>
+      <% end %>
+      <% ret = time_ago(type=="created_at" ? segment.created_at : segment.updated_at) %>
+      <span class="right label label-<%= ret[0] %>"><%= ret[1] %></span>
+    </li>
+  <% end %>
+</ul>

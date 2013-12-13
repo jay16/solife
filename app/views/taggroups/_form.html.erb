@@ -1,0 +1,19 @@
+<%= form_for(taggroup,html: { html: "form-horizontal" }, remote: true) do |f| %>
+  <p>
+      <b>Label</b>
+      <%= f.text_field :label %>
+  </p>
+  <p>
+       <b>Type</b>
+       <%= f.select :group_type,taggroup.klass_map, class: "chosen-select" %>
+  </p>
+  <p>
+    <%= f.submit "submit", class: "btn btn-primary" %>
+  </p>
+<% end %>
+
+<script>
+$(function(){
+    $(".chosen-select").chosen()
+});
+</script>

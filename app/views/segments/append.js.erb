@@ -1,0 +1,9 @@
+$("#segment_form").remove();
+
+var segment = $("<%= j render :partial => 'segments/form' %>");
+segment.addClass('hidden');
+//alert("#segment_<%= @segment.id %>");
+segment.insertAfter("#segment_<%= @segment.id %>");
+$("#segment_title").html("<div class='banner'>追加内容至[<%= @segment.title %>]</div>");
+$("#segment_form textarea").val("");
+segment.removeClass('hidden');

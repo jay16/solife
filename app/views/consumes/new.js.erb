@@ -1,0 +1,5 @@
+$(".loading").css("display","none");
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("<%= t('btn.new') %>");
+$("#modal .modal-body").html("<%= j render partial: 'form', formats: [:html], handler: [:erb], locals: { consume: @consume } %>"); 
+

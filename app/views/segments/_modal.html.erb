@@ -1,0 +1,13 @@
+<div id="modal_<%= dom_id segment %>" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body" style="text-align:center;">
+    <%= form_tag(segment_update_tags_path(segment), class: "form-horizontal", remote: true) do %>
+      <div class="tags-zone"></div>
+      <%= submit_tag t("btn.submit"), class: "btn btn-primary btn-success pull-right",
+	  onclick: "$('.loading').css('display','block');" %>
+    <% end %>
+  </div>
+</div>

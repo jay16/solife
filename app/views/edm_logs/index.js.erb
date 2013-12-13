@@ -1,0 +1,3 @@
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("<%= @edm.subject %> EdmLogs");
+$("#modal .modal-body").html("<%= j render template: 'edm_logs/index', formats: [:html], handler: [:erb] %>");

@@ -1,0 +1,2 @@
+module OpenfindHelper
+end

@@ -1,0 +1,25 @@
+<div class="row">
+ <div class="span8" style="width:700px;">
+  <%=form_tag("/tools_openfind/dl_member.xls") %>
+  <%= text_field_tag 'members_url','http://cndemo.openfind.com/china/order/show.php',:class=>"span4" %>
+  <%= submit_tag "Openfind电子报名单下载", :id=>"outer_form_submit",:class => 'btn', :style=>"width:250px;" %>
+  </form>
+  <pre>
+   注意事项：下载的名单中会遗漏网页名单中第一个，需要手工补上。
+  </pre>
+  
+  <%=form_tag("/tools_openfind/dl_template") %>
+  <%= text_field_tag 'openfind_url','http://cndemo.openfind.com/china/epaper/2012_12',:class=>"span4" %>
+  <%= submit_tag "Openfind电子报模板下载", :id=>"outer_form_submit",:class => 'btn', :style=>"width:250px;" %>
+  </form>
+    <pre>
+   注意事项：所下载的zip模板不符合FocusMail,需要手工修改以下几点：
+   1.解压zip文件至当前文件夹中，
+   查看index.html编码是否为UTF-8(或直接[另存为]过程中设置编码格式为UTF-8)
+   2.通过浏览器打开index.html查看图片是否完整（确定图片都已下载到images文件中）
+   3.选中index.html与images文件夹右键选择添加至压缩文件，选择格式为zip
+   4.在FocusMail中新建模板预览查看。
+  </pre>
+  </div>
+ </div>
+

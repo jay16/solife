@@ -1,0 +1,21 @@
+<h1>Listing Replies</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Content</th>
+    <th>Del</th>
+  </tr>
+  <% @replies.each do |reply| %>
+    <tr id="<%= dom_id reply %>">
+	<td>name:<%= reply.name %></td>
+	<td>email:<%= reply.email %></td>
+	<td><%= reply.content %></td>
+	<td><%= link_to t("btn.del"), reply, method: :delete, remote: true, data: { confirm: "Are you sure?" },class: "btn btn-mini btn-danger" %></td>
+    </tr>
+  <% end if @replies %>
+   
+</table>
+
+<%= render :partial => "replies/form", locals: { :segment => @segment, :reply => @reply } %>

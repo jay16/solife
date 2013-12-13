@@ -1,0 +1,14 @@
+/*
+var segment = $("<%= j render :partial => 'segments/form' %>");
+segment.addClass('hidden');
+segment.insertAfter("#segment_<%= @segment.id %>");
+segment.removeClass('hidden');
+*/
+//$("#segment_edit").html("<%= j render :partial => 'segments/form' %>");
+
+  var strhost = window.location.host;
+  var strprotocol = window.location.protocol;
+  var strurl = strprotocol + "//" + strhost + "/edit_markdown/<%= @segment.permlink %>";
+  alert(strurl);
+  var win = window.open(strurl);
+  win.focus();
