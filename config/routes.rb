@@ -4,8 +4,8 @@ Solife::Application.routes.draw do
 
   devise_for :users,
     :controllers => {
-#      :registrations => :users,
-      :sessions => :sessions
+    #:registrations => :users,
+    :sessions => :sessions
   }
 
   #处理weixin消息
