@@ -14,24 +14,6 @@ class DemoController < ApplicationController
 
   def markdown_editor; end
 
-  def ruby_in_100_minutes
-    respond_to { |format| format.html { render :layout => false } }
-  end
-
-  def guides_rubyonrails_org
-    respond_to { |format| format.html { render :layout => "guides.rubyonrails.org" } }
-  end
-
-  def topic
-    @segment = Segment.find_by_permlink(params[:permlink]) 
-    respond_to do |format|
-      format.html { 
-        render :layout => "ruby_in_100_minutes",#"guides.rubyonrails.org",
-               :template => "segments/show"
-      }
-    end
-  end
-
   def video; end
   def resume; end
   def pragmatic; end
