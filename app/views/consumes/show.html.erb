@@ -1,5 +1,8 @@
 <table class="table">
   <tr>
+    <td colspan="2"><%= @consume.created_at("%Y/%m/%d %H:%M:%S %a") %></td>
+  </tr>
+  <tr>
     <td><%= t("form.value") %></td>
     <td><%= @consume.value %></td>
   </tr>

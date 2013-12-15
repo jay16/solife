@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
 
   #处理程序bug
   def deal_with_exceptions
-    render template: "/exceptions/template", format: [:html], handler: [:erb], :layout => "/layout_v2/application"
+    render template: "/exceptions/template",
+      format: [:html], handler: [:erb], layout: "/layout_v2/application",
+      locals: { requres: request }
   end
 
   #设置首页i18n多语言

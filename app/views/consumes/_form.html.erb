@@ -4,7 +4,7 @@
   <%= f.input :volue, as: :float, label: t("form.value"), input_html: { class: "span9" }, placeholder: "消费数值" %>
 
   <%= f.input :created_at, label: t("form.created_at") do %>
-    <%= f.input_field :created_at, as: :string, class: "span6", disabled: true, value: (consume.created_at.nil? ? Time.now : consume.created_at).strftime("%Y-%m-%d %H:%M:%S") %>
+    <%= f.input_field :created_at, as: :string, class: "span6", readonly: true, value: (consume.created_at.nil? ? Time.now : consume.created_at).strftime("%Y-%m-%d %H:%M:%S %a") %>
 
     <%= link_to "+","javascript:void(0);", type: :button, class: "btn btn-mini date-add", onclick: "add_plus_date('add');" %>
     <%= link_to "-","javascript:void(0);",  type: :button, class: "btn btn-mini date-plus",  onclick: "add_plus_date('plus');" %>

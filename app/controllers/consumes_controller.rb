@@ -28,6 +28,7 @@ class ConsumesController < ApplicationController
       end if consume.tags
     end
     @sum_tags.uniq!
+    @consume_at = consumes.first.created_at
 
   end
 
@@ -45,7 +46,7 @@ class ConsumesController < ApplicationController
 
   def update
     #日期格式不匹配，则使用当前时间
-    unless params[:consume][:created_at]=~ /\d+-\d+-\d+\s\d+:\d+:\d+/
+    unless params[:consume][:created_at] =~ /\d+-\d+-\d+\s\d+:\d+:\d+/
       params[:consume][:created_at] = Time.now.strftime("%Y-%m-%d %H:%M:%S")
     end
 

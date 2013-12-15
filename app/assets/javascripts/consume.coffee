@@ -36,7 +36,7 @@ $(document).ready ->
   #按天为单位对日期进行加减
   self.add_plus_date = (add_or_plus) ->
     source = by_id("consume_created_at")
-    reg = /^ *(\d{4})-(\d{1,2})-(\d{1,2}) +(\d{1,2}):(\d{1,2}):(\d{1,2}) *$/
+    reg = /^ *(\d{4})-(\d{1,2})-(\d{1,2}) +(\d{1,2}):(\d{1,2}):(\d{1,2})/
     match = source.value.match(reg)
     old_date = new Date(match[1],parseInt(match[2])-1,match[3],match[4],match[5],match[6])
     tmp_date = old_date.valueOf() + (if add_or_plus=="add" then +1 else -1)*24*60*60*1000 
@@ -47,5 +47,18 @@ $(document).ready ->
     hour  = new_date.getHours()
     minute= new_date.getMinutes()
     second= new_date.getSeconds()
-    new_date_str = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second
+    week  = switch new_date.getDay()
+      when 0 then "Sun" 
+      when 1 then "Mon"
+      when 2 then "Tue"
+      when 3 then "Wed"
+      when 4 then "Thu"
+      when 5 then "Fri"    
+      when 6 then "Sat"
+      else "Error"
+    new_date_str = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second + " " + week
     source.value = new_date_str
+    source.onfocus () ->
+      source.value = new_date_str
+    source.onblur () ->
+      source.value = new_date_str

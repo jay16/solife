@@ -1,5 +1,9 @@
 <table class="table">
   <tr>
+    <td><%= t("form.date") %></td>
+    <td><%= @consume_at.strftime("%Y/%m/%d %H:%M:%S %a") %></td>
+  </tr>
+  <tr>
     <td><%= t("form.value") %></td>
     <td><%= @sum_value %></td>
   </tr>
