@@ -89,6 +89,7 @@ Solife::Application.routes.draw do
   match "/blog" => "home#layout_v1" , :as => :blog
   match "/home/i18" => "home#i18",    :as => :i18
   match "/shell"    => "demo#shell"
+  match "/jquery/china-map-chart"    => "demo#china_map_chart"
 
   match "/search/segments"            => "segments#search",          :as => :segments_search
   match ":year/:month/:day/:permlink" => "segments#show",            :as => :segments_permlink

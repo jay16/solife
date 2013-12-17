@@ -1,0 +1,70 @@
+<div class="row-fluid main">
+     <script type="text/javascript" src="/assets/china_map_chart.js?body=1"></script>
+<style>
+ol li {
+  margin-left: 30px;
+}
+</style>
+<script>
+$(function(){ 
+  $("#china_map_chart").china_map_chart();
+});
+
+</script>
+
+<div class="span12">
+  <div class="span6">
+    <div id="china_map_chart"></div>
+  </div>
+  <div class="span6">
+    <div>
+      JQuery插件: china-map-chart
+    </div>
+    <div>
+      实现原理:<br>
+       <ol>
+         <li>使用svg绘制地图</li>
+         <li>使用js,jquery操作</li>
+       </ol>
+      特点: 未使用图片，所有样式使用js,jquery实现
+    </div>
+    <div>
+      功能: <br>
+        <ol>
+	  <li> 鼠标悬浮效果 </li>
+	  <li> 鼠标点击效果 </li>
+	  <li> 鼠标提示框效果 </li>
+	</ol>
+    </div>
+
+    <div>
+      缺陷: 点击到省名称时，点击效果未出现<br>
+      原因: 地图绘制与名称绘制在两个层面
+    </div>
+    <div>
+      待添加功能:<br>
+      <ol>
+        <li>传递点击事件，对点击省份自定义处理</li>
+        <li>传递数据,定制化显示省地图背景色或提示框内容等</li>
+      </ol>
+    </div>
+
+    <div>
+      实例代码: <br>
+      <pre>&lt;script src="jquery.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="china_map_chart.js" type="text/javascript"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+$(function(){ 
+  $("#china_map_chart").china_map_chart();
+});
+&lt;/script&gt;
+
+&lt;div id="china_map_chart"&gt;&lt;/div&gt;
+      </pre>
+    </div>
+
+  </div>
+</div>
+
+  </div>

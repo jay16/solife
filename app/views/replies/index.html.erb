@@ -4,7 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Content</th>
+    <th width="50%">Content</th>
     <th>Del</th>
   </tr>
   <% @replies.each do |reply| %>
@@ -18,4 +18,6 @@
    
 </table>
 
-<%= render :partial => "replies/form", locals: { :segment => @segment, :reply => @reply } %>
+<div class="span12">
+  <%= render :partial => "replies/form", locals: { :segment => @segment, :reply => @reply } %>
+</div>

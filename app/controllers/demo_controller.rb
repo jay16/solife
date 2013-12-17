@@ -14,6 +14,7 @@ class DemoController < ApplicationController
 
   def markdown_editor; end
 
+  def china_map_chart; end
   def video; end
   def resume; end
   def pragmatic; end
