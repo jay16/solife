@@ -1,0 +1,138 @@
+
+<div class="span12">
+    <div id="china_map_chart_demo2"></div>
+
+  <div>
+    实例代码: <br>
+<pre>&lt;div id=&quot;china_map_chart_demo2&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(function(){ 
+  var options = {
+      &quot;is_tooltip&quot;: true,
+      &quot;tooltip_title&quot;: &quot;name&quot;,  //没有指定提示框标题时显示name
+      &quot;tooltip_body&quot;: &quot;pinyin&quot;, //没有指定提示框内容时显示pinyin
+      &quot;tooltip&quot;: {
+        /*提示框整体、外框默认样式*/
+        &quot;style&quot;: {
+          &quot;position&quot;:   &quot;absolute&quot;,
+          &quot;text-align&quot;: &quot;left&quot;,
+          &quot;display&quot;:    &quot;none&quot;,
+          &quot;min-width&quot;:  &quot;50px&quot;,
+          &quot;min-height&quot;: &quot;30px&quot;,
+          &quot;background&quot;: &quot;#D3D3D3&quot;,
+          &quot;border-radius&quot;:&quot;5px&quot;,
+          &quot;padding&quot;:    &quot;10px&quot;,
+          &quot;z-index&quot;:    &quot;10000&quot;
+        },
+        /*提示框标题默认样式*/
+       &quot;title&quot;: {
+          &quot;font-size&quot;:   &quot;10px&quot;,
+          &quot;color&quot;:       &quot;#000000&quot;,
+          &quot;margin-bottom&quot;: &quot;5px&quot;,
+          &quot;background&quot;:  &quot;#D3D3D3&quot;
+        },
+        /*提示框主体默认样式*/
+      &quot;body&quot;: {
+        &quot;font-size&quot;: &quot;12px&quot;,
+        &quot;color&quot;:     &quot;#000000&quot;
+        },
+      },    
+      &quot;refer&quot;: &quot;name&quot;,      //参照比较类型，可为: pinyin,name,fanti
+      &quot;line_break&quot;: &quot;&lt;br&gt;&quot;, //分行符
+      &quot;data&quot;: [
+         { 
+          &quot;refer_to&quot;: &quot;黑龙江&quot;,       //指定省份的标识，与refer相关
+          &quot;fill&quot;: &quot;red&quot;,              //自定义各省份地图背景色
+          &quot;title&quot;: &quot;黑龙江-访客流量&quot;, //提示框标题
+          &quot;body&quot;: {                   //提示框内容
+              &quot;datas&quot;: [                //显示数据
+                [ &quot;人数&quot;, &quot;1234-次&quot; ],  //显示格式为: &quot;人数: 6666次&quot;
+                [ &quot;人次&quot;, &quot;123-人&quot; ]   //多行显示为: &quot;人数: 6666次&lt;br&gt;人次: 6666人&quot;
+                ]
+            }
+          },
+         { 
+          &quot;refer_to&quot;: &quot;河南&quot;,       //指定省份的标识，与refer相关
+          &quot;fill&quot;: &quot;green&quot;,              //自定义各省份地图背景色
+          &quot;title&quot;: &quot;河南-访客流量&quot;, //提示框标题
+          &quot;body&quot;: {                   //提示框内容
+              &quot;datas&quot;: [                //显示数据
+                [ &quot;人数&quot;, &quot;4567-次&quot; ],  //显示格式为: &quot;人数: 6666次&quot;
+                [ &quot;人次&quot;, &quot;456-人&quot; ]   //多行显示为: &quot;人数: 6666次&lt;br&gt;人次: 6666人&quot;
+                ]
+            }
+          }
+      ], 
+    }
+  $(&quot;#china_map_chart_demo2&quot;).china_map_chart(options);
+});
+&lt;/script&gt;
+</pre>
+
+  </div>
+
+</div>
+
+<script>
+$(function(){ 
+  var options = {
+      "is_tooltip": true,
+      "tooltip_title": "name",  //没有指定提示框标题时显示name
+      "tooltip_body": "pinyin", //没有指定提示框内容时显示pinyin
+      "tooltip": {
+        /*提示框整体、外框默认样式*/
+        "style": {
+          "position":   "absolute",
+          "text-align": "left",
+          "display":    "none",
+          "min-width":  "50px",
+          "min-height": "30px",
+          "background": "#D3D3D3",
+          "border-radius":"5px",
+          "padding":    "10px",
+          "z-index":    "10000"
+        },
+        /*提示框标题默认样式*/
+       "title": {
+          "font-size":   "10px",
+          "color":       "#000000",
+          "margin-bottom": "5px",
+          "background":  "#D3D3D3"
+        },
+        /*提示框主体默认样式*/
+      "body": {
+        "font-size": "12px",
+        "color":     "#000000"
+        },
+      },    
+      "refer": "name",      //参照比较类型，可为: pinyin,name,fanti
+      "line_break": "<br>", //分行符
+      "data": [
+         { 
+          "refer_to": "黑龙江",       //指定省份的标识，与refer相关
+          "fill": "red",              //自定义各省份地图背景色
+          "title": "黑龙江-访客流量", //提示框标题
+          "body": {                   //提示框内容
+              "datas": [                //显示数据
+                [ "人数", "1234-次" ],  //显示格式为: "人数: 6666次"
+                [ "人次", "123-人" ]   //多行显示为: "人数: 6666次<br>人次: 6666人"
+                ]
+            }
+          },
+         { 
+          "refer_to": "河南",       //指定省份的标识，与refer相关
+          "fill": "green",              //自定义各省份地图背景色
+          "title": "河南-访客流量", //提示框标题
+          "body": {                   //提示框内容
+              "datas": [                //显示数据
+                [ "人数", "4567-次" ],  //显示格式为: "人数: 6666次"
+                [ "人次", "456-人" ]   //多行显示为: "人数: 6666次<br>人次: 6666人"
+                ]
+            }
+          }
+      ], 
+    }
+  $("#china_map_chart_demo2").china_map_chart(options);
+});
+</script>

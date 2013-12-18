@@ -46,7 +46,7 @@
           <div desc="body"></div>
         </div>
       */
-      "is_tooltip": true,
+      "is_tooltip": false,
       "tooltip_title": "name",  //没有指定提示框标题时显示name
       "tooltip_body": "pinyin", //没有指定提示框内容时显示pinyin
       "tooltip": {
@@ -77,18 +77,7 @@
       },    
       "refer": "name",      //参照比较类型，可为: pinyin,name,fanti
       "line_break": "<br>", //分行符
-      "data": [
-         { 
-          "refer_to": "黑龙江",       //指定省份的标识，与refer相关
-          "title": "黑龙江-访客流量", //提示框标题
-          "body": {                //提示框内容
-            "datas": [                 //显示数据
-              [ "人数", "6666-次" ],  //显示格式为: "人数: 6666次"
-              [ "人次", "8888-人" ]   //多行显示为: "人数: 6666次<br>人次: 6666人"
-              ]
-          }
-        }
-      ]
+      "data": []
     }
     
     //http://stackoverflow.com/questions/19902209/json-merge-array-push-sort-remove-doubles
@@ -417,7 +406,7 @@
           }
           else if(item.status == "selected") {
             item.status = "none";
-            item.target.style.fill = chart_opts.map.fill;
+            item.target.style.fill = (item.fill=="none" ? chart_opts.map.fill : item.fill);
           }
           e.preventDefault(); 
       };
@@ -441,7 +430,7 @@
             
             *************************************/
             if(item.target.style.fill =="" || 
-              compare_css_rgb_name(item.target.style.fill,chart_opts.map.fill))
+              compare_css_rgb_name(item.target.style.fill,(item.fill=="none" ? chart_opts.map.fill : item.fill)))
               //item.target.style.fill.toLowerCase() == chart_opts.map.fill.toLowerCase())
               item.target.style.fill = chart_opts.map.hover
           } 
@@ -461,7 +450,7 @@
           var json_id = class_name.replace("china_map_province_","");
           var item = china_province_infos[json_id];
           if(item.status == "none") {
-              item.target.style.fill = chart_opts.map.fill
+              item.target.style.fill = (item.fill=="none" ? chart_opts.map.fill : item.fill);
           } 
           
           //是否显示提示框
@@ -550,7 +539,8 @@
               case "fanti":  tmp_body = item.fanti;  break;
             }
           }
-          return [tmp_title,tmp_body]
+          //提示框标题，内容，是否主动提供信息
+          return [tmp_title,tmp_body,tooltip_info]
         }
     ///////////////////////////////////////////////////////////////////////
       /*
@@ -596,7 +586,6 @@
         chart_svg_g_g_path.setAttributeNS (null, 'desc', item.name);
         chart_svg_g_g_path.setAttributeNS (null, 'centroclass', item.centroclass);
         
-        
         //添加属性记录
         //地图是否被点击选中状态记录
         item.status = "none";
@@ -604,6 +593,16 @@
         item.target = chart_svg_g_g_path;
         tooltip_info = get_tooltip_info(item);
         item.tooltip_info = {"title": tooltip_info[0], "body": tooltip_info[1]}
+        
+        if(tooltip_info[2][0] && 
+          typeof tooltip_info[2][1].fill != "undefined") {
+            //alert(tooltip_info[2][1].fill);
+            item.fill = tooltip_info[2][1].fill;
+            chart_svg_g_g_path.setAttributeNS (null, 'fill', item.fill);
+        } else {
+            item.fill = "none";
+        }
+        
         
         
         //鼠标点击效果
