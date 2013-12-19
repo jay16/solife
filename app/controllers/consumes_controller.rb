@@ -18,9 +18,9 @@ class ConsumesController < ApplicationController
   def detail
     #%c 月，数值(0-12),%m 月，数值(00-12); 
     #%e 月的天，数值(0-31),%d 月的天，数值(00-31)
-    consumes = Consume.where("date_format(created_at,'%Y%c%e')=#{params[:consume_date]}")
+    @consumes = Consume.where("date_format(created_at,'%Y%c%e')=#{params[:consume_date]}")
     @sum_value, @sum_msg, @sum_tags =0, "", []
-    for consume in consumes
+    for consume in @consumes
       @sum_value += consume.volue
       @sum_msg += consume.msg+"\n"
       consume.tags.each do |tag|
@@ -28,7 +28,7 @@ class ConsumesController < ApplicationController
       end if consume.tags
     end
     @sum_tags.uniq!
-    @consume_at = consumes.first.created_at
+    @consume_at = @consumes.first.created_at
 
   end
 

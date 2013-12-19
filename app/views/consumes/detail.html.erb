@@ -20,4 +20,11 @@
       <%= "no-tag" unless @sum_tags %>
     </td>
   </tr>
+
+  <% for consume in @consumes %> 
+    <tr>
+      <td><%= consume.value %></td>
+      <td><%= link_to "edit", edit_consume_path(consume), remote: true, class: "btn" %></td>
+    </tr>
+  <% end if user_signed_in? and @consumes %>
 </table>
