@@ -26,7 +26,7 @@ class DemoController < ApplicationController
 
   def shell_input
     input = params["shell-input"]
-    allow = %w(whois which whereis date echo figlet)
+    allow = %w(whois which whereis date echo figlet cat ls)
 
     if input and allow.include?(input.split(" ")[0].downcase)
        @result = run_command(input)
