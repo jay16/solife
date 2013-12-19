@@ -1,0 +1,13 @@
+<h2>链接失效</h2>
+
+  <%= request.url %>
+
+<h2>推荐:</h2>
+
+<table class="table table-hover">
+  <% for segment in @segments %>
+    <tr>
+      <td><%= link_to segment.title, segment.permlink_path %></td>
+    </tr>
+  <% end if @segments %>
+</table>

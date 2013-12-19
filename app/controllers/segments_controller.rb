@@ -30,7 +30,12 @@ class SegmentsController < ApplicationController
     respond_to do |format|
       format.html {
 	if @segment.nil?
-	  render template: "exceptions/template", formats: [:html], hander: [:erb]
+          if params[:year] and params[:month] and params[:day]
+              @segments = relate_segments_with_timestamp(params[:year], params[:month], params[:day])
+	    render template: "segments/relate_segments", formats: [:html], hander: [:erb]
+          else
+	    render template: "exceptions/template", formats: [:html], hander: [:erb]
+          end
 	elsif @segment.private? and session[params[:permlink].to_s].nil?
 	  render template: "segments/personal", formats: [:html], hander: [:erb]
 	else
@@ -40,6 +45,7 @@ class SegmentsController < ApplicationController
       }
     end
   end
+  
 
   def preview
     options = {:coderay_line_numbers => :table}
@@ -145,4 +151,8 @@ class SegmentsController < ApplicationController
     @segment.set_segment_type(params)
   end
   
+  def relate_segments_with_timestamp(year,month,day)
+    ymd = "#{year}#{month}#{day}"
+    Segment.where("date_format(created_at,'%Y%c%e') = '#{ymd}' or date_format(updated_at,'%Y%c%e') = '#{ymd}'")
+  end
 end
