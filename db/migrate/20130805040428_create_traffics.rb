@@ -7,6 +7,7 @@ class CreateTraffics < ActiveRecord::Migration
       t.string :action
       t.text :browser
       t.string :ip
+      t.string :province
       t.integer :track_type
 
       t.timestamps

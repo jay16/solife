@@ -1,4 +1,5 @@
- 
+require "ip_reverse"
+
 namespace :solife do 
 
   desc "deal with git"
@@ -19,6 +20,15 @@ SHELL
       system(shell_content)
     end
 
+  end
+
+  desc "deal with db"
+  namespace :traffic do
+    
+    task :ip_reverse => :environment do
+      traffic = Traffic.first
+      puts IpReverse.reverse(traffic.ip)
+    end
   end
 
 end

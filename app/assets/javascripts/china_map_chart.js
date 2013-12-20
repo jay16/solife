@@ -21,12 +21,13 @@
     var defaults = { 
       /*加载地图的容器样式自定义设置，eg: div,span..
         可以自定义样式覆盖默认样式 */
-      "container_style": { 
+      "container": { 
         "border":     "1px solid blue", //容器的边框
         "background": "white", //窗口的背景颜色
         "width":      "500px",   //容器的宽度
         "height":     "420px",   //窗口的高度
-        "box-shadow": "0 0 1em blue inset"
+        "box-shadow": "0 0 1em blue inset",
+        "float": "left"
       },
       /*地图样式自定义设置
         可以自定义样式覆盖默认样式 */
@@ -46,7 +47,7 @@
           <div desc="body"></div>
         </div>
       */
-      "is_tooltip": false,
+      "is_tooltip": true,
       "tooltip_title": "name",  //没有指定提示框标题时显示name
       "tooltip_body": "pinyin", //没有指定提示框内容时显示pinyin
       "tooltip": {
@@ -77,19 +78,75 @@
       },    
       "refer": "name",      //参照比较类型，可为: pinyin,name,fanti
       "line_break": "<br>", //分行符
-      "data": []
+      "data": [
+         { 
+          "refer_to": "黑龙江",         //指定省份的标识，与refer相关
+          "fill": "red",                //自定义各省份地图背景色
+          "title": "黑龙江-访客流量",   //提示框标题
+          "body": {                     //提示框内容
+              "datas": [                //显示数据
+                [ "人数", "1234-次" ],  //显示格式为: "人数: 6666次"
+                [ "人次", "123-人" ]    //多行显示为: "人数: 6666次<br>人次: 6666人"
+                ]
+            }
+          },
+         { 
+          "refer_to": "河南",           //指定省份的标识，与refer相关
+          "fill": "green",              //自定义各省份地图背景色
+          "title": "河南-访客流量",     //提示框标题
+          "body": {                     //提示框内容
+              "datas": [                //显示数据
+                [ "人数", "4567-次" ],  //显示格式为: "人数: 6666次"
+                [ "人次", "456-人" ]    //多行显示为: "人数: 6666次<br>人次: 6666人"
+                ]
+            }
+          }
+      ],
+      "is_list": true,         //是否列表省份
+      "list_type": "checkbox", //显示方式,
+      "list": {
+        "width": "100px;",
+        "overflow": "auto",
+        "float":"left",
+        "background": "white"
+      },
+      "list_input": {
+        "margin": "0px",
+        "height": "10px"
+      }
     }
     
     //http://stackoverflow.com/questions/19902209/json-merge-array-push-sort-remove-doubles
     //$.extend(deepCopy,target,object1,object2);
     var chart_opts = $.extend(true, {}, defaults, options);
     
-    //图表数据 
+    //图表数据，赋值新数组，可以删除
     var chart_datas = new Array();
     if(chart_opts.data.length>0) chart_datas = chart_opts.data
+    
     //地图图表的容器
     var chart_container    = $(this);
     var chart_container_id = chart_container.attr("id");
+    
+    /*用来容纳地图*/
+    var chart_container_map = document.createElement("div");
+    chart_container.append(chart_container_map);
+    
+    /*省份列表*/
+    //默认列表id
+    var chart_provinces_list_id  = chart_container_id+"_list";
+    var chart_provinces_list;
+    if(document.getElementById("#"+chart_provinces_list_id)==null){
+      chart_provinces_list = document.createElement("div");
+      chart_provinces_list.id = chart_provinces_list_id
+    } else {
+      chart_provinces_list=document.getElementById("#"+chart_provinces_list_id);
+    }
+    chart_provinces_list.style.height = chart_opts.container.height;
+    chart_provinces_list.style.width = "100px";
+    chart_provinces_list.style.overflow = "auto";
+    
+    
     
     /*鼠标悬浮提示框*/
     var tooltip = document.createElement("div");
@@ -402,11 +459,15 @@
 
           if(item.status == "none"){
             item.status = "selected";
-            item.target.style.fill = chart_opts.map["selected_color"];
+            item.target.style.fill = chart_opts.map.selected_color;
+            item.list_div.style.background = chart_opts.map.selected_color;
+            item.list_input.checked = true;
           }
           else if(item.status == "selected") {
             item.status = "none";
             item.target.style.fill = (item.fill=="none" ? chart_opts.map.fill : item.fill);
+            item.list_div.style.background = (item.fill=="none" ? chart_opts.list.background : item.fill);
+            item.list_input.checked = false;
           }
           e.preventDefault(); 
       };
@@ -432,7 +493,8 @@
             if(item.target.style.fill =="" || 
               compare_css_rgb_name(item.target.style.fill,(item.fill=="none" ? chart_opts.map.fill : item.fill)))
               //item.target.style.fill.toLowerCase() == chart_opts.map.fill.toLowerCase())
-              item.target.style.fill = chart_opts.map.hover
+              item.target.style.fill = chart_opts.map.hover;
+              item.list_div.style.background = chart_opts.map.hover; 
           } 
           
           //是否显示提示框
@@ -451,6 +513,7 @@
           var item = china_province_infos[json_id];
           if(item.status == "none") {
               item.target.style.fill = (item.fill=="none" ? chart_opts.map.fill : item.fill);
+              item.list_div.style.background = (item.fill=="none" ? chart_opts.list.background : item.fill);
           } 
           
           //是否显示提示框
@@ -542,6 +605,11 @@
           //提示框标题，内容，是否主动提供信息
           return [tmp_title,tmp_body,tooltip_info]
         }
+        
+        function parse_int(value) {
+          return parseInt(value.match(/\d/g).join(""))
+        }
+        
     ///////////////////////////////////////////////////////////////////////
       /*
         创建svg对象，根据china_province_infos信息绘制地图
@@ -578,6 +646,20 @@
       for(var i=1; i<=34; i++) {
         var item = china_province_infos[String(i)];
 
+        /*34省名称列表*/
+        tmp_province_div = document.createElement("div");
+        tmp_province_div.class = chart_provinces_list+"_"+item.index
+        list_input = document.createElement("input");
+        tmp_province_div.appendChild(list_input);
+        list_input.type = chart_opts.list_type;
+        list_input.name = item.pinyin
+        $(list_input).css(chart_opts.list_input);
+        list_label = document.createElement("span");
+        tmp_province_div.appendChild(list_label);
+        list_label.innerHTML = item.name;
+        chart_provinces_list.appendChild(tmp_province_div);
+        /*************/
+        
         /* 绘制34省地图 */
         var chart_svg_g_g_path = document.createElementNS(xmlns,"path");
         chart_svg_g_g.appendChild(chart_svg_g_g_path);
@@ -593,17 +675,21 @@
         item.target = chart_svg_g_g_path;
         tooltip_info = get_tooltip_info(item);
         item.tooltip_info = {"title": tooltip_info[0], "body": tooltip_info[1]}
+        /*省份名称列表*/
+        item.list_div = tmp_province_div;
+        item.list_input = list_input;
+        item.list_label = list_label;
         
         if(tooltip_info[2][0] && 
           typeof tooltip_info[2][1].fill != "undefined") {
             //alert(tooltip_info[2][1].fill);
             item.fill = tooltip_info[2][1].fill;
             chart_svg_g_g_path.setAttributeNS (null, 'fill', item.fill);
+            tmp_province_div.style.background = item.fill;
         } else {
             item.fill = "none";
+            tmp_province_div.style.background = chart_opts.list.background;
         }
-        
-        
         
         //鼠标点击效果
         chart_svg_g_g_path.onclick = function(e){ on_click(e) };
@@ -616,6 +702,9 @@
       chart_svg_g.appendChild(chart_svg_g_g);
       chart_svg_g_g.setAttributeNS (null, 'caption', 'descforareas');
       chart_svg_g_g.setAttributeNS (null, 'layertype', 'mapdesc');
+      
+      
+      
       for(var i=1; i<=34; i++) {
           var item = china_province_infos[String(i)];
           /* 绘制34省名称 */
@@ -719,8 +808,11 @@
         chart_svg_defs_filter_femerge.appendChild(chart_svg_defs_filter_femerge_femergenode);
         chart_svg_defs_filter_femerge_femergenode.setAttributeNS (null, 'in', "litPaint");
 
-        chart_container.append(chart_svg);
+        $(chart_container_map).append(chart_svg);
+        chart_container.append(chart_container_map);
         chart_container.append(tooltip);
-        chart_container.css(chart_opts.container_style)
+        chart_container.append(chart_provinces_list);
+        $(chart_container_map).css(chart_opts.container);
+        chart_container.css({"width": (parse_int(chart_container_map.style.width)+parse_int(chart_provinces_list.style.width)+10)+"px"});
   }
 })(jQuery);

@@ -14,6 +14,7 @@ gem "simple_form"
 gem "strong_parameters"
 
 gem "nokogiri"
+gem "ip_reverse"
 
 #markdown语法解析blog
 gem "kramdown"

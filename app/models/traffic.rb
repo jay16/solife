@@ -1,5 +1,5 @@
 class Traffic < ActiveRecord::Base
-  attr_accessible :action, :browser, :controller, :ip, :url, :userid, :created_at, :updated_at, :track_type
+  attr_accessible :action, :browser, :controller, :ip, :url, :userid, :created_at, :updated_at, :track_type, :province
 
   #track_type对应关系
   def type_map
