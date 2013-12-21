@@ -1,44 +1,18 @@
 <h1>Listing Traffics<small>current ip:<%= request.remote_ip %></small></h1>
 
-<%= javascript_include_tag "china_map_chart" %>
-<%= option = china_map_chart_data() %>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li><a href="#home" data-toggle="tab">Home</a></li>
+  <li><a href="#profile" data-toggle="tab">Profile</a></li>
+  <li><a href="#messages" data-toggle="tab">Messages</a></li>
+  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+</ul>
 
-<div id="solife_traffic_map"></div>
-
-<script>
-$(function(){
-  options = {},
-  <% options.each do |p| %>
-    
-  <% end %>
-  $("#solife_traffic_map").china_map_chart({
-    "is_list": false,
-    "data": <%= option %>
-
-  });
-});
-</script>
-
-<table class="table">
-  <tr>
-    <th>Controller</th>
-    <th>Action</th>
-    <th>Type</th>
-    <th>Date</th>
-    <th>Show</th>
-    <th>Del</th>
-  </tr>
-<% @traffics.each do |traffic| %>
-  <tr id="<%= dom_id traffic %>">
-    <td><%= traffic.controller %></td>
-    <td><%= traffic.action %></td>
-    <td><%= traffic.type %></td>
-    <td><%= traffic.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-    <td><%= link_to "Show", traffic, remote: true %></td>
-    <td><%= link_to "Remove", traffic, method: :delete, remote: true, data: { confirm: "Are you sure?" } %></td>
-  </tr>
-<% end if @traffics %>
-</table>
- 
-<%= render :partial => "traffics/modal", formats: [:html], hander: [:erb] %>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="home">...</div>
+  <div class="tab-pane" id="profile">...</div>
+  <div class="tab-pane" id="messages">...</div>
+  <div class="tab-pane" id="settings">...</div>
+</div>
 

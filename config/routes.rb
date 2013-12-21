@@ -81,7 +81,11 @@ Solife::Application.routes.draw do
   resources :consumes
   match "/consumes/:consume_date/detail" => "consumes#detail", :as => :consume_detail
 
-  resources :traffics
+  resources :traffics do
+    collection do
+      get "list"
+    end
+  end
   match "/traffics/chart" => "traffics#chart"
 
   match "/v2"   => "home#layout_v2"  

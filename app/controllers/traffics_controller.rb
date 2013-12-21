@@ -13,6 +13,9 @@ class TrafficsController < ApplicationController
   end
 
   def index
+  end
+
+  def list
     @traffics = Traffic.order("created_at desc").first(100)
   end
 
