@@ -62,7 +62,7 @@ module TrafficHelper
   end
 
 
-  def china_map_chart()
+  def china_map_chart_data()
     provinces = %w(黑龙江 吉林 辽宁 河北  山东 江苏 浙江 安徽 河南 山西,  陕西 甘肃 湖北 江西 福建 湖南 贵州 四川 云南 青海 海南 上海 重庆 天津 北京 宁夏 内蒙古 广西 新疆 西藏 广东 香港 台湾 澳门)
     chart_options = []
     IpMap.select("province, sum(count) as ip_num, count(*) as ip_peo")
@@ -71,6 +71,7 @@ module TrafficHelper
       .order("sum(count) desc").each_with_index do |info,index|
 
       tmp_p = provinces.select{ |p| info.province.include?(p) }[0]
+      #chart_options.push("{'refer_to':'#{tmp_p}','fill':'red','title':'#{tmp_p}','body':'访客次数:#{info.ip_num.to_i}<br>访客人次:#{info.ip_peo}'}".to_json)
       chart_options.push({
         "refer_to" => tmp_p,
 	"fill" => "red",

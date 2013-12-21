@@ -1,15 +1,17 @@
 <h1>Listing Traffics<small>current ip:<%= request.remote_ip %></small></h1>
 
 <%= javascript_include_tag "china_map_chart" %>
+<%= option = china_map_chart_data() %>
 
 <div id="solife_traffic_map"></div>
 
 <script>
 $(function(){
   $("#solife_traffic_map").china_map_chart({
-    is_list: false,
-    data: <%= china_map_chart() %>
-  );
+    "is_list": false,
+    "data": <%= option %>
+
+  });
 });
 </script>
 
