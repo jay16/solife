@@ -83,23 +83,13 @@
           "refer_to": "黑龙江",         //指定省份的标识，与refer相关
           "fill": "red",                //自定义各省份地图背景色
           "title": "黑龙江-访客流量",   //提示框标题
-          "body": {                     //提示框内容
-              "datas": [                //显示数据
-                [ "人数", "1234-次" ],  //显示格式为: "人数: 6666次"
-                [ "人次", "123-人" ]    //多行显示为: "人数: 6666次<br>人次: 6666人"
-                ]
-            }
+          "body": "人数: 4567次<br>人次: 456人"  
           },
          { 
           "refer_to": "河南",           //指定省份的标识，与refer相关
           "fill": "green",              //自定义各省份地图背景色
           "title": "河南-访客流量",     //提示框标题
-          "body": {                     //提示框内容
-              "datas": [                //显示数据
-                [ "人数", "4567-次" ],  //显示格式为: "人数: 6666次"
-                [ "人次", "456-人" ]    //多行显示为: "人数: 6666次<br>人次: 6666人"
-                ]
-            }
+          "body":  "人数: 4567次<br>人次: 456人"    //多行显示为: "人数: 6666次<br>人次: 6666人"
           }
       ],
       "is_list": true,         //是否列表省份
@@ -582,13 +572,7 @@
           //把每个省的数据合并简化为title,body
           if(tooltip_info[0]) {
             tmp_title = tooltip_info[1].title;
-            var tmp_array = [];
-            var content_datas = tooltip_info[1].body.datas;
-            for(var i=0; i< content_datas.length; i++) {
-              tmp_array.push(content_datas[i][0]+":"+content_datas[i][1]);
-            }
-            //alert(chart_opts.line_break);
-            tmp_body = tmp_array.join(chart_opts.line_break);
+            tmp_body = tooltip_info[1].body
           } else {
             switch(chart_opts.tooltip_title){
               case "name":   tmp_title = item.name;   break;
@@ -811,7 +795,8 @@
         $(chart_container_map).append(chart_svg);
         chart_container.append(chart_container_map);
         chart_container.append(tooltip);
-        chart_container.append(chart_provinces_list);
+        
+        if(chart_opts.is_list) chart_container.append(chart_provinces_list);
         $(chart_container_map).css(chart_opts.container);
         chart_container.css({"width": (parse_int(chart_container_map.style.width)+parse_int(chart_provinces_list.style.width)+10)+"px"});
   }
