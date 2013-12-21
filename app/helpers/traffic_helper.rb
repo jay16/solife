@@ -136,7 +136,7 @@ module TrafficHelper
         "refer_to" => tmp_p,
 	"fill" => "red",
 	"title" => tmp_p,
-	"body" => "访客次数:#{info.ip_num.to_i}次<br>访客人次:#{info.ip_peo}人"
+	"body" => "访客次数:#{info.ip_num.to_i}次</br>访客人次:#{info.ip_peo}人"
       })
     end
     return chart_options

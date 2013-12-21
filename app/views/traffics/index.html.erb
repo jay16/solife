@@ -4,17 +4,17 @@
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" id="traffic_charts_tab">
-  <li><a href="#traffic_map" data-toggle="tab">地理分布</a></li>
-  <li><a href="#traffic_week" data-toggle="tab">星期分布</a></li>
-  <li><a href="#traffic_hour" data-toggle="tab">小时分布</a></li>
-  <li><a href="#traffic_pie" data-toggle="tab">ISP分布</a></li>
+  <li><a href="#traffic_map" data-toggle="tab">地理分布图</a></li>
+  <li><a href="#traffic_week" data-toggle="tab">星期分布图</a></li>
+  <li><a href="#traffic_hour" data-toggle="tab">小时分布图</a></li>
+  <li><a href="#traffic_pie" data-toggle="tab">ISP比例图</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane active" id="traffic_map">
 
-    <div id="traffic_map_chart"></div>
+    <div id="traffic_map_chart" style="margin:0 auto;"></div>
     <script>
     $(function(){
       chart_data = [];
@@ -23,10 +23,14 @@
 	 "refer_to": "<%= p['refer_to'] %>",
 	 "fill": "<%= p['fill'] %>",
 	 "title": "<%= p['title'] %>",
-	 "body": "<%= p['body'] %>"
+	 "body": "<%= p['body'].html_safe %>"
        });
       <% end %>
       $("#traffic_map_chart").china_map_chart({
+        "container": {
+	  "margin": "0 auto",
+	  "overflow": "hidden"
+	},
 	"is_list": false,
 	"data": chart_data
       });
