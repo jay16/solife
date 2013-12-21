@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131109155746) do
+ActiveRecord::Schema.define(:version => 20131221033552) do
 
   create_table "code_bugs", :force => true do |t|
     t.string   "class"
@@ -87,6 +87,21 @@ ActiveRecord::Schema.define(:version => 20131109155746) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "folder_name"
+  end
+
+  create_table "ip_maps", :force => true do |t|
+    t.string   "ip"
+    t.string   "ret"
+    t.string   "message"
+    t.string   "country"
+    t.string   "province"
+    t.string   "city"
+    t.string   "county"
+    t.string   "isp"
+    t.string   "area"
+    t.integer  "count"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "links", :force => true do |t|
@@ -172,8 +187,8 @@ ActiveRecord::Schema.define(:version => 20131109155746) do
 
   create_table "mxes", :force => true do |t|
     t.string   "domain"
-    t.string   "server"
-    t.integer  "level"
+    t.string   "exchange"
+    t.integer  "preference"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -308,9 +323,11 @@ ActiveRecord::Schema.define(:version => 20131109155746) do
     t.boolean  "isover"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "statu"
+    t.string   "todo_type"
   end
 
-  create_table "trackers", :force => true do |t|
+  create_table "traffics", :force => true do |t|
     t.integer  "userid"
     t.string   "url"
     t.string   "controller"
@@ -320,6 +337,7 @@ ActiveRecord::Schema.define(:version => 20131109155746) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "track_type"
+    t.string   "province"
   end
 
   create_table "user_tags", :force => true do |t|

@@ -41,6 +41,7 @@ module Solife
 	#File.basename(File.basename(locale_file, ".rb"), ".yml")
         locale_file
      end.uniq.sort
+     config.i18n.enforce_available_locales = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
