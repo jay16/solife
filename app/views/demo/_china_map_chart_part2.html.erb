@@ -8,10 +8,31 @@
 &lt;script src="china_map_chart.js" type="text/javascript"&gt;&lt;/script&gt;
 
 &lt;script&gt;
-$(function(){ 
-  $("#china_map_chart_demo1").china_map_chart();
-});
-&lt;/script&gt;
+$(functio_(){
+  $(&quot;#china_map_chart_demo1&quot;).china_map_chart({
+    &quot;data&quot;:[
+         {
+          &quot;refer_to&quot;: &quot;黑龙江&quot;,         //指定省份的标识，与refer相关
+          &quot;fill&quot;: &quot;red&quot;,                //自定义各省份地图背景色
+          &quot;title&quot;: &quot;黑龙江-访客流量&quot;,   //提示框标题
+          &quot;body&quot;: &quot;人数: 4567次&lt;br&gt;人次: 456人&quot;
+          },
+         {
+          &quot;refer_to&quot;: &quot;河南&quot;,           //指定省份的标识，与refer相关
+          &quot;fill&quot;: &quot;green&quot;,              //自定义各省份地图背景色
+          &quot;title&quot;: &quot;河南-访客流量&quot;,     //提示框标题
+          &quot;body&quot;:  &quot;人数: 4567次&lt;br&gt;人次: 456人&quot; //多行显示为: &quot;人数: 6666次&lt;br&gt;人次: 6666人&quot;
+          },
+         {
+          &quot;refer_to&quot;: &quot;上海&quot;,           //指定省份的标识，与refer相关
+          &quot;fill&quot;: &quot;green&quot;,              //自定义各省份地图背景色
+          &quot;title&quot;: &quot;上海-访客流量&quot;,     //提示框标题
+          &quot;body&quot;:  &quot;人数: 4567次&lt;br&gt;人次: 456人&quot;    
+          }
+      ]
+  });
+});          
+&lt;/script&gt; 
 
 &lt;div id="china_map_chart_demo1"&gt;&lt;/div&gt;
   </pre>
@@ -19,6 +40,27 @@ $(function(){
 
 <script>
 $(function(){
-  $("#china_map_chart_demo1").china_map_chart();
+  $("#china_map_chart_demo1").china_map_chart({
+    "data":[
+         {
+          "refer_to": "黑龙江",         //指定省份的标识，与refer相关
+          "fill": "red",                //自定义各省份地图背景色
+          "title": "黑龙江-访客流量",   //提示框标题
+          "body": "人数: 4567次<br>人次: 456人"
+          },
+         {
+          "refer_to": "河南",           //指定省份的标识，与refer相关
+          "fill": "green",              //自定义各省份地图背景色
+          "title": "河南-访客流量",     //提示框标题
+          "body":  "人数: 4567次<br>人次: 456人" //多行显示为: "人数: 6666次<br>人次: 6666人"
+          },
+         {
+          "refer_to": "上海",           //指定省份的标识，与refer相关
+          "fill": "green",              //自定义各省份地图背景色
+          "title": "上海-访客流量",     //提示框标题
+          "body":  "人数: 4567次<br>人次: 456人"
+          }
+      ] 
+  });
 });
 </script>
