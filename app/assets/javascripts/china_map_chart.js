@@ -21,13 +21,18 @@
     var defaults = { 
       /*加载地图的容器样式自定义设置，eg: div,span..
         可以自定义样式覆盖默认样式 */
+       "chart": {
+         "margin":"0 auto",
+         "border-radius":"4px"
+       },
       "container": { 
-        "border":     "1px solid blue", //容器的边框
-        "background": "white", //窗口的背景颜色
+        //"border":     "1px solid blue", //容器的边框
+        "background": "lightgray", //窗口的背景颜色
         "width":      "500px",   //容器的宽度
         "height":     "420px",   //窗口的高度
-        "box-shadow": "0 0 1em blue inset",
-        "float": "left"
+        //"box-shadow": "0 0 1em blue inset",
+        "float": "left",
+        "border-radius":"4px"
       },
       /*地图样式自定义设置
         可以自定义样式覆盖默认样式 */
@@ -68,11 +73,12 @@
           "font-size":   "10px",
           "color":       "#000000",
           "margin-bottom": "5px",
-          "background":  "#D3D3D3"
+          "background":  "#D3D3D3",
+          "border-bottom": "1px dotted gray"
         },
         /*提示框主体默认样式*/
       "body": {
-        "font-size": "12px",
+        "font-size": "11px",
         "color":     "#000000"
         },
       },    
@@ -90,19 +96,28 @@
           "fill": "green",              //自定义各省份地图背景色
           "title": "河南-访客流量",     //提示框标题
           "body":  "人数: 4567次<br>人次: 456人"    //多行显示为: "人数: 6666次<br>人次: 6666人"
+          },
+         { 
+          "refer_to": "上海",           //指定省份的标识，与refer相关
+          "fill": "green",              //自定义各省份地图背景色
+          "title": "上海-访客流量",     //提示框标题
+          "body":  "人数: 4567次<br>人次: 456人"    //多行显示为: "人数: 6666次<br>人次: 6666人"
           }
       ],
       "is_list": true,         //是否列表省份
       "list_type": "checkbox", //显示方式,
-      "list": {
+      "list": {                //列表外框样式
         "width": "100px;",
         "overflow": "auto",
         "float":"left",
         "background": "white"
       },
-      "list_input": {
-        "margin": "0px",
+      "list_input": {         //列表checkbox
+        "margin": "0 5px 0 2px",
         "height": "10px"
+      },
+      "list_label": {        //列表标签
+        "font-size": "12px"
       }
     }
     
@@ -135,8 +150,6 @@
     chart_provinces_list.style.height = chart_opts.container.height;
     chart_provinces_list.style.width = "100px";
     chart_provinces_list.style.overflow = "auto";
-    
-    
     
     /*鼠标悬浮提示框*/
     var tooltip = document.createElement("div");
@@ -399,7 +412,6 @@
     }
 
       /* 通用函数 */
-      
       /*
         css颜色英文名对应的rgb值，eg: white => #FFFFFF
         为什么要这样呢？因为赋值都是ok，取css颜色值firefox返回英文名，而chrome返回rgb值，吐血,
@@ -430,8 +442,11 @@
           return value
         else if(value.indexOf("rgb(") == 0)
           return rgb_to_hex(value)
-        else
-          return css_rgb_name[value].toLowerCase()
+        else {
+          hex_name = css_rgb_name[value].toLowerCase();
+          console.log(value+":"+hex_name);
+          return hex_name
+        }
       }
 
       //比较传进来的两个值，随便英文名或rgb值
@@ -639,6 +654,7 @@
         list_input.name = item.pinyin
         $(list_input).css(chart_opts.list_input);
         list_label = document.createElement("span");
+        $(list_label).css(chart_opts.list_label);
         tmp_province_div.appendChild(list_label);
         list_label.innerHTML = item.name;
         chart_provinces_list.appendChild(tmp_province_div);
@@ -798,6 +814,7 @@
         
         if(chart_opts.is_list) chart_container.append(chart_provinces_list);
         $(chart_container_map).css(chart_opts.container);
+        chart_container.css(chart_opts.chart);
         chart_container.css({"width": (parse_int(chart_container_map.style.width)+parse_int(chart_provinces_list.style.width)+10)+"px"});
   }
 })(jQuery);
