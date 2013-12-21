@@ -7,6 +7,10 @@
 
 <script>
 $(function(){
+  options = {},
+  <% options.each do |p| %>
+    
+  <% end %>
   $("#solife_traffic_map").china_map_chart({
     "is_list": false,
     "data": <%= option %>
