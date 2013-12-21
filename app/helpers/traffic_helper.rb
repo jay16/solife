@@ -136,7 +136,7 @@ module TrafficHelper
         "refer_to" => tmp_p,
 	"fill" => "red",
 	"title" => tmp_p,
-	"body" => "访客次数:#{info.ip_num.to_i}次\r\n访客人次:#{info.ip_peo}人"
+	"body" => "访客次数:#{info.ip_num.to_i}次<br>访客人次:#{info.ip_peo}人"
       })
     end
     return chart_options
@@ -150,7 +150,8 @@ module TrafficHelper
       .where("isp is not null")
       .group("isp")
       .order("sum(count) desc").each_with_index do |info,index|
-      chart_data.push([info.isp,info.isp_peo])
+      isp = (info.isp.nil? or info.isp == "" ? "其他" : info.isp)
+      chart_data.push([isp,info.isp_peo])
       total_peo += info.isp_peo.to_i
     end
     #data = chart_data.map { |d| [d[0],(d[1]/total_peo).to_f.round(1)] }
@@ -160,7 +161,7 @@ module TrafficHelper
       f.options[:chart][:type] = "pie"
       f.options[:chart][:height] = "500"
       f.options[:chart][:width] = "800"
-      f.options[:title][:text] = '开信用户城市分布比例图'
+      f.options[:title][:text] = '互联网服务提供商比例图'
       f.options[:legend][:align] = "center"
       f.options[:legend][:verticalAlign] = "top"
 
