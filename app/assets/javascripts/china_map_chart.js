@@ -547,7 +547,7 @@
             is_exist = true;
             //匹配成功后，删除该数组成员，减少后续遍历压力
             //arrayObj.splice(deletePos,deleteCount);
-            chart_datas.splice(0,1);
+            chart_datas.splice(i,1);
             break;
           }
         }
