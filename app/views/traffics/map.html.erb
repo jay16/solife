@@ -1,1 +1,23 @@
-<%= params[:area] %>
+
+<table class="table table-hover">
+  <thead>
+    <th>
+      <td>index</td>
+      <td>city</td>
+      <td>county</td>
+      <td>isp</td>
+      <td>count</td>
+    </th>
+  </thead>
+  <tbody>
+    <% @traffics.each_with_index do |t, i| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= t.city %></td>
+        <td><%= t.county %></td>
+        <td><%= t.isp %></td>
+        <td><%= t.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
