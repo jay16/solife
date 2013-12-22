@@ -84,6 +84,7 @@ Solife::Application.routes.draw do
   resources :traffics do
     collection do
       get "list"
+      get "map"
     end
   end
   match "/traffics/chart" => "traffics#chart"
