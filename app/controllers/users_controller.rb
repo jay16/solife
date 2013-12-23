@@ -1,4 +1,4 @@
-class UserController < Devise::RegistrationsController #ApplicationController
+class UsersController < Devise::RegistrationsController #ApplicationController
   layout "layout_v2/application"
 
   before_filter :find_user, only: [:edit, :update, :show, :destroy]
@@ -11,6 +11,11 @@ class UserController < Devise::RegistrationsController #ApplicationController
     respond_to do |format|
       format.html { render layout: "layout_v2/application" }
     end
+  end
+
+  #权限分配
+  def ruler
+    @users = User.all
   end
 
   def new

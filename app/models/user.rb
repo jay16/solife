@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :hashed_password, :name, :salt
+  attr_accessible :ruler
   validates :email,  :presence => true, :uniqueness => true
   validates :password, :confirmation => true
   #attr_accessor :password_confirmation

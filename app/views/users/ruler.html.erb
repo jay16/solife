@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>用户名</td>
+      <td>注册邮箱</td>
+      <td>管理员</td>
+      <td>消费账单</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% for user in @users %>
+      <tr>
+        <td><%= user.name %><td>
+        <td><%= user.email %><td>
+        <td><%= user.is_admin? %><td>
+        <td><%= user.is_consume? %><td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

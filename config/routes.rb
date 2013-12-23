@@ -4,9 +4,11 @@ Solife::Application.routes.draw do
 
   devise_for :users,
     :controllers => {
-    #:registrations => :users,
     :sessions => :sessions
   }
+  devise_scope :user do
+    get "/users/ruler" => "users#ruler"
+  end
 
   #处理weixin消息
   scope :path => "/weixin", :via => :post, :defaults => {:format => "xml"} do 
