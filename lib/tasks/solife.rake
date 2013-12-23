@@ -28,6 +28,7 @@ SHELL
 
     desc "traffic ip,count先存储至ip_map"
     task :update_count => :environment do 
+      puts "traffic ip,count先存储至ip_map"
       infos = Traffic.select("ip,count(*) as ip_count").group("ip")
       for info in infos
         ip_map = IpMap.find_or_create_by_ip(info.ip)
