@@ -99,7 +99,7 @@
       "data": [
          { 
           "refer_to": "黑龙江",         //指定省份的标识，与refer相关
-          "fill": "red",                //自定义各省份地图背景色
+          "fill": "rank_1",                //自定义各省份地图背景色
           "title": "黑龙江-访客流量",   //自定义提示框标题
           "body": "人数: 4567次<br>人次: 456人",  //自定义提示框内容
           "rank": 2,
@@ -108,7 +108,7 @@
           },
          { 
           "refer_to": "上海",           
-          "fill": "green",     
+          "fill": "rank_2",     
           "title": "上海-访客流量",
           "body":  "人数: 4567次<br>人次: 456人", 
           "rank": 1,
@@ -127,23 +127,25 @@
        },
       "input_type": "none", //显示方式,checkbox/radio/none,为none时即不显示input只显示label
       "list": {                //列表外框样式
-        "width": "300px;",
-        "overflow": "auto",
-        "float":"left",
-        "background": "white"
-      },
-      "list_input": {         //列表checkbox
-        "margin": "0 5px 0 2px",
-        "height": "10px"
-      },
-      "list_label": {        //列表标签
-        "font-size": "12px",
-        "width": "40px",
-        "display": "inline-block",
-        "display": "-moz-inline-box"
-      },
-      "list_text": {         //列表标签
-        "font-size": "12px"
+        "style": {
+          "width": "300px;",
+          "overflow": "auto",
+          "float":"left",
+          "background": "white"
+        },
+        "input": {  //列表checkbox
+          "margin": "0 5px 0 2px",
+          "height": "10px"
+        },
+        "label": {  //列表标签
+          "font-size": "12px",
+          "width": "40px",
+          "display": "inline-block",
+          "display": "-moz-inline-box"
+        },
+        "text": {  //列表标签
+          "font-size": "12px"
+        }
       },
     }
     
@@ -174,8 +176,7 @@
       chart_provinces_list=document.getElementById("#"+chart_provinces_list_id);
     }
     chart_provinces_list.style.height = chart_opts.container.height;
-    chart_provinces_list.style.width    = "100px";
-    chart_provinces_list.style.overflow = "auto";
+    $(chart_provinces_list).css(chart_opts.list.style);
     
     //存储34省列表信息
     //单独用来处理排序
@@ -485,7 +486,41 @@
         green: "#00FF00",
         blue: "#0000FF",
         purple: "#A020F0",
-        gray: "#808080"
+        gray: "#808080",
+        rank_1: "#FF0000",
+        rank_2: "#EF0F0F",
+        rank_3: "#DF1F1F",
+        rank_4: "#CF2F2F",
+        rank_5: "#BF3F3F",
+        rank_6: "#AF4F4F",
+        rank_7: "#9F5F5F",
+        rank_8: "#8F6F6F",
+        rank_9: "#7F7F7F",
+        rank_10: "#6F8F8F",
+        rank_11: "#5F9F9F",
+        rank_12: "#4FAFAF",
+        rank_13: "#3FBFBF",
+        rank_14: "#2FCFCF",
+        rank_15: "#1FDFDF",
+        rank_16: "#0FEFEF",
+        rank_17: "#00FF00",
+        rank_18: "#0FEF0F",
+        rank_19: "#1FDF1F",
+        rank_20: "#2FCF2F",
+        rank_21: "#3FBF3F",
+        rank_22: "#4FAF4F",
+        rank_23: "#5F9F5F",
+        rank_24: "#6F8F6F",
+        rank_25: "#7F7F7F",
+        rank_26: "#8F6F8F",
+        rank_27: "#9F5F9F",
+        rank_28: "#Af4FAF",
+        rank_29: "#BF3FBF",
+        rank_30: "#CF2FCF",
+        rank_31: "#DF1FDF",
+        rank_32: "#EF0FEF",
+        rank_33: "#FF0FEF",
+        rank_34: "#FF0FEF"
       }
       //把rbg(255,255,255)转为#FFFF
       //参考：http://blogcloud.sinaapp.com/?p=1163
@@ -495,9 +530,10 @@
           return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
       }
       //无论是英文名，rbg都统一转化为十六进制，#ffffff格式
-      function to_hex_value(value) {
+      function to_hex_value(v) {
+        if(v==null) return "" 
         //返回统一为小写
-        value = value.toLowerCase();
+        var value = v.toLowerCase();
         if(value.indexOf("#") == 0)
           return value
         else if(value.indexOf("rgb(") == 0)
@@ -534,8 +570,8 @@
           }
           else if(item.status == "selected") {
             item.status = "none";
-            item.target.style.fill = (item.fill=="none" ? chart_opts.map.fill : item.fill);
-            item.list_div.style.background = (item.fill=="none" ? chart_opts.list.background : item.fill);
+            item.target.style.fill = to_hex_value(item.fill=="none" ? chart_opts.map.fill : item.fill);
+            item.list_div.style.background = to_hex_value(item.fill=="none" ? chart_opts.list.background : item.fill);
             
             if(["checkbox","radio"].indexOf(chart_opts.input_type)>=0)
               item.list_input.checked = false;
@@ -566,8 +602,8 @@
             if(item.target.style.fill =="" || 
               compare_css_rgb_name(item.target.style.fill,(item.fill=="none" ? chart_opts.map.fill : item.fill)))
               //item.target.style.fill.toLowerCase() == chart_opts.map.fill.toLowerCase())
-              item.target.style.fill = chart_opts.map.hover;
-              item.list_div.style.background = chart_opts.map.hover; 
+              item.target.style.fill = to_hex_value(chart_opts.map.hover);
+              item.list_div.style.background = to_hex_value(chart_opts.map.hover); 
           } 
           
           //是否显示提示框
@@ -585,8 +621,8 @@
           var json_id = class_name.replace("china_map_province_","");
           var item = china_province_infos[json_id];
           if(item.status == "none") {
-              item.target.style.fill = (item.fill=="none" ? chart_opts.map.fill : item.fill);
-              item.list_div.style.background = (item.fill=="none" ? chart_opts.list.background : item.fill);
+              item.target.style.fill = to_hex_value(item.fill=="none" ? chart_opts.map.fill : item.fill);
+              item.list_div.style.background = to_hex_value(item.fill=="none" ? chart_opts.list.background : item.fill);
           } 
           
           //是否显示提示框
@@ -728,22 +764,23 @@
 
         /*34省名称列表*/
         tmp_province_div = document.createElement("div");
-        tmp_province_div.className = "china_map_province_"+item.index
+        tmp_province_div.className = "china_map_province_"+item.index;
+        
         
         if(["checkbox","radio"].indexOf(chart_opts.input_type)>=0) {
           list_input = document.createElement("input");
           tmp_province_div.appendChild(list_input);
           list_input.type = chart_opts.input_type;
           list_input.name = item.pinyin
-          $(list_input).css(chart_opts.list_input);
+          $(list_input).css(chart_opts.list.input);
         }
         list_label = document.createElement("span");
-        $(list_label).css(chart_opts.list_label);
+        $(list_label).css(chart_opts.list.label);
         tmp_province_div.appendChild(list_label);
         list_label.innerHTML = tooltip_info.label;
         //各省列表中说明性数字
         list_text = document.createElement("span");
-        $(list_text).css(chart_opts.list_text);
+        $(list_text).css(chart_opts.list.text);
         tmp_province_div.appendChild(list_text);
         list_text.innerHTML = tooltip_info.text;
         //省份列表对象存入数组，统一处理
@@ -807,11 +844,11 @@
           typeof tooltip_info.fill != "undefined") {
             //alert(tooltip_info[2][1].fill);
             item.fill = tooltip_info.fill;
-            chart_svg_g_g_path.setAttributeNS (null, 'fill', item.fill);
+            chart_svg_g_g_path.setAttributeNS (null, 'fill', to_hex_value(item.fill));
             tmp_province_div.style.background = item.fill;
         } else {
             item.fill = "none";
-            tmp_province_div.style.background = chart_opts.list.background;
+            tmp_province_div.style.background = to_hex_value(chart_opts.list.background);
         }
         
         /*省份名称列表*/

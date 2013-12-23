@@ -134,7 +134,7 @@ module TrafficHelper
       #chart_options.push("{'refer_to':'#{tmp_p}','fill':'red','title':'#{tmp_p}','body':'访客次数:#{info.ip_num.to_i}<br>访客人次:#{info.ip_peo}'}".to_json)
       chart_options.push({
         "refer_to" => tmp_p,
-	"fill" => "red",
+	"fill" => "rank_#{index+1}",
 	"title" => tmp_p,
 	"body" => "访客次数:#{info.ip_num.to_i}次</br>访客人次:#{info.ip_peo}人<br><a href='/traffics/map?province=#{info.province}' target='_blank'>详情查看</a>",
 	"rank" => index,
