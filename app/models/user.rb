@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :hashed_password, :name, :salt
-  attr_accessible :ruler
+  attr_accessible :name, :ruler
   validates :email,  :presence => true, :uniqueness => true
   validates :password, :confirmation => true
   #attr_accessor :password_confirmation
@@ -22,4 +22,15 @@ class User < ActiveRecord::Base
 
   has_many :user_tags
   has_many :tags, :through => :user_tags
+
+
+  def is_admin?; chk_ruler(0); end
+  def is_consume?; chk_ruler(1); end
+
+  private
+
+  def chk_ruler(n)
+    self.update_attribute(:ruler,"000000000000000") if self.ruler.nil?
+    return self.ruler[n] == "1"
+  end
 end
