@@ -38,6 +38,9 @@ SHELL
 
     desc "解析ip所属省份"
     task :ip_reverse => :environment do
+      puts "先更新count"
+      Rake::Task["solife:ip_map:update_count"].invoke
+
       IpMap.where("ret is null").each do |ip_map|
 	ip_reverse = IpReverse.reverse(ip_map.ip)
 	puts ip_map.ip + ip_reverse.to_s
