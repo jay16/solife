@@ -24,7 +24,7 @@
 	 "fill": "<%= p['fill'] %>",
 	 "title": "<%= p['title'] %>",
 	 "body": "<%= p['body'].html_safe %>",
-	 "rank": parseInt("<%= p['rank'] %>"),
+	 "rank": <%= p['rank'] %>,
 	 "label": "<%= p['label'] %>",
 	 "text": "<%= p['text'] %>"
        });
@@ -35,7 +35,7 @@
 	  "overflow": "hidden",
 	  "background": "white"
 	},
-	"data": chart_data
+	"data": chart_data,
 	"list": { "width": "120px" }
       });
     });
