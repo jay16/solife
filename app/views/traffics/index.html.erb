@@ -23,7 +23,10 @@
 	 "refer_to": "<%= p['refer_to'] %>",
 	 "fill": "<%= p['fill'] %>",
 	 "title": "<%= p['title'] %>",
-	 "body": "<%= p['body'].html_safe %>"
+	 "body": "<%= p['body'].html_safe %>",
+	 "rank": parseInt("<%= p['rank'] %>"),
+	 "label": "<%= p['label'] %>",
+	 "text": "<%= p['text'] %>"
        });
       <% end %>
       $("#traffic_map_chart").china_map_chart({
@@ -32,8 +35,8 @@
 	  "overflow": "hidden",
 	  "background": "white"
 	},
-	"is_list": false,
 	"data": chart_data
+	"list": { "width": "120px" }
       });
     });
     </script>
