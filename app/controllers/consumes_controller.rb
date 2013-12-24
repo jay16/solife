@@ -1,7 +1,7 @@
 #encoding: utf-8
 class ConsumesController < ApplicationController
   
-  before_filter :auth_user
+  before_filter :auth_user, except: [:index, :detail]
   before_filter :find_consume, only: [:show, :edit, :update, :destroy]
   before_filter :find_consume_type, only: [:new, :edit]
 
@@ -74,7 +74,8 @@ class ConsumesController < ApplicationController
 
   def auth_user
     unless user_signed_in?
-      redirect_to :action => :index, :notice => "没有权限,请登陆"
+      flash[:alert] = "没有权限,请登陆"
+      redirect_to :action => :index
     end
   end
 

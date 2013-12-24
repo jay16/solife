@@ -41,7 +41,7 @@ $ ->
   $('.chosen-select').chosen
     allow_single_deselect: true
     no_results_text: 'No results matched'
-    width: '200px'
+    width: '100px'
 
   $("#locale_chzn").css("width","100px");
 
@@ -50,23 +50,28 @@ $ ->
 
   #使用ajax响应动作时，处理flash信息
   #默认隐藏flash-div
-  $(".#{type}").hide("fast") for type in ['notice', 'alert', 'error', 'loading']
+  $(".#{type}").hide("fast") for type in ['loading'] #'notice', 'alert', 'error', 'loading']
 
   #显示函数
-  show_ajax_flash=(msg,type) ->
-    t = $(".#{type}") 
-    t.show(0).delay(5000).hide("slow").fadeOut("slow");
+  #show_ajax_flash=(msg,type) ->
+  #  t = $(".#{type}") 
+  #  t.show(0).delay(5000).hide("slow").fadeOut("slow");
 
   #监视ajax动作
-  $(document).ajaxComplete((event, request) -> 
-    msg = request.getResponseHeader('X-Message');
-    type = request.getResponseHeader('X-Message-Type');
-     
-    show_ajax_flash(msg,type) if type
-  );
+  #$(document).ajaxComplete((event, request) -> 
+  #  msg = request.getResponseHeader('X-Message');
+  #  type = request.getResponseHeader('X-Message-Type');
+  #   
+  #  show_ajax_flash(msg,type) if type
+  #);
 
-showLoading = () ->
-  $(".loading").css("display","block");
-  
-hideLoading = () ->
-  $(".loading").css("display","none");
+  show_loading = () ->
+    $(".loading").css("display","block");
+    
+  hide_loading = () ->
+    $(".loading").css("display","none");
+
+  $(".alert").alert()
+  $(".alert .close").bind("close", () ->
+    $(".alert").alert("close")
+  ) 
