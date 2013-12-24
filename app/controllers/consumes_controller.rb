@@ -1,6 +1,7 @@
 #encoding: utf-8
 class ConsumesController < ApplicationController
-
+  
+  before_filter :auth_user
   before_filter :find_consume, only: [:show, :edit, :update, :destroy]
   before_filter :find_consume_type, only: [:new, :edit]
 
@@ -70,6 +71,12 @@ class ConsumesController < ApplicationController
   end
 
   private
+
+  def auth_user
+    unless user_signed_in?
+      redirect_to :action => :index, :notice => "没有权限,请登陆"
+    end
+  end
 
   def find_consume
     @consume = Consume.find(params[:id])

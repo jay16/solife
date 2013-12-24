@@ -10,7 +10,7 @@ Solife::Application.routes.draw do
     get "/users/ruler" => "users#ruler"
     get "/users/sign_in", :to => "sessions#new"
     get "/users/login", :to => "sessions#new"
-    get "/users/sign_out", :to => "sessions#destroy"
+    get "/users/sign_out", :to => "sessions#destroy", :as => :destroy_user_session
     get "/users/logout", :to => "sessions#destroy"
 
   end
