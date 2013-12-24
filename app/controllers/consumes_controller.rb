@@ -1,10 +1,10 @@
 #encoding: utf-8
 class ConsumesController < ApplicationController
-  layout "layout_v2/application"
 
   before_filter :find_consume, only: [:show, :edit, :update, :destroy]
   before_filter :find_consume_type, only: [:new, :edit]
 
+  layout "layout_v2/application"
   respond_to :html, :js
 
   def index
@@ -20,8 +20,10 @@ class ConsumesController < ApplicationController
   def detail
     #%c 月，数值(0-12),%m 月，数值(00-12); 
     #%e 月的天，数值(0-31),%d 月的天，数值(00-31)
+
     user = (user_signed_in? ? current_user : User.find_by_email("jay_li@xsolife.com"))
-    @consumes = user.consumes.where("date_format(created_at,'%Y%c%e')=#{params[:consume_date]}")
+    @consumes = user.consumes
+      .where("date_format(consumes.created_at,'%Y%c%e')=#{params[:consume_date]}")
     @sum_value, @sum_msg, @sum_tags =0, "", []
     for consume in @consumes
       @sum_value += consume.volue
@@ -40,7 +42,7 @@ class ConsumesController < ApplicationController
     @consume = Consume.new
 
     respond_to do |format|
-      format.html { render partial: 'form', formats: [:html], handler: [:erb], locals: { consume: @consume } }
+      format.html { render template: 'consumes/form', formats: [:html], handler: [:erb], locals: { consume: @consume } }
       format.js
     end
   end
