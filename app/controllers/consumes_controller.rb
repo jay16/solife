@@ -48,7 +48,8 @@ class ConsumesController < ApplicationController
   end
 
   def create
-    @consume = Consume.create(params[:consume])
+    
+    @consume = current_user.consumes.create(params[:consume])
     @consume.set_consume_type(params)
   end
 
