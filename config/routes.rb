@@ -8,6 +8,11 @@ Solife::Application.routes.draw do
   }
   devise_scope :user do
     get "/users/ruler" => "users#ruler"
+    get "/users/sign_in", :to => "sessions#new"
+    get "/users/login", :to => "sessions#new"
+    get "/users/sign_out", :to => "sessions#destroy"
+    get "/users/logout", :to => "sessions#destroy"
+
   end
 
   #处理weixin消息

@@ -38,6 +38,11 @@ class ConsumesController < ApplicationController
 
   def new
     @consume = Consume.new
+
+    respond_to do |format|
+      format.html { render partial: 'form', formats: [:html], handler: [:erb], locals: { consume: @consume } }
+      format.js
+    end
   end
 
   def create
