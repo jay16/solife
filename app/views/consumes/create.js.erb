@@ -2,6 +2,13 @@ $("#modal").modal("hide");
 
 $("table tbody").prepend("<%= j render partial: "consume", formats: [:html], handler: [:erb], locals: { consume: @consume } %>");
 
-$("#<%= @consume.created_at.strftime('%Y_%m') %>_figure .label:last").after("<span id='<%= dom_id @consume %>' class='span2 label label-<%= label_level(@consume.value) %>'><%= @consume.created_at.strftime('第%d天:')+@consume.value.to_s+'元' %></span>");
+var label_id = "consume_<%= @consume.created_at.strftime('%Y_%m_%d') %>";
+
+if($("#"+label_id).length>0) {
+ $("#"+label_id).replaceWith("<span id='"+label_id+"' class='span2 label label-<%= label_level(@consume.value) %>'><%= @consume.created_at.strftime('第%d天:')+@consume.value.to_s+'元' %></span>"); 
+} else {
+  $("<span id='"+label_id+"' class='span2 label label-<%= label_level(@consume.value) %>'><%= @consume.created_at.strftime('第%d天:')+@consume.value.to_s+'元' %></span>").before("#<%= @consume.created_at.strftime('%Y_%m') %>_figure .label:last");
+}
+
 
 $(".loading").css("display","none");
