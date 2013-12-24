@@ -72,6 +72,9 @@ $ ->
     $(".loading").css("display","none");
 
   $(".alert").alert()
-  $(".alert .close").bind("close", () ->
-    $(".alert").alert("close")
-  ) 
+  $(".alert .close").click () ->
+    $(".alert").fadeOut("slow").remove()
+
+  #$(".alert .close").bind("close", () ->
+  #  $(".alert").alert("close")
+  #) 

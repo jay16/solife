@@ -40,7 +40,7 @@ class ConsumesController < ApplicationController
 
 
   def new
-    @consume = Consume.new
+    @consume = current_user.consumes.new
 
     respond_to do |format|
       format.html { render template: 'consumes/form', formats: [:html], handler: [:erb], locals: { consume: @consume } }
@@ -49,7 +49,6 @@ class ConsumesController < ApplicationController
   end
 
   def create
-    
     @consume = current_user.consumes.create(params[:consume])
     @consume.set_consume_type(params)
   end
@@ -80,7 +79,7 @@ class ConsumesController < ApplicationController
   end
 
   def find_consume
-    @consume = Consume.find(params[:id])
+    @consume = current_user.consumes.find(params[:id])
   end
 
   def find_consume_type
