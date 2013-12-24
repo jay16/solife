@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   #attr_accessor :password_confirmation
   #attr_reader :password
   #validate :password_must_be_present
+  has_many :user_consumes
+  has_many :consumes , :through => :user_consumes
 
   #调用gratastic头像
   include Gravtastic

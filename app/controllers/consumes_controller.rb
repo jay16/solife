@@ -8,9 +8,11 @@ class ConsumesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @consumes = Consume.select("day(created_at) as day, year(created_at) as year,month(created_at) as month,sum(volue) as sum_value")
-      .group("year(created_at),month(created_at),day(created_at)")
-      .order("year(created_at),month(created_at),day(created_at)")
+    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@xsolife.com"))
+    @consumes = user.consumes
+      .select("day(consumes.created_at) as day, year(consumes.created_at) as year,month(consumes.created_at) as month,sum(volue) as sum_value")
+      .group("year(consumes.created_at),month(consumes.created_at),day(consumes.created_at)")
+      .order("year(consumes.created_at),month(consumes.created_at),day(consumes.created_at)")
   end
 
   def show; end
@@ -18,7 +20,8 @@ class ConsumesController < ApplicationController
   def detail
     #%c 月，数值(0-12),%m 月，数值(00-12); 
     #%e 月的天，数值(0-31),%d 月的天，数值(00-31)
-    @consumes = Consume.where("date_format(created_at,'%Y%c%e')=#{params[:consume_date]}")
+    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@xsolife.com"))
+    @consumes = user.consumes.where("date_format(created_at,'%Y%c%e')=#{params[:consume_date]}")
     @sum_value, @sum_msg, @sum_tags =0, "", []
     for consume in @consumes
       @sum_value += consume.volue
