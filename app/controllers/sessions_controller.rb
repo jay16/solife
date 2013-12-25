@@ -14,6 +14,7 @@ class SessionsController < Devise::SessionsController
 
   #退出后刷新当前界面
   def destroy
-    super
+    #super
+    reset_session
   end
 end

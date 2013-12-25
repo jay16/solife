@@ -19,23 +19,7 @@ class ConsumesController < ApplicationController
   def show; end
   
   def detail
-    #%c 月，数值(0-12),%m 月，数值(00-12); 
-    #%e 月的天，数值(0-31),%d 月的天，数值(00-31)
-
-    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@xsolife.com"))
-    @consumes = user.consumes
-      .where("date_format(consumes.created_at,'%Y%c%e')=#{params[:consume_date]}")
-    @sum_value, @sum_msg, @sum_tags =0, "", []
-    for consume in @consumes
-      @sum_value += consume.volue
-      @sum_msg += consume.msg+"\n"
-      consume.tags.each do |tag|
-	@sum_tags.push(tag)
-      end if consume.tags
-    end
-    @sum_tags.uniq!
-    @consume_at = @consumes.first.created_at
-
+    @consume = consume_detail_at_day(params[:consume_date])
   end
 
 
@@ -49,8 +33,9 @@ class ConsumesController < ApplicationController
   end
 
   def create
-    @consume = current_user.consumes.create(params[:consume])
-    @consume.set_consume_type(params)
+    #consume = current_user.consumes.create(params[:consume])
+    #consume.set_consume_type(params)
+    @consume = consume_detail_at_day(Time.now.strftime("%Y%c%e"))#consume.created_at.strftime("%Y%c%e"))
   end
 
   def edit; end
@@ -86,6 +71,33 @@ class ConsumesController < ApplicationController
     @taggroups = Taggroup.all
       .select { |d| d.type == "consume" }
       .sort { |a, b| a.label <=> b.label }
+  end
+
+  def consume_detail_at_day(ymd)
+    #%c 月，数值(0-12),%m 月，数值(00-12);
+    #%e 月的天，数值(0-31),%d 月的天，数值(00-31)
+
+    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@xsolife.com"))
+    consumes = user.consumes
+      .where("date_format(consumes.created_at,'%Y%c%e')=#{ymd}")
+    sum_value, sum_msg, sum_tags =0, "", []
+    for consume in consumes
+      sum_value += consume.volue
+      sum_msg += consume.msg+"\n"
+      consume.tags.each do |tag|
+        sum_tags.push(tag)
+      end if consume.tags
+    end
+    sum_tags.uniq!
+    return {
+      :value => sum_value,
+      :msg => sum_msg,
+      :created_at => consumes.first.created_at,
+      :tags => sum_tags,
+      :y_m_d => consumes.first.created_at.strftime("%Y_%m_%d"),
+      :day => consumes.first.created_at.strftime("%d"),
+      :list => consumes
+    } 
   end
 
 end

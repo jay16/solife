@@ -1,30 +1,30 @@
 <table class="table">
   <tr>
     <td><%= t("form.date") %></td>
-    <td><%= @consume_at.strftime("%Y/%m/%d %H:%M:%S %a") %></td>
+    <td><%= @consume[:created_at].strftime("%Y/%m/%d %H:%M:%S %a") %></td>
   </tr>
   <tr>
     <td><%= t("form.value") %></td>
-    <td><%= @sum_value %></td>
+    <td><%= @consume[:value] %></td>
   </tr>
   <tr>
     <td><%= t("form.msg") %></td>
-    <td><pre><%= @sum_msg %></pre></td>
+    <td><pre><%= @consume[:msg] %></pre></td>
   </tr>
   <tr>
     <td><%= t("form.tag") %></td>
     <td>
-      <% @sum_tags.each do |tag| %>
+      <% @consume[:tags].each do |tag| %>
        <span class="label label-info"><%= tag.label %></span>
-      <% end if @sum_tags %>
-      <%= "no-tag" unless @sum_tags %>
+      <% end if @consume[:tags] %>
+      <%= "no-tag" unless @consume[:tags] %>
     </td>
   </tr>
 
-  <% for consume in @consumes %> 
+  <% for consume in @consume[:list] %> 
     <tr>
       <td><%= consume.value %></td>
       <td><%= link_to "edit", edit_consume_path(consume), remote: true, class: "btn" %></td>
     </tr>
-  <% end if user_signed_in? and @consumes %>
+  <% end if user_signed_in? and @consume[:list] %>
 </table>

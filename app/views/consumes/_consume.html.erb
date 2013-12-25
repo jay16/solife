@@ -1,7 +1,3 @@
-  <tr id="<%= dom_id consume %>">
-    <td><%= consume.value %></td>
-    <td><%= f consume.created_at %></td>
-    <td>
-        <%= link_to t("btn.show"), consume, remote: true, onclick: "$('.loading').css('display','block');" %>
-    </td>
-  </tr>
+<span id="consume_<%= @consume[:y_m_d] %>" class="span2 label label-<%= label_level(@consume[:value]) %>">
+      <%= "#{day_nth(@consume[:day])}:#{@consume[:value].to_f.round(1)}元" %>
+</span>
