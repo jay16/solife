@@ -22,7 +22,7 @@ class Api::ConsumesController < ApplicationController
   end
 
   def list
-    consumes = User.find_by_email("android_app@solife.us").consumes
+    consumes = User.find_by_email("jay_li@xsolife.com").consumes
     render :json => consumes.to_json
   end
 end
