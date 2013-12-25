@@ -35,7 +35,7 @@ class ConsumesController < ApplicationController
   def create
     consume = current_user.consumes.create(params[:consume])
     consume.set_consume_type(params)
-    @consume = consume_detail_at_day(consume.created_at.strftime("%Y%m%d"))
+    @consume = consume_detail_at_day(consume.created_at, consume.created_at.strftime("%Y%m%d"))
   end
 
   def edit; end
@@ -73,7 +73,7 @@ class ConsumesController < ApplicationController
       .sort { |a, b| a.label <=> b.label }
   end
 
-  def consume_detail_at_day(ymd)
+  def consume_detail_at_day(at=nil, ymd)
     #%c 月，数值(0-12),%m 月，数值(00-12);
     #%e 月的天，数值(0-31),%d 月的天，数值(00-31)
 
@@ -89,14 +89,15 @@ class ConsumesController < ApplicationController
       end if consume.tags
     end
     sum_tags.uniq!
+    at ||= consumes.first.created_at
     return {
       :value => sum_value,
       :msg   => sum_msg,
-      :created_at => consumes.first.created_at,
+      :created_at => at,
       :tags  => sum_tags,
-      :y_m_d => consumes.first.created_at.strftime("%Y_%m_%d"),
-      :y_m   => consumes.first.created_at.strftime("%Y_%m"),
-      :day   => consumes.first.created_at.strftime("%d"),
+      :y_m_d => at.strftime("%Y_%m_%d"),
+      :y_m   => at.strftime("%Y_%m"),
+      :day   => at.strftime("%d"),
       :list  => consumes
     } 
   end

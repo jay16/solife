@@ -2,10 +2,20 @@ $("#modal").modal("hide");
 
 var label_id = "consume_<%= @consume[:y_m_d] %>";
 
-if($("#"+label_id).length>0) 
+if($("#"+label_id).length>0) {
    $("#"+label_id).replaceWith("<%= j render partial: 'consumes/consume' %>");
-else 
+} else {
   $("#<%= @consume[:y_m] %>_figure .label:last").before("<%= j render partial: 'consumes/consume' %>");
-
+}
 
 $(".loading").css("display","none");
+
+var sum_value = 0;
+$("#<%= @consume[:y_m] %>_figure .consume .value").each(function(){
+  console.log(":"+$(this).text());
+  sum_value = sum_value + parseFloat($(this).text());
+});
+
+sum_value = Math.round(sum_value*10)/10;
+$("#<%= @consume[:y_m] %>_figure .calculation .value").html(sum_value);
+
