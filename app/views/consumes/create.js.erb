@@ -5,7 +5,7 @@ var label_id = "consume_<%= @consume[:y_m_d] %>";
 if($("#"+label_id).length>0) 
    $("#"+label_id).replaceWith("<%= j render partial: 'consumes/consume' %>");
 else 
-  $("<%= j render partial: 'consumes/consume' %>").before("#<%= @consume[:y_m] %>_figure .label:last");
+  $("#<%= @consume[:y_m] %>_figure .label:last").before("<%= j render partial: 'consumes/consume' %>");
 
 
 $(".loading").css("display","none");

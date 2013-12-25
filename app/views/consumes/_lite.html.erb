@@ -20,7 +20,7 @@
 		       </span>
 		      <% end %>
 		      <span style="background:black;" id="consume_<%= consume_year %>_<%= consume_month %>_sum" class="span2 label label-<%= label_level(month_sum) %>">
-			<%= "累计: #{month_sum.to_f.round(1)}元" %>
+			累计:<span class="value"><%= month_sum.to_f.round(1) %></span>元
 		      </span>
                          <figcaption class="ap-caption"><%= "#{consume_year}/#{consume_month}" %></figcaption>
                  </figure>
