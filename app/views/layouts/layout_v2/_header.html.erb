@@ -5,7 +5,7 @@
       <h1 class="blog-name">
         <a title="SOLife" href="http://solife.us">SOLife</a>
         <small>    - Segment Of 
-	<%= current_user.name+"'s" if user_signed_in? %>
+	<%= current_user.name+"'s" if user_signed_in? and current_user.name %>
 	Life</small></h1>
     </span>
 
