@@ -1,11 +1,11 @@
 $("#modal").modal("hide");
 
-var label_id = "consume_<%= @consume.created_at.strftime('%Y_%m_%d') %>";
+var label_id = "consume_<%= @consume[:y_m_d] %>";
 
 if($("#"+label_id).length>0) 
    $("#"+label_id).replaceWith("<%= j render partial: 'consumes/consume' %>");
 else 
-  $("<%= j render partial: 'consumes/consume' %>").before("#<%= @consume.created_at.strftime('%Y_%m') %>_figure .label:last");
+  $("<%= j render partial: 'consumes/consume' %>").before("#<%= @consume[:y_m] %>_figure .label:last");
 
 
 $(".loading").css("display","none");

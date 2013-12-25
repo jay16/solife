@@ -33,9 +33,9 @@ class ConsumesController < ApplicationController
   end
 
   def create
-    #consume = current_user.consumes.create(params[:consume])
-    #consume.set_consume_type(params)
-    @consume = consume_detail_at_day(Time.now.strftime("%Y%c%e"))#consume.created_at.strftime("%Y%c%e"))
+    consume = current_user.consumes.create(params[:consume])
+    consume.set_consume_type(params)
+    @consume = consume_detail_at_day(consume.created_at.strftime("%Y%m%d"))
   end
 
   def edit; end
@@ -91,12 +91,13 @@ class ConsumesController < ApplicationController
     sum_tags.uniq!
     return {
       :value => sum_value,
-      :msg => sum_msg,
+      :msg   => sum_msg,
       :created_at => consumes.first.created_at,
-      :tags => sum_tags,
+      :tags  => sum_tags,
       :y_m_d => consumes.first.created_at.strftime("%Y_%m_%d"),
-      :day => consumes.first.created_at.strftime("%d"),
-      :list => consumes
+      :y_m   => consumes.first.created_at.strftime("%Y_%m"),
+      :day   => consumes.first.created_at.strftime("%d"),
+      :list  => consumes
     } 
   end
 
