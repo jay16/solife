@@ -9,8 +9,14 @@
     </div>
 
     <% if user_signed_in? %>
-        <div class="current_user"><%= current_user.name %> -已登陆</div>
-	<%= link_to "退出", destroy_user_session_path, method: :delete,  remote: true, class: "btn-primary btn-info right" %>
+        <div class="control-group">
+	  <div class="controls">
+	    <div class="current-user"><strong><%= current_user.name %></strong> -已登陆</div>
+	  </div>
+	  <div class="controls">
+	    <%= link_to "退出", destroy_user_session_path, method: :delete,  remote: true, class: "btn-primary btn-info right" %>
+	  </div>
+	</div>
     <% else %>
 	<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :remote => true) do |f| %>
 	   <div class="error-message-field">
