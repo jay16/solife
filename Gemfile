@@ -4,6 +4,7 @@ source "http://ruby.taobao.org"
 
 gem "rails", "3.2.3"
 gem "mysql2"
+gem 'grape'
 
 #微博
 gem "weibo_2"
