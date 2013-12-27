@@ -10,8 +10,13 @@ class SessionsController < Devise::SessionsController
 
   #登陆后刷新当前界面
   def create
-    super
+    #self.resource = warden.authenticate!(auth_options)
+    #set_flash_message(:notice, :signed_in) if is_flashing_format?
+    #sign_in(resource_name, resource)
+    #yield resource if block_given?
+
     flash[:alert] = "您已成功登陆SOLife"
+    #redirect_to request.path
   end
 
   #退出后刷新当前界面
