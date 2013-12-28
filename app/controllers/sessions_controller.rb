@@ -10,6 +10,7 @@ class SessionsController < Devise::SessionsController
 
   #登陆后刷新当前界面
   def create
+    super
     #self.resource = warden.authenticate!(auth_options)
     #set_flash_message(:notice, :signed_in) if is_flashing_format?
     #sign_in(resource_name, resource)
