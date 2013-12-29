@@ -2,11 +2,11 @@
 class Api::UsersController < ApplicationController
   
   def login
-    ret, ret_info, consume = 0, "", {}
+    ret, ret_info, user_name = 0, "", ""
     
     if params[:email]
-      if User.find_by_email(params[:email])
-        ret, ret_info = 1, "OK"
+      if user = User.find_by_email(params[:email])
+        ret, ret_info, user_name = 1, "OK", user.name
       else
         ret, ret_info = 0, "user not exist"
       end
@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
       ret, ret_info = 0, "params is empty"
     end
 
-    render :json => { :ret => ret, :ret_info => ret_info}
+    render :json => { :ret => ret, :ret_info => ret_info, :user_name => user_name }
   end
 
 end
