@@ -8,10 +8,13 @@
       <span class="sorry">Sorry</span>
     </div>
 
-    <% if user_signed_in? %>
+    <% if user_signed_in? and !request.path_info.include?("switch") %>
         <div class="control-group">
 	  <div class="controls">
 	    <div class="current-user"><strong><%= current_user.name %></strong> -已登陆</div>
+	  </div>
+	  <div class="controls">
+	    <%= link_to "切换帐户", switch_user_session_path, remote: true, class: "btn-primary btn-info right" %>
 	  </div>
 	  <div class="controls">
 	    <%= link_to "退出", destroy_user_session_path, method: :delete,  remote: true, class: "btn-primary btn-info right" %>
