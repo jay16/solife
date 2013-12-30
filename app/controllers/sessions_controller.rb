@@ -24,6 +24,6 @@ class SessionsController < Devise::SessionsController
   def reset_devise_session
     #已登陆状态，切换账户时
     #还处于登陆状态
-    reset_session if user_signed_in?
+    request.reset_session if user_signed_in?
   end
 end
