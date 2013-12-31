@@ -3,7 +3,7 @@ class SessionsController < Devise::SessionsController
   layout "layout_v2/application"
   respond_to :html, :js
 
-  before_filter :reset_devise_session, only: [:create]
+  #before_filter :reset_devise_session, only: [:create]
   #自定义devise登陆界面
   def new
     super
