@@ -27,8 +27,24 @@ figure { display: block; width: 100%; height: 100%; margin: 0 }
     <%= Time.now.strftime("%Y-%m-%d %A %H:%M%P") %>
   </small>
 </h2>
+
 <!--按年来分别创建liteAccordtion-->
 <% consume_years = @consumes.map { |c| c.year }.uniq.sort %>
+
+<ul class="nav nav-tabs" id="myTab">
+  <% consume_years.each do |consume_year| %>
+     <li class="active">
+       <a href="#consume_year_at_<%= consume_year %>"><%= consume_year %></a>
+     </li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <div id="created_lastest" class="tab-pane active">
+      <%= render :template => "segments/lastest_form", :locals => { :lastest => @lastest_segments, :type => "updated_at" } %>
+  </div>
+</div>
+
 <% consume_years.each do |consume_year| %>
    <%= render :partial => "consumes/lite", locals: { consumes: @consumes, consume_year: consume_year} %> 
 <% end %>
