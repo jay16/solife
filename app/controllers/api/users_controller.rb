@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
       ret, ret_info = 0, "params is empty"
     end
 
-    render :json => { :ret => ret, :ret_info => ret_info, :user_name => user_name }
+    render :json => { :ret => ret, :ret_info => ret_info, :user_name => user_name, :user_email => params[:email], :user_province => "上海" }
   end
 
 end
