@@ -22,8 +22,20 @@ class Api::ConsumesController < ApplicationController
   end
 
   def list
-    consumes = User.find_by_email("android_app@solife.us").consumes
-    render :json => consumes.to_json
+    ret_json_array = []
+    user = User.find_by_email("android_app@solife.us")
+    user.consumes.each do |c|
+      ret_json_array.push({
+        :user_id    => user.id,
+	:consume_id => c.id,
+	:msg  => c.msg,
+	:volue => c.volue,
+	:created_at => c.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+	:updated_at => c.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+      })
+    end
+
+    render :json => ret_json_array.to_json
   end
 end
 
