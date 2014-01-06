@@ -1,5 +1,6 @@
 #encoding: utf-8
 class Api::ConsumesController < ApplicationController
+  before_filter :authen_user
   
   def create
     ret, ret_info, consume = 0, "", {}
@@ -8,8 +9,7 @@ class Api::ConsumesController < ApplicationController
     if params.empty?
       ret_info = "params is empty"
     else
-      consume = User.find_by_email("android_app@solife.us")
-        .consumes.create(params[:consume]) 
+      consume = @user.consumes.create(params[:consume]) 
 
       if consume.save
         ret, ret_info, consume = 1, "OK", consume.to_json
@@ -23,10 +23,9 @@ class Api::ConsumesController < ApplicationController
 
   def list
     ret_json_array = []
-    user = User.find_by_email("android_app@solife.us")
-    user.consumes.each do |c|
+    @user.consumes.each do |c|
       ret_json_array.push({
-        :user_id    => user.id,
+        :user_id    => @user.id,
 	:consume_id => c.id,
 	:msg  => c.msg,
 	:volue => c.volue,
@@ -36,6 +35,13 @@ class Api::ConsumesController < ApplicationController
     end
 
     render :json => ret_json_array.to_json
+  end
+  private
+
+  def authen_user
+    unless @user = User.find_by_email(params[:email]) 
+      render :json => { :ret => 0, :ret_info => "authen user fail" } 
+    end
   end
 end
 
