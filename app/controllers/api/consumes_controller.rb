@@ -4,18 +4,12 @@ class Api::ConsumesController < ApplicationController
   
   def create
     ret, ret_info, consume = 0, "", {}
-    params.delete_if { |p| %w(action controller).include?(p) }
-    
-    if params.empty?
-      ret_info = "params is empty"
-    else
-      consume = @user.consumes.create(params[:consume]) 
+    consume = @user.consumes.create(params[:consume]) 
 
-      if consume.save
-        ret, ret_info, consume = 1, "OK", consume.to_json
-      else
-        ret, ret_info = 0, consume.errors.full_messages
-      end
+    if consume.save
+      ret, ret_info, consume = 1, "OK", consume.to_json
+    else
+      ret, ret_info = 0, consume.errors.full_messages
     end
 
     render :json => { :ret => ret, :ret_info => ret_info, :consume => consume}
