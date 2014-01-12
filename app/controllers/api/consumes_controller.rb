@@ -7,6 +7,7 @@ class Api::ConsumesController < ApplicationController
     consume = @user.consumes.create(params[:consume]) 
 
     if consume.save
+      ConsumeTag.create({:consume_id => consume.id, :tag_id => 119})
       ret, ret_info, consume = 1, "OK", consume.to_json
     else
       ret, ret_info = 0, consume.errors.full_messages

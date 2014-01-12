@@ -9,7 +9,7 @@ class ConsumesController < ApplicationController
   respond_to :html, :js
 
   def index
-    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@xsolife.com"))
+    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@solife.us"))
     @consumes = user.consumes
       .select("day(consumes.created_at) as day, year(consumes.created_at) as year,month(consumes.created_at) as month,sum(volue) as sum_value")
       .group("year(consumes.created_at),month(consumes.created_at),day(consumes.created_at)")
@@ -77,7 +77,7 @@ class ConsumesController < ApplicationController
     #%c 月，数值(0-12),%m 月，数值(00-12);
     #%e 月的天，数值(0-31),%d 月的天，数值(00-31)
 
-    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@xsolife.com"))
+    user = (user_signed_in? ? current_user : User.find_by_email("jay_li@solife.us"))
     consumes = user.consumes
       .where("date_format(consumes.created_at,'%Y%c%e')=#{ymd}")
     sum_value, sum_msg, sum_tags =0, "", []
