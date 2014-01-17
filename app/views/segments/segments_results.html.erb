@@ -11,7 +11,9 @@
 
 	<ul class="paginated"> 
 	  <% @segments.each_with_index do |segment, index| %>
-	   <li style="display:none;" segmentid="<%= segment.id %>"><%= index+1 %>. <%= link_to segment.title,segments_permlink(segment) %></li>
+	   <li style="display:none;" segmentid="<%= segment.id %>">
+	     <%= index+1 %>. <%= link_to segment.title,segments_permlink(segment), target: "blank" %>
+	   </li>
 	  <% end %>
 	</ul>
 
