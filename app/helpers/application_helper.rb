@@ -85,6 +85,7 @@ module ApplicationHelper
     content_tag(:abbr, "", options.merge(:title => time.iso8601)) if time
   end
 
+  #显示notice alert
   def display_notice_and_alert
     msg = '<div class="alert">'
     msg << '<a class="close" data-dismiss="alert" href="#">&times;</a>'
@@ -93,4 +94,19 @@ module ApplicationHelper
 
     sanitize msg
   end
+
+  #把数组按指定数量分解
+  #[1,2,3,4,5,6,7,8,9] => [[1,2,3],[4,5,6],[7,8,9]]
+  def array_slice(array, count)
+    return [[]] if array.empty? 
+    
+    inner = array.length
+    times = inner/count + 1
+    outer = times*count 
+    result = Array.new(outer)
+    (0..outer).each do |o|
+      
+    end
+  end
+
 end

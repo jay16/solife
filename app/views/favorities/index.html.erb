@@ -1,0 +1,43 @@
+<style>
+.accordion .span3 {
+  margin: 5px 1px;
+  padding: 8px 10px;
+  height:20px;
+}
+.accordion .label { 
+ height: 15px;
+ line-height:15px; 
+}
+</style>
+
+<div class="accordion" id="favor_accordion">
+
+  <% @favorities.each_with_index do |favority, index| %> 
+    <div class="accordion-group">
+	<div class="accordion-heading">
+	    <a class="accordion-toggle collapsed nolink" data-parent="#favor_accordion" data-toggle="collapse" href="#<%= dom_id favority %>">
+	      <%= favority.label %>|<span class="collapse-state">展开</span>
+	    </a>
+	</div>
+
+	<div class="accordion-body collapse <%= index == 0 ? 'in' : '' %>" id="<%= dom_id favority %>">
+	    <div class="accordion-inner">
+		<% favority.sites.each_with_index do |site, i| %>
+		  <%= '<div class="row-fluid">'.html_safe if i%4 == 0 %>
+
+		    <div class="span3">
+			<span class="label label-info"><%= site.name %></span>
+		    </div>
+
+		  <%= "</div>".html_safe if i%4 == 3 %>
+		<% end %>
+	    </div>
+	    <!-- accordion-inner-->
+	</div>
+	<!--accordion-body-->
+    </div>
+    <!--accordion-group-->
+  <% end %>
+
+</div>
+
