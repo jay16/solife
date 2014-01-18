@@ -99,14 +99,20 @@ module ApplicationHelper
   #[1,2,3,4,5,6,7,8,9] => [[1,2,3],[4,5,6],[7,8,9]]
   def array_slice(array, count)
     return [[]] if array.empty? 
-    
-    inner = array.length
-    times = inner/count + 1
-    outer = times*count 
-    result = Array.new(outer)
-    (0..outer).each do |o|
-      
+
+    length = array.length 
+    times = (length%count == 0 ? length/count : length/count + 1)
+
+    result, index = [], 0
+    (1..times).each do |o|
+      i_a = []
+      (1..count).each do |i|
+         i_a.push(array[index])
+         index += 1
+      end
+      result.push(i_a)
     end
+    return result
   end
 
 end
