@@ -1,22 +1,30 @@
-<%= form_for([favority,site],html: { html: "form-horizontal" }, remote: true) do |f| %>
-  <p>
-    <b>name</b>
-    <%= f.text_field :name %> <%= link_to "Title", "javascript:void(0);", class: "nolink", onclick: "chk_title()" %>
-  </p>
-  <p>
-    <b>url</b>
-    <%= f.text_field :url %>
-  </p>
-  <p>
-    <b>logo</b>
-    <%= f.text_field :logo %>
-  </p>
-  <p>
-    <b>desc</b>
-    <%= f.text_area :desc, rows: 5 %>
-  </p>
-  <p>
-    <%= f.submit "submit", class: "btn btn-primary" %>
-  </p>
-<% end %>
+<style>
+.modal .simple_form .controls {
+  margin-left: 0px;
+}
+</style>
 
+<%= simple_form_for([favority,site], :remote => true) do |f| %>
+
+  <%= f.input :name, wrapper: :prepend, label: false do %>
+    <%= content_tag :span, content_tag(:span, "名称", class: ""), class: "add-on" %>
+    <%= f.input_field :name, placeholder: "网站名称", class: "span10" %>
+    <%= link_to "自动获取", "javascript:void(0);", class: "nolink", onclick: "chk_title()" %>
+  <% end %>
+
+  <%= f.input :url, wrapper: :prepend, label: false do %>
+    <%= content_tag :span, content_tag(:span, "链接", class: ""), class: "add-on" %>
+    <%= f.input_field :url, placeholder: "网站链接", autofocus: true, class: "span10" %>
+  <% end %>
+
+  <%= f.input :desc,wrapper: :prepend, label: false do %>
+    <%= content_tag :span, content_tag(:span, "描述", class: ""), :class => "add-on" %>
+    <%= f.input_field :desc,:as => :text, placeholder: "网站描述", rows: 5, class: "span10" %>
+  <% end %>
+
+  <div class="control-group">
+    <div class="controls">
+	<%= f.button :submit, "提交", class: "btn right" %>
+    </div>
+  </div>
+<% end %>
