@@ -34,7 +34,7 @@ gem "rubyzip"
 #gravata头像，与邮箱绑定，非常便捷
 gem "gravtastic"
 #the same function to above
-#gem "gravatar_image_tag"
+gem "gravatar_image_tag"
 
 
 #图表、下拉框、分布、ajax提交图片上传

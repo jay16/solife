@@ -1,6 +1,9 @@
 <div class="reply" id="<%= dom_id(reply) %>">
   <div class="pull-left face">
+    <%= gravatar_image_tag(reply.email || "noexist@gmail.com", :alt => reply.name || "gravatar") %>
+    <!--
     <img src="http://1.gravatar.com/avatar/505f97bd425cda6ec5b4ce2e7b59d414?s=40&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&r=G">       
+    -->
   </div>
   <div class="infos">
     <div class="info">
@@ -12,7 +15,7 @@
       </span>
     </div>
     <div class="body">
-       <%= reply.content %>
+       <%= reply.content.html_safe %>
     </div>
   </div>
 </div>

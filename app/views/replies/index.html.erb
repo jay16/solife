@@ -2,6 +2,7 @@
 
 <table class="table">
   <tr>
+    <th>Title</th>
     <th>Name</th>
     <th>Email</th>
     <th width="50%">Content</th>
@@ -9,10 +10,12 @@
   </tr>
   <% @replies.each do |reply| %>
     <tr id="<%= dom_id reply %>">
+        <td><%= link_to reply.segment.title, reply.segment.permlink_path, target: "_blank" %></td>
 	<td>name:<%= reply.name %></td>
 	<td>email:<%= reply.email %></td>
 	<td><%= reply.content %></td>
-	<td><%= link_to t("btn.del"), reply, method: :delete, remote: true, data: { confirm: "Are you sure?" },class: "btn btn-mini btn-danger" %></td>
+	<td><%= link_to t("btn.del"), reply, method: :delete, remote: true, data: { confirm: "Are you sure?" },
+	      class: "btn btn-mini btn-danger" if user_signed_in? %></td>
     </tr>
   <% end if @replies %>
    
