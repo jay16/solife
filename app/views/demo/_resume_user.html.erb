@@ -6,7 +6,8 @@
        <td class="left">李俊杰</td> 
        <td  rowspan="2" colspan="2" style="height:20px">
           <a class="nolink" data-placement="right" data-toggle="tooltip" data-original-title="it's my gravatar avatar.">
-            <%= image_tag(jay_li.gravatar_url(:rating => 'R', :secure => true), class: "img-circle") if jay_li %>
+            <% image_tag(jay_li.gravatar_url(:rating => 'R', :secure => true), class: "img-circle") if jay_li %>
+	    <%= gravatar_image_tag("solife.jay@gmail.com", :alt => "gravatar", :class => "img-circle") %>
 	  </a>
        </td>
      </tr>

@@ -78,3 +78,6 @@ $ ->
   #$(".alert .close").bind("close", () ->
   #  $(".alert").alert("close")
   #) 
+  
+  #所有链接点击显示在新页签#所有链接点击显示在新页签
+  $("a").attr('target','_blank')

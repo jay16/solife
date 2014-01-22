@@ -38,3 +38,6 @@ $(document).ready ->
     leftPos: "20px",                          #position from left/ use if tabLocation is bottom or top
     fixedPosition: true                       #options: true makes it stick(fixed position) on scroll
   })
+
+  #所有链接点击显示在新页签
+  $("a").attr('target','_blank')
