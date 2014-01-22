@@ -3,6 +3,10 @@ class SegmentsController < ApplicationController
   layout "layout_v2/application"
 
   respond_to :html, :js
+
+  def index
+    @segments = Segment.all 
+  end
  
   def new
     @segment = Segment.new

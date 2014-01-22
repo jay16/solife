@@ -74,4 +74,18 @@ class Segment < ActiveRecord::Base
     d = self.created_at
     "/#{d.year}/#{d.month}/#{d.day}/#{self.permlink}"
   end
+
+  #与此文章相关的文章-五篇
+  def relate_segments
+   #标签关联
+   if (tags = self.tags).size > 0
+     segments = self.tags.map { |t| t.segments.map { |s| s } }.flatten.compact
+     segments.delete(self)
+   #id关联
+   else
+     segments = Segment.all.first(6)
+     segments.delete(self)
+   end
+   return segments
+  end
 end

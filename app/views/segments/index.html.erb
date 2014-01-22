@@ -1,11 +1,33 @@
-            
-<% @segments.each_with_index do |segment, index| %>
-  <%= render :partial => "segments/segment", :locals => { :segment => segment } %>
-<% end %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>标题</th>
+      <th>更新日期</th>
+      <th>标签</th>
+      <% if user_signed_in? %>
+        <th>贴标签</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @segments.each do |segment| %>
+      <tr id="<%= dom_id segment %>">
+        <td> <%= link_to segment.title, segment.permlink_path %> </td>
+	<td> <%= segment.updated_at.strftime("%Y/%m/%d %H:%M") %></td>
+	<td class="tags-zone">
+	  <% segment.tags.each do |tag| %>
+	    <span class="label label-info"><%= tag.label %></span>
+	  <% end if segment.tags %>
+	</td>
+	<% if user_signed_in? %>
+	  <td>
+	    <%= link_to "贴标签", segment_attach_tags_path(segment),:remote => true %>
+	  </td>
+	  <%= render partial: "segments/modal", locals: { segment: segment } %>
+	<% end %>
 
-<div class="center">
-  <%= will_paginate @segments ,:inner_window => 1, :outer_window => 1 , :previous_label => '上一页 ' , :next_label => '下一页 ' %>
-</div>
-
-            
+      </tr>
+    <% end if @segments %>
+  </tbody>
+</table>
 
