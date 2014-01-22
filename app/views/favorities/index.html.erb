@@ -32,7 +32,7 @@
     <div class="accordion-group">
 	<div class="accordion-heading">
 	    <a class="accordion-toggle nolink" data-parent="#favor_accordion" data-toggle="collapse" href="#<%= dom_id favority %>" onclick="chk_collapse_state(this);">
-	      <%= favority.label %>(<%= favority.sites.size %>)|<span class="collapse-state"><%=  index == 0 ? '收起' : '展开' %></span>
+	      <%= favority.label %>[<%= favority.sites.size %>]|<span class="collapse-state"><%=  index == 0 ? '收起' : '展开' %></span>
 	    </a>
 
 	    <%= link_to "添加", new_favority_site_path(favority), :remote => true, class: " right", style: "margin-top: -33px;",
@@ -66,10 +66,14 @@
 <%= render partial: "favorities/modal" %>
 <script>
 function chk_collapse_state(e) {
-  if($(e).hasClass("collapsed")){
-    $(e).children(".collapse-state").html("展开");
-  } else {
+  $(".accordion-toggle").each(function() {
+      $(this).children(".collapse-state").html("展开");
+   });
+
+  if($(e).children(".collapse-state").html()=="展开"){
     $(e).children(".collapse-state").html("收起");
+  } else {
+    $(e).children(".collapse-state").html("展开");
   }
 }
 </script>
