@@ -22,8 +22,8 @@
 	<% if user_signed_in? %>
 	  <td>
 	    <%= link_to "贴标签", segment_attach_tags_path(segment),:remote => true %>
+	    <%= render partial: "segments/modal", locals: { segment: segment } %>
 	  </td>
-	  <%= render partial: "segments/modal", locals: { segment: segment } %>
 	<% end %>
 
       </tr>

@@ -86,6 +86,6 @@ class Segment < ActiveRecord::Base
      segments = Segment.all.first(6)
      segments.delete(self)
    end
-   return segments
+   return segments.uniq
   end
 end
