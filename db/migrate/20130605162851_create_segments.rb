@@ -1,6 +1,7 @@
 class CreateSegments < ActiveRecord::Migration
   def change
     create_table :segments do |t|
+      t.integer :segment_type
       t.integer :life_id
       t.string :title
       t.text :content
