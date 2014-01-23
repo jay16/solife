@@ -25,7 +25,8 @@
   }
 }
 .container {
-  box-shadow:0 0 1em blue;  
+  box-shadow:0 0 0.3em #3333ff;  
+  radius: 5px;
 }
 .segment,
 thumbnail {

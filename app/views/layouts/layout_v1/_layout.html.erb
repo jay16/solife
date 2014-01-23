@@ -40,7 +40,7 @@
 
       <!-- 标签云 -->
       <div class="row" style="margin-left: 0px;">
-        <div class="banner">标签云</div>
+        <div class="banner">标签</div>
 
         <div class="line-separator"></div>
         
@@ -49,23 +49,6 @@
         </div>
       </div>
       <!-- 标签云 -->
-
-      <!-- 用户登陆 -->
-      <div class="row" style="margin-left: 0px;">
-          <div class="banner">
-             <%= session[:user_id].nil? ? "用户登陆" : current_user.email %>
-             <%= link_to ">>","javascript:void(0);",:onclick=>"toggle_show(this,'.login-form','&gt;&gt;','&lt;&lt;','hidden')",:class=>"nolink" %>
-          </div>
-
-        <div class="line-separator"></div>
-
-        <div class="span3 login-form">
-           <% if session[:user_id] then %>
-             <%= link_to "写日志", segments_new_path(), :class=>"btn btn-primary", :style => "color: black;width:100px;" %>
-           <% end %>
-        </div>
-      </div>
-      <!-- 用户登陆 -->
 
     </div> <!-- span3 -->
     </div>

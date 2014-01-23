@@ -16,12 +16,6 @@
                   
 
 		    <div class="edit-pane">
-			<% if user_signed_in? %>
-			    <%= link_to "Edit", edit_segment_path(segment),:class=>"btn btn-mini" %>
-			    <%= link_to "attach tags", segment_attach_tags_path(segment),:remote => true, :class => "btn btn-mini" %>
-			    <%= link_to "Del", segment,method: :delete, :class => "btn btn-mini", :remote => true, :confirm => "Destory cannot restore, Are you sure?!" %>
-			<% end %>
-                       
                         <span>
                            <%= link_to '','javascript:void(0)', :class=>'solife-user' %>
 		           <%= link_to "jay", "javascript:void(0)", :style=>"color:#4E4E4E;width:50px;" %>
