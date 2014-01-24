@@ -9,7 +9,7 @@
   <% if user_signed_in? %>
     <%= link_to "logout", "users/sign_out", class: "nolink", id: "chk_login"  %>
   <% else %>
-    <%= link_to "sign in", "/users/sign_in", remote: true , class: "nolink" %>
+    <%= link_to "login", "/users/sign_in", remote: true , class: "nolink" %>
   <% end %>
 </div>
 
