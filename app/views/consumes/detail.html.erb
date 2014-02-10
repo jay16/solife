@@ -22,9 +22,11 @@
   </tr>
 
   <% for consume in @consume[:list] %> 
-    <tr>
-      <td><%= consume.value %></td>
-      <td><%= link_to "edit", edit_consume_path(consume), remote: true, class: "btn" %></td>
+    <tr colspan="2">
+      <td>
+        <%= consume.value %>
+        <%= link_to "edit", edit_consume_path(consume), remote: true, class: "btn btn-mini" %>
+      </td>
     </tr>
   <% end if user_signed_in? and @consume[:list] %>
 </table>
