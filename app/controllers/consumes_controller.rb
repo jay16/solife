@@ -1,7 +1,7 @@
 #encoding: utf-8
 class ConsumesController < ApplicationController
   
-  before_filter :auth_user, except: [:index, :detail]
+  before_filter :auth_user, except: [:index, :detail, :destroy]
   before_filter :find_consume, only: [:show, :edit, :update, :destroy]
   before_filter :find_consume_type, only: [:new, :edit]
 
