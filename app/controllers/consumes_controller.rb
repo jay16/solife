@@ -51,7 +51,7 @@ class ConsumesController < ApplicationController
   end
 
   def destroy
-    consume_date = @consume.created_at.strftime("%Y%c%e")
+    consume_date = @consume.created_at.strftime("%Y%-m%-d")
     @consume.destroy
     
     @consume = consume_detail_at_day(consume_date)
