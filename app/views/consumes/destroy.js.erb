@@ -1,3 +1,4 @@
-$("#modal").modal("hide");
 $(".loading").css("display","none");
-$("#<%= dom_id @consume %>").remove();
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("记录说明");
+$("#modal .modal-body").html("<%= j render template: 'consumes/detail', formats: [:html], handler: [:erb] %>");
