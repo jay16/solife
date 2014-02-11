@@ -57,6 +57,33 @@ class DemoController < ApplicationController
   end
 
   def concat
+    url = params[:url]
+    p1 = params[:p1]
+    p2 = params[:p2]
+    
+    @content = "<table class='table'>"
+
+    if url.length>0 and p1.length>0 then
+      (0..10).each do |i|
+        tmp_url = url.gsub("$",i.to_s)
+
+        begin
+	  doc = Nokogiri::HTML(open(tmp_url).read)
+	rescue => e
+	  puts "Fail:#{tmp_url}"
+	  puts e.to_s
+	else
+	  doc.css(p1).each do |img|
+	    src = img.attr("src")
+	    @content << "<tr><td><img src='#{src}'></td></tr>"
+	  end
+	end
+      end
+    else
+      @content << "<tr><td>url,p1必须填写</td></tr>"
+    end
+    @content << "</table>"
+
   end
 end
 

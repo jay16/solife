@@ -1,3 +1,19 @@
-<%= form_tag("/demo/concat", remote: true) do %>
-  <%= text_field_tag %>
-<% end %>
+<div class="span12">
+
+  <div class="row">
+    <div class="span12">
+      <%=form_tag("/demo/concat", remote: true) %>
+	<%= text_field_tag 'url','',:class=>"span6", :placeholder => "链接" %>
+	<%= text_field_tag 'p1','',:class=>"span3", :placeholder => "样式1" %>
+	<%= text_field_tag 'p2','',:class=>"spa3", :placeholder => "样式2" %>
+	<%= submit_tag "提交",:class => 'btn btn-primary' %>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12 show-zone">
+      显示区
+    </div>
+  </div>
+</div>
