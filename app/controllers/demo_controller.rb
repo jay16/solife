@@ -53,5 +53,10 @@ class DemoController < ApplicationController
       return ret
   end
 
+  def web
+  end
+
+  def concat
+  end
 end
 
