@@ -11,7 +11,7 @@ delegate "gravatar_image_tag", :to => "ActionController::Base.helpers"
         ret, ret_info =  1, "OK" 
 	user_name = user.name
 	user_gravatar = gravatar_image_tag(params[:email])
-        user_register = "2013-06-07 07:12"
+        user_register = user.created_at.stftime("%Y-%-%d %H:%M") #"2013-06-07 07:12"
 	ip_reverse = IpReverse.reverse(request.remote_ip)
 	if ip_reverse['result'] == "success"
           user_area = ip_reverse['country']+ip_reverse['province']
