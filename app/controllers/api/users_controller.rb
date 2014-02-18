@@ -4,12 +4,14 @@ class Api::UsersController < ApplicationController
 delegate "gravatar_image_url", :to => "ActionController::Base.helpers"
   
   def info
-    ret, ret_info, user_name, user_area, user_gravatar,user_register = 0, "", "", "读取失败", "",""
+    ret, ret_info  = 0, ""
+    user_id, user_name, user_area, user_gravatar,user_register = -1, "unname", "unarea", "ungravatar", "untime"
     
     if params[:email]
       if user = User.find_by_email(params[:email])
         ret, ret_info =  1, "OK" 
-	user_name = user.name
+	user_name     = user.name
+	user_id       = user.id
 	user_gravatar = gravatar_image_url(params[:email])
         user_register = user.created_at.strftime("%Y-%m-%d %H:%M") #"2013-06-07 07:12"
 	ip_reverse = IpReverse.reverse(request.remote_ip)
@@ -26,6 +28,7 @@ delegate "gravatar_image_url", :to => "ActionController::Base.helpers"
     render :json => { 
       :ret        => ret, 
       :ret_info   => ret_info, 
+      :user_id    => user_id,
       :user_name  => user_name, 
       :user_email => params[:email], 
       :user_register => user_register,
