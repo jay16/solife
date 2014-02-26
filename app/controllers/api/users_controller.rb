@@ -3,7 +3,9 @@ require "ip_reverse"
 class Api::UsersController < ApplicationController
 delegate "gravatar_image_url", :to => "ActionController::Base.helpers"
   
-  def info
+  #验证用户信息
+  #若正确，返回用户相关信息
+  def validate
     ret, ret_info  = 0, ""
     user_id, user_name, user_area, user_gravatar,user_register = -1, "unname", "unarea", "ungravatar", "untime"
     
