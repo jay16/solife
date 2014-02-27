@@ -20,7 +20,7 @@ class Api::ConsumesController < ApplicationController
     ret_json_array = []
     Consume.all.each do |c|
       ret_json_array.push({
-        :user_id    => @user.id,
+        :user_id    => c.users.first.id,
 	:consume_id => c.id,
 	:msg        => c.msg,
 	:volue      => c.volue,

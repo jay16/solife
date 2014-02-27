@@ -2,6 +2,9 @@ class Consume < ActiveRecord::Base
   attr_accessible :msg, :volue, :created_at, :updated_at
   validates :volue, presence: true
   
+
+  has_many :user_consumes, :dependent => :destroy
+  has_many :users, :through => :user_consumes
   has_many :consume_tags, :dependent => :destroy
   has_many :tags, :through => :consume_tags
 
