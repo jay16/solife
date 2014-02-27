@@ -32,6 +32,23 @@ class Api::ConsumesController < ApplicationController
 
     render :json => ret_json_array.to_json
   end
+
+  def update
+    ret, ret_info = 0, ""
+    if consume = Consume.find(params[:id])
+      if consume.update_attributes(params[:consume])
+        ret, ret_info = 1, "successfully"
+      else
+        ret, ret_info = 0, "update fail"
+      end
+    else
+      ret, ret_info = 0, "not found consume"
+    end
+  end
+
+  def delete
+  end
+
   private
 
   def authen_user
