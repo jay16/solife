@@ -35,7 +35,7 @@ class Api::ConsumesController < ApplicationController
 
   def update
     ret, ret_info = 0, ""
-    if consume = Consume.find(params[:id])
+    if consume = @user.consumes.find(params[:id])
       if consume.update_attributes(params[:consume])
         ret, ret_info = 1, "successfully"
       else
@@ -47,6 +47,14 @@ class Api::ConsumesController < ApplicationController
   end
 
   def delete
+    ret, ret_info = 0, ""
+    if consume = @user.consumes.find(params[:id])
+      if consume.destroy
+        ret, ret_info = 1, "successfully"
+      else
+        ret, ret_info = 0, "update fail"
+      end
+    end
   end
 
   private
