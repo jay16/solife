@@ -44,6 +44,8 @@ class Api::ConsumesController < ApplicationController
     else
       ret, ret_info = 0, "not found consume"
     end
+
+    render :json => { :ret => ret, :ret_info => ret_info }
   end
 
   def delete
@@ -55,6 +57,8 @@ class Api::ConsumesController < ApplicationController
         ret, ret_info = 0, "update fail"
       end
     end
+
+    render :json => { :ret => ret, :ret_info => ret_info }
   end
 
   private

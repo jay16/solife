@@ -89,6 +89,8 @@ Solife::Application.routes.draw do
   match "/consumes/:consume_date/detail" => "consumes#detail", :as => :consume_detail
   match "/api/consumes/create"           => "api::consumes#create"
   match "/api/consumes/list"             => "api::consumes#list"
+  match "/api/consumes/update"             => "api::consumes#update"
+  match "/api/consumes/delete"             => "api::consumes#delete"
   match "/api/users/validate"            => "api::users#validate"
   match "/api/users/info"            => "api::users#validate"
 
