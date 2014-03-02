@@ -3,17 +3,17 @@ class Api::ConsumesController < ApplicationController
   before_filter :authen_user
   
   def create
-    ret, ret_info, consume = 0, "", {}
+    ret, ret_info, consume = 0, "", -1
     consume = @user.consumes.create(params[:consume]) 
 
     if consume.save
       ConsumeTag.create({:consume_id => consume.id, :tag_id => 119})
-      ret, ret_info, consume = 1, "OK", consume.to_json
+      ret, ret_info = 1, "OK"
     else
       ret, ret_info = 0, consume.errors.full_messages
     end
 
-    render :json => { :ret => ret, :ret_info => ret_info, :consume => consume}
+    render :json => { :ret => ret, :ret_info => ret_info, :consume_id => consume.id}
   end
 
   def list
