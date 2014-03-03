@@ -4,6 +4,10 @@ class DemoController < ApplicationController
 
   respond_to :html, :js
 
+  def xiaojiti
+    render layout: false
+  end
+
   #faye
   def im_new
     @message = params[:message]
