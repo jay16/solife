@@ -1,6 +1,6 @@
 # coding: utf-8
-source "http://ruby.taobao.org"
 #source "https://rubygems.org"
+source "http://ruby.taobao.org"
 
 gem "rails", "3.2.3"
 gem "mysql2"
@@ -71,11 +71,11 @@ group :assets do
   gem "uglifier", ">= 1.0.3"
 end
 
-group :development, :test do
-  gem "rspec-rails"	#会自动引用RSpec
-  gem "spork"		#引入Spork
-  gem "autotest-rails"	#与ZenTest一起实现自动化测试
-  gem "ZenTest"
+gem "rspec-rails", :group => [:test, :development]
+group :test do
+  gem "capybara"
+  gem "guard-rspec"
+  gem "factory_girl_rails"
 end
 
 
