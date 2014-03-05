@@ -93,7 +93,8 @@ Solife::Application.routes.draw do
   match "/api/consumes/delete"             => "api::consumes#delete"
   match "/api/users/validate"            => "api::users#validate"
   match "/api/users/info"            => "api::users#validate"
-
+  match "/api/phone/update"          => "api::Phone#update"
+ 
 
   resources :traffics do
     collection do
