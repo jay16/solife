@@ -39,5 +39,24 @@ delegate "gravatar_image_url", :to => "ActionController::Base.helpers"
     }
   end
 
+  def info
+    if user = User.find(params[:id])
+      render :json => {
+        :ret => 1,
+	:ret_info => "YES",
+        :id => user.id,
+	:name => user.name,
+	:email => user.email,
+	:created_at => user.created_at.strftime("%Y-%m-%d %H:%M"),
+	:updated_at => user.updated_at.strftime("%Y-%m-%d %H:%M")
+      }
+    else
+      render :json => {
+        :ret => -1,
+	:ret_info => "user not exist"
+      }
+    end
+  end
+
 end
 
