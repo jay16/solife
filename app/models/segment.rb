@@ -1,25 +1,24 @@
 #encoding: utf-8
 class Segment < ActiveRecord::Base
-  attr_accessible :life_id, :content, :title, :markdown, :permlink, :segment_type
+  attr_accessible :title, :content, :markdown, :permlink, :klass
   validates :content, presence: true
   validates :title, uniqueness: true
 
-  belongs_to :life
   has_many :replies
   has_many :drafts
   has_many :segments_tags
   has_many :tags , :through => :segments_tags
 
-  #segment_type对应关系
+  #klass对应关系
   def type_map
     [[["blog","博客"],1],[["edm","Edm模板"],2],
      [["TODO","待做"],3],[["essay","随笔"],4]
     ]
   end
 
-  #根据segment_type显示不同级别
+  #根据klass显示不同级别
   def types
-    klass = type_map.select { |dd| dd[1] == self.segment_type }
+    klass = type_map.select { |dd| dd[1] == self.klass }
     klass.empty? ? "unknown" : klass[0][0]
   end
 

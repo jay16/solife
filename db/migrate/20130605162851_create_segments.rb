@@ -1,12 +1,11 @@
 class CreateSegments < ActiveRecord::Migration
   def change
     create_table :segments do |t|
-      t.integer :segment_type
-      t.integer :life_id
+      t.integer :klass
       t.string :title
+      t.string :permlink
       t.text :content
       t.text :markdown
-      t.string :permlink
 
       t.timestamps
     end

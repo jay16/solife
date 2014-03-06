@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20131224073545) do
     t.text     "msg"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   create_table "drafts", :force => true do |t|
@@ -367,6 +368,8 @@ ActiveRecord::Schema.define(:version => 20131224073545) do
     t.string   "last_sign_in_ip"
     t.string   "ruler"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
