@@ -72,11 +72,6 @@ group :assets do
 end
 
 gem "rspec-rails", :group => [:test, :development]
-group :test do
-  gem "capybara"
-  gem "guard-rspec"
-  gem "factory_girl_rails"
-end
 
 
 # To use ActiveModel has_secure_password

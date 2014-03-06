@@ -20,7 +20,7 @@ class Api::ConsumesController < ApplicationController
     ret_json_array = []
     Consume.all.each do |c|
       ret_json_array.push({
-        :user_id    => c.users.first.id,
+        :user_id    => c.user.id,
 	:consume_id => c.id,
 	:msg        => c.msg,
 	:volue      => c.volue,
@@ -59,6 +59,23 @@ class Api::ConsumesController < ApplicationController
     end
 
     render :json => { :ret => ret, :ret_info => ret_info }
+  end
+
+  def friend_consumes
+    consumes = @user.friend_consumes(params[:consume_id])    
+    ret_json_array = []
+    consumes.all.each do |c|
+      ret_json_array.push({
+        :user_id    => c.user.id,
+        :consume_id => c.id,
+        :msg        => c.msg,
+        :volue      => c.volue,
+        :created_at => c.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+        :updated_at => c.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
+        :sync => 1
+      })
+    end
+    render :json => ret_json_array.to_json
   end
 
   private

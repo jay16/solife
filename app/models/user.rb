@@ -15,8 +15,6 @@ class User < ActiveRecord::Base
   #attr_accessor :password_confirmation
   #attr_reader :password
   #validate :password_must_be_present
-  has_many :user_consumes
-  has_many :consumes , :through => :user_consumes
 
   #调用gratastic头像
   include Gravtastic
@@ -25,9 +23,16 @@ class User < ActiveRecord::Base
   has_many :user_tags
   has_many :tags, :through => :user_tags
 
+  #has_many :user_consumes
+  #has_many :consumes , :through => :user_consumes
+  has_many :consumes
 
   def is_admin?; chk_ruler(0); end
   def is_consume?; chk_ruler(1); end
+
+  def friend_consumes(consume_id)
+    Consume.where("user_id <> #{self.id} and id > #{consume_id}")
+  end
 
   private
 
@@ -36,6 +41,4 @@ class User < ActiveRecord::Base
     return self.ruler[n] == "1"
   end
 
-  def friend_consumes(consume_id)
-  end
 end
