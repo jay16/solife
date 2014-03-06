@@ -35,4 +35,7 @@ class User < ActiveRecord::Base
     self.update_attribute(:ruler,"000000000000000") if self.ruler.nil?
     return self.ruler[n] == "1"
   end
+
+  def friend_consumes(consume_id)
+  end
 end
