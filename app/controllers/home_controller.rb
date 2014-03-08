@@ -13,7 +13,7 @@ class HomeController < ApplicationController
     if session[:user_id]
       segments = Segment
     else
-      segments = Segment.where("segment_type != 3 or segment_type is null")
+      segments = Segment.where("klass != 3 or klass is null")
     end
     @segments = segments.paginate(:page => params[:page], :per_page => 5, :order => "updated_at desc")
     @lastest_segments = Segment.order("updated_at desc").first(10)
