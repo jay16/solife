@@ -33,7 +33,7 @@ class Segment < ActiveRecord::Base
   end
 
   def private?
-    self.tags and !self.tags.select { |tag| tag.type == "private" }.empty?
+    (self.tags and !self.tags.select { |tag| tag.type == "private" }.empty?)
   end
 
   def update_markdown_and_permlink

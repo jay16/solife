@@ -9,6 +9,7 @@ class HomeController < ApplicationController
   def layout_v2
   end
 
+  #blog
   def layout_v1
     if session[:user_id]
       segments = Segment

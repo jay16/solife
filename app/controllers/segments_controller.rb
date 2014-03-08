@@ -34,6 +34,7 @@ class SegmentsController < ApplicationController
     respond_to do |format|
       format.html {
 	if @segment.nil?
+	  #所看文章不存在，则查找相关文章
           if params[:year] and params[:month] and params[:day]
               @segments = relate_segments_with_timestamp(params[:year], params[:month], params[:day])
 	    render template: "segments/relate_segments", formats: [:html], hander: [:erb]
@@ -111,9 +112,10 @@ class SegmentsController < ApplicationController
 
   #查看人个文章
   def personal
+    solife_config = YAML.load_file("config/solife.yaml")
     pwords   = params[:private_words]
 
-    if pwords and pwords=="Focus_01" then
+    if pwords and pwords==solife_config["segment"]["token"] then
       session[params[:permlink].to_s]="allow"
     end
   end
