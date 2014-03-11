@@ -120,7 +120,7 @@ class SegmentsController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     @segment = Segment.find(params[:id])
     @segment.destroy
   end

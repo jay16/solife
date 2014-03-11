@@ -6,7 +6,7 @@ class Segment < ActiveRecord::Base
 
   has_many :replies
   has_many :drafts
-  has_many :segments_tags
+  has_many :segments_tags, :dependent => :destroy
   has_many :tags , :through => :segments_tags
 
   #klass对应关系
