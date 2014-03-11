@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
 
   #设置首页i18n多语言
   def set_i18n_locale
-      session[:locale] = params[:locale] if params[:locale]
-      I18n.locale = session[:locale] || I18n.default_locale
+    session[:locale] = params[:locale] if params[:locale]
+    I18n.locale = session[:locale] || I18n.default_locale
   end  
 
   def dd
