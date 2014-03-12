@@ -21,12 +21,12 @@ class Api::ConsumesController < ApplicationController
     Consume.all.each do |c|
       ret_json_array.push({
         :user_id    => c.user.id,
-	:consume_id => c.id,
-	:msg        => c.msg,
-	:volue      => c.volue,
-	:created_at => c.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-	:updated_at => c.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
-	:sync => 1
+		:consume_id => c.id,
+		:msg        => c.msg,
+		:volue      => c.volue,
+		:created_at => c.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+		:updated_at => c.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
+		:sync => 1
       })
     end
 
