@@ -1,5 +1,7 @@
 class Api < Grape::API
   prefix 'api'
   
-  mount Solife::Say
+  mount Solife::Users
+  mount Solife::Consumes
+  mount Solife::Phone
 end
