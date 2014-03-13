@@ -19,19 +19,28 @@ namespace :chk do
   def valid_password?(password, encrypted_password)
 	return false if encrypted_password.blank?
 	bcrypt   = ::BCrypt::Password.new(encrypted_password)
+    pepper = "39dd46bfe0dee2d2f5b98862b6b8bf24b736ee877efd5df95f48cf6ca5310b72d267f216d6138684de626297f2927ed7e99106058013e5d66d0b8ff3af8a234a"
+	password1 = ::BCrypt::Engine.hash_secret("#{password}#{pepper}", bcrypt.salt)
+	puts password1
 	password = ::BCrypt::Engine.hash_secret("#{password}#{SecureRandom.hex(64)}", bcrypt.salt)
 	puts password
 	puts encrypted_password
-	secure_compare(password, encrypted_password)
+	str = [password, nil].flatten.compact.join
+	secure_compare(Digest::MD5.hexdigest(str), encrypted_password)
   end  
 
   # constant-time comparison algorithm to prevent timing attacks
   def secure_compare(a, b)
     return false if a.blank? || b.blank? || a.bytesize != b.bytesize
     l = a.unpack "C#{a.bytesize}"
+	puts l.class
 
     res = 0
-    b.each_byte { |byte| res |= byte ^ l.shift }
+    b.each_byte do |byte| 
+	  k = l.shift
+	  res |= byte ^ k
+	  puts "#{byte}-#{k}-#{res}"
+	end
 	puts res
     res == 0
   end
@@ -49,8 +58,8 @@ namespace :chk do
      puts password
 	 puts user.encrypted_password.bytesize
 	 puts password.bytesize
-     a = bcrypt
-     b = password 
+     a = password
+     b = user.encrypted_password
      l = a.unpack "C#{a.bytesize}"
      res = 0 
      user.encrypted_password.each_byte { |byte| res |= byte ^ l.shift }
