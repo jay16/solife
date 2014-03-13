@@ -1,4 +1,4 @@
-class API < Grape::API
+class Api < Grape::API
   prefix 'api'
   
   mount Solife::Say

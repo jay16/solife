@@ -1,8 +1,8 @@
 #encoding: utf-8
 Solife::Application.routes.draw do
+  mount Api => "/"
   root :to => "home#index"
 
-  mount API => "/"
 
   devise_for :users,
     :controllers => {

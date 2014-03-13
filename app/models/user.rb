@@ -41,4 +41,11 @@ class User < ActiveRecord::Base
     return self.ruler[n] == "1"
   end
 
+  def api_token
+     Digest::MD5.hexdigest(self.email+self.password)
+  end
+
+  def api_authen
+  end
+
 end
