@@ -2,6 +2,8 @@
 Solife::Application.routes.draw do
   root :to => "home#index"
 
+  mount API => "/"
+
   devise_for :users,
     :controllers => {
     :sessions => :sessions

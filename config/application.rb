@@ -16,9 +16,10 @@ module Solife
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
+	 config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
      config.autoload_paths += Dir[Rails.root.join("lib")] + 
                               Dir[Rails.root.join("lib/solife")]+
-                              Dir[Rails.root.join("app/grape")]
+                              Dir[Rails.root.join("app/api")]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -38,8 +39,8 @@ module Solife
      config.i18n.default_locale = "zh-CN"
      LOCALES_DIRECTORY = Rails.root.join('config', 'locales')
      LOCALES_AVAILABLE = Dir["#{LOCALES_DIRECTORY}/*.{yml}"].collect do |locale_file|
-	I18n.load_path << locale_file
-	#File.basename(File.basename(locale_file, ".rb"), ".yml")
+		I18n.load_path << locale_file
+		#File.basename(File.basename(locale_file, ".rb"), ".yml")
         locale_file
      end.uniq.sort
      config.i18n.enforce_available_locales = false
