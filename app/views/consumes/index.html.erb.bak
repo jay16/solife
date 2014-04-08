@@ -1,0 +1,82 @@
+<style>
+strong + p { margin-top: 0 }
+dt { font-weight: bold }
+dd { margin: 0 }
+figure { display: block; width: 100%; height: 100%; margin: 0 }
+.accordion.stitch .slide div { background: #333 }
+
+.slide .span2 {
+    height: 30px;
+    margin: 2px 1px;
+    min-height: 30px;
+    padding-top: 8px;
+    text-align: center;
+    vertical-align: middle;
+    width: 150px;
+}
+
+</style>
+<%= javascript_include_tag "liteAccordion" %>
+<%= stylesheet_link_tag "liteAccordion" %>
+
+<h2>
+  <%= t("layout.consume") %>
+  <small>
+    <%= link_to t("btn.new"), new_consume_path, remote: true, class: "btn btn-primary",
+          onclick: "$('.loading').css('display','block');" if user_signed_in? %>
+    <%= Time.now.strftime("%Y-%m-%d %A %H:%M%P") %>
+  </small>
+</h2>
+
+<div id="consume_list">
+    <ol>
+       <% month_count = 0 %>
+       <% @arrays.each do |consumes| %>
+       <% next if consumes.nil? %>
+       <% month_count += 1 %>
+         <li id="<%= consumes.first.created_at.strftime('year_%Y_month_%m') %>">
+                <h2><span><%= consumes.first.created_at.strftime("%B") %></span></h2>
+                <div>
+                 <figure id="<%= consumes.first.created_at.strftime('year_%Y_month_%m') %>_figure">
+                        <% consumes.each do |consume| %>
+                         <span id="<%= dom_id consume %>" class="span2 label label-<%= label_level(consume.value) %>">
+                            <%= consume.created_at.strftime("第%d天:")+consume.value.to_s+"元" %>
+                         <%= link_to "", consume, class: "icon-list", remote: true, onclick: "$('.loading').css('display','block');" if user_signed_in? %>
+                          </span>
+                        <% end %>
+                         <figcaption class="ap-caption"><%= consumes.first.created_at.strftime("%Y年%m月") %></figcaption>
+                 </figure>
+                </div>
+         </li>
+       <% end %>
+    </ol>
+</div>
+  
+<script>
+    (function($, d) {
+        $("#consume_list").liteAccordion({
+                onTriggerSlide : function() {
+                 this.find('figcaption').fadeOut();
+                },
+                onSlideAnimComplete : function() {
+                 this.find('figcaption').fadeIn();
+                },
+                autoPlay : false,
+                pauseOnHover : true,
+                firstSlide: <%= month_count == 0 ? 1 : month_count %>,
+                theme : 'stitch',
+                rounded : true,
+                enumerateSlides : true
+        }).find('figcaption:last').show();
+
+    })(jQuery, document);
+</script>
+
+<%= render :partial => "consumes/modal", formats: [:html], hander: [:erb] %>
+
+  <h5>TODO:</h5>
+  <ul>
+   <li>1. 按天汇总</li>
+   <li>2. 消费浮动图表</li>
+   <li>3. android & ios app</li>
+  </ul>

@@ -1,0 +1,39 @@
+<% @mail.inboxes.each_with_index do |inbox,index| %>
+  
+  <form class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="mail_subject">Subject</label>
+      <div class="controls">
+        <input type="text" class="mail_subject" placeholder="Mail Subject" value="<%= inbox.mail_subject %>">
+        <a onclick="toggle_show_self('inbox_<%= index %>','show_block')">Detail</a>
+      </div>
+    </div>
+    <div id="inbox_<%= index %>" class="hide">
+        <div class="control-group">
+          <label class="control-label" for="mail_from">From</label>
+          <div class="controls">
+            <input type="text" class="mail_from" placeholder="Mail From" value="<%= inbox.mail_from %>">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="mail_to">To</label>
+          <div class="controls">
+            <input type="text" class="mail_to" placeholder="Mail To" value="<%= inbox.mail_to %>">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="mail_date">Date</label>
+          <div class="controls">
+            <input type="text" class="mail_date" placeholder="Mail Date" value="<%= inbox.mail_date %>">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="mail_body">Body</label>
+          <div class="controls">
+            <input type="text" class="mail_body" placeholder="Mail Body" value="<%= inbox.mail_body %>">
+          </div>
+        </div>
+   </div>
+  </form>
+  
+<% end %>

@@ -1,0 +1,85 @@
+  <%= javascript_include_tag "jquery.js" %>  
+  <%= javascript_include_tag "bootstrap.js" %>
+  <%= stylesheet_link_tag    "bootstrap-markdown.css" %>
+  <%= javascript_include_tag "bootstrap-markdown.js" %>
+  <%= javascript_include_tag "jquery_hotkeys.js" %>  
+<style>
+.span8 {
+    width: 740px;
+    max-width: 740px;
+    margin-left: 25px;
+}
+.span3 {
+    width: 255px;
+    max-width: 255px;
+    margin-left: 0px;
+}
+.thumbnail {
+  padding-bottom: 25px;
+}
+form .btn-group { 
+display: inline-block;
+    font-size: 0;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+ }
+
+[class^="icon-"], [class*=" icon-"] {
+    background-image: url("../../../assets/glyphicons-halflings.png");
+}
+.form-horizontal .control-label {
+    width: 100px;
+}
+.form-horizontal input[type="text"] {
+  height: 30px;
+  line-height: 30px;
+  max-height： 50px;
+  width: 250px;
+}
+.form-horizontal .control-label {
+  display: inline;
+  width: 320px;
+}
+.form-horizontal input[type="submit"]{
+  float: right;
+  height: 30px;
+  width: 150px;
+}
+.form-horizontal .control-group {
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+</style>
+<%= form_for([segment, reply],:remote => true, :html => { :class => "form-horizontal"}) do |f| %>
+
+  <%= render :partial => "replies/error-message", :locals => { :target => reply } %>
+
+  <div class="control-group">
+    <label class="control-label" for="name">名称:&nbsp;&nbsp;
+       <%= f.text_field :name, :placeholder => "如何称呼"  %>
+    </label>
+
+    <label class="control-label" for="email">邮箱:&nbsp;&nbsp;
+       <%= f.text_field :email, :placeholder => "如何联系？[可选]"  %>
+    </label>
+    <label class="control-label" for="reply-submit" style="width:200px;">
+       <%= f.submit "提交", :id => "reply-submit", :class => "btn btn-primary btn-success", :disable_with => "提交中..." %>
+    </label>
+  </div>
+
+  <%= f.text_area :content, "data-provide" => "markdown", :rows=>"10", :placeholder=>"有何评论？！" %>
+
+<% end %> 
+
+<script>
+$(function(){
+  //ctrl+enter => 提交评论
+  $("#content").keydown(function(e){
+    if (e.ctrlKey && e.keyCode == 13) {
+       $("#reply-submit").click();
+       $("#reply-submit").attr("disabled","disabled"); 
+    }
+  });
+});
+</script>

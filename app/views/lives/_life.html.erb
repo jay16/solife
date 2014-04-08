@@ -1,0 +1,17 @@
+
+            <div class="life" id="life_<%= life.id %>"> 
+		 <div class="title"><%= life.title%></div>
+
+		 <div class="subtitle"><%= life.subtitle %></div>
+
+		 <div class="info"><%= life.info %></div>
+		 
+		 <div class="edit-pane hide">
+		   <% if user_signed_in? %>
+		     <%= link_to "Edit", lives_edit_path(life.id), :remote => true, :class => "btn btn-mini" %>
+		     <%= link_to "NewSegment", segments_new_path(life.id), :remote => true, :class => "btn btn-mini" %>
+		     <a class="btn btn-mini">add tag</a>
+		   <% end %>
+		   <a class="btn btn-mini">reply</a>
+		 </div>
+            </div>

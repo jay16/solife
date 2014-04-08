@@ -1,0 +1,29 @@
+<%= render partial: "segments/segment", formats: [:html], handler: [:erb], :locals => { :segment => @segment } %>
+
+<div class="relate-segments">
+  <h2>你也许会喜欢这些文章：</h2>
+  <ol>
+    <% @segment.relate_segments.each do |segment| %>
+      <li>
+        <%= link_to segment.title, segment.permlink_path %>
+      </li>
+    <% end if @segment.relate_segments.size > 0 %>
+  </ol>
+</div>
+
+
+<div class="replies">
+   <h2>评论</h2>
+   <% for reply in @segment.replies.order("updated_at desc") %>
+     <%= render :partial => "replies/reply", :locals => { :reply => reply } if reply.content %>
+   <% end if @segment.replies %>
+</div>
+
+<hr>
+ <h2 style="display:inline;">回复</h2>
+<br>
+
+<div id="reply_zone">
+  <%= render :partial => "replies/form.html.haml", locals: { :segment => @segment, :reply => @reply } %>
+</div>
+

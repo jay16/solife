@@ -1,0 +1,7 @@
+<xml>
+<ToUserName><![CDATA[<%= @weixin.from_user_name %>]]></ToUserName>
+<FromUserName><![CDATA[<%= @weixin.to_user_name %>]]></FromUserName>
+<CreateTime><%= Time.now.to_i %></CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[<%= "您的[#{@weixin.msg_type}]消息已收到.\n查看详情清点击: http://xsolife.com/weixin/#{@record.id}" %>]]></Content>
+</xml>

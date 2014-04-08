@@ -1,0 +1,28 @@
+<h2>Listing Sites
+  <small><%= link_to "New Site", new_site_path, :remote => true %></small>
+</h2>
+ 
+<table class="table">
+  <tr>
+    <th>name</th>
+    <th>email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+ 
+<% @sites.each do |site| %>
+  <tr id="<%= dom_id site %>">
+    <td><%= site.name %></td>
+    <td><%= site.email %></td>
+    <td><%= link_to "Show", site, remote: true %></td>
+    <td><%= link_to "Edit", edit_site_path(site), remote: true %></td>
+    <td><%= link_to "Remove", site, method: :delete, remote: true, data: { confirm: "Are you sure?" } %></td>
+  </tr>
+<% end if @sites %>
+</table>
+ 
+<br />
+ 
+
+<%= render :partial => "sites/modal", formats: [:html], handler: [:erb] %>

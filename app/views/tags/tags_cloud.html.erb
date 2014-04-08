@@ -1,0 +1,26 @@
+<style>
+.windstagball {position:relative; width:250px; height:200px; margin: 0px;padding: 0px; }
+.windstagball a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#000; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+.windstagball a:hover { cursor: hand, background: transparent;border: 1px solid #eee; }
+.windstagball .blue {color:blue;}
+.windstagball .red {color:purple;}
+.windstagball .green {color:green;}
+
+</style>
+
+<div class="windstagballd">
+  <% tags_cloud.each do |tag| %>
+    <span>
+    <%= link_to tag.label, segments_tags_show_path(escape(tag.label)), :class => "label label-success #{%w(red green blue)[Integer(rand(3))]}" %>
+    </span>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+   // $(".windstagball").windstagball({
+   //         radius:65,
+   //         speed:10
+   //     });
+    });
+</script>

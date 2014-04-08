@@ -1,0 +1,30 @@
+
+            
+            <% life.segments.each do |segment| %>
+              <div class="segment" id="<%= dom_id segment %>">
+                <div class="segment_t"></div>
+               
+                <div class="tags-zone">
+                    <% tags_list(segment.id).each do |tag| %>
+                       <span class="label label-info"><%= tag.label %></span>
+                    <% end %>
+                </div>
+                 
+                 <h4><%= segment.title %></h4> 
+                 <div class="content"><%= Kramdown::Document.new(segment.content).to_html.html_safe %></div>
+                 
+                <div class="edit-pane hide">
+                    <% if user_signed_in? %>
+                        <%= link_to 'Edit', segments_edit_path(segment.id),:class=>"btn btn-mini", :remote => true %>
+                        <%= link_to 'Destory',segments_destory_path(life.id,segment.id), :class => "btn btn-mini", :remote => true, :confirm => "Destory cannot restore, Are you sure?!" %>
+                        <%= link_to "AddTag", tags_list_path(segment.id),:remote => true, :class => "btn btn-mini" %>
+                    <% end %>
+                    <a class="btn btn-mini">reply</a>
+                </div>
+  
+                
+                <div class="segment_b"></div>
+              </div>
+            <% end %>
+            
+

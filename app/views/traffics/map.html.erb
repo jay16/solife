@@ -1,0 +1,23 @@
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>index</td>
+      <td>city</td>
+      <td>county</td>
+      <td>isp</td>
+      <td>count</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @traffics.each_with_index do |t, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= t.city.nil? ? "null" : t.city %></td>
+        <td><%= t.county.nil? ? "null" : t.county %></td>
+        <td><%= t.isp.nil? ? "null" : t.isp %></td>
+        <td><%= t.count %></td>
+      </tr>
+    <% end if @traffics %>
+  </tbody>
+</table>

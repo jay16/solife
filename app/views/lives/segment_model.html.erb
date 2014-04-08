@@ -1,0 +1,53 @@
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+
+ <div id="segment_modal" class="modal hide fade" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+     <h3 style="display:inline;">New</h3>
+     <small class="right margin-right">Date: <input type="text" id="segment_date" /></small>
+   </div>
+   
+   <div class="modal-body padding-top">
+    
+       <form class="form-horizontal span3 width">
+         <!-- new segment -->
+         <div class="center">
+         <%= text_area_tag 'segment_modal_content', nil,"data-provide"=>"markdown", :placeholder => 'Description goes here...', :size => "25x10", :class => "text_area span5"%>
+         </div>
+         <!-- end new segment -->
+         <div id="tags_list">
+          
+         </div>
+         
+         <div class="center margin-top">
+           <button class="btn" data-dismiss="modal" aria-hidden="true" >Close</button>
+           <%= button_tag "Update",:type => "button", :class=>"btn",:onclick=>"edit_segment_submit();" %>
+           <%= button_tag "Submit",:type => "button", :class=>"btn",:onclick=>"add_segment_submit();" %>
+         </div>
+       </form>
+    
+   </div>
+ </div>
+
+
+<script>
+ $(function() {
+   $("#segment_modal_content").val('');
+   //$.datepicker.formatDate( "yy-mm-dd", new Date( 2013, 6 -1 , 15 ) );
+   var d = new Date();
+   var year = d.getYear();
+   var fullyear = d.getFullYear();
+   //月份从0开始，应加1
+   var month = d.getMonth()+1;
+   //星期几
+   var week = d.getDay();
+   //第几天
+   var day = d.getDate();
+   $( "#segment_date" ).datepicker();
+   $( "#segment_date" ).datepicker( "setDate", String(month)+"/"+String(day)+"/"+String(fullyear) );
+ });
+</script>

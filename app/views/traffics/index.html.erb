@@ -1,0 +1,71 @@
+<%= javascript_include_tag "china_map_chart" %>
+
+<h3>访客流量统计<small>current ip:<%= request.remote_ip %></small></h3>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="traffic_charts_tab">
+  <li><a href="#traffic_map" data-toggle="tab">地理分布图</a></li>
+  <li><a href="#traffic_week" data-toggle="tab">星期分布图</a></li>
+  <li><a href="#traffic_hour" data-toggle="tab">小时分布图</a></li>
+  <li><a href="#traffic_pie" data-toggle="tab">ISP比例图</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="traffic_map">
+
+    <div style="margin: 0px auto; border-radius: 4px; width: 630px;">
+      ps:点击选中或取消某省来固定或悬浮信息框.使用插件:<a target="_blank" href="http://solife.us/jquery/china-map-chart">china-map-chart</a>
+    </div>
+    <div id="traffic_map_chart"></div>
+    <script>
+    $(function(){
+      chart_data = [];
+      <% china_map_chart_data.each do |p| %>
+       chart_data.push({
+	 "refer_to": "<%= p['refer_to'] %>",
+	 "fill": "<%= p['fill'] %>",
+	 "title": "<%= p['title'] %>",
+	 "body": "<%= p['body'].html_safe %>",
+	 "rank": <%= p['rank'] %>,
+	 "label": "<%= p['label'] %>",
+	 "text": "<%= p['text'] %>"
+       });
+      <% end %>
+      $("#traffic_map_chart").china_map_chart({
+        "container": {
+	  "margin": "0 auto",
+	  "overflow": "hidden",
+	  "background": "white"
+	},
+	"data": chart_data,
+	"list": { "style": { "width": "120px" } }
+      });
+    });
+    </script>
+  </div>
+  <div class="tab-pane" id="traffic_week">
+     <div id="chart_week_div" style="margin:0 auto;width:900px;float:none;text-align:center;">
+	<%= high_chart("high_chart_week", week_chart(@week_data)) %>
+     </div>
+  </div>
+  <div class="tab-pane" id="traffic_hour">
+     <div id="chart_hour_div" style="margin:0 auto;width:900px;float:none;text-align:center;">
+	<%= high_chart("high_chart_hour", hour_chart(@hour_data)) %>
+     </div>
+  </div>
+  <div class="tab-pane" id="traffic_pie">
+     <div id="chart_pei_div" style="margin:0 auto;width:900px;float:none;text-align:center;">
+	<%= high_chart("high_chart_isp", isp_chart()) %>
+     </div>
+  </div>
+
+</div>
+<script>
+$(function(){
+  $(function () {
+    $('#traffic_charts_tab a:first').tab('show')
+  })
+});
+</script>
+

@@ -1,0 +1,7 @@
+<xml>
+<ToUserName><![CDATA[<%= @weixin.from_user_name %>]]></ToUserName>
+<FromUserName><![CDATA[<%= @weixin.to_user_name %>]]></FromUserName>
+<CreateTime><%= Time.now.to_i %></CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[<%= "hi,\n已收到您的信息[但未能正确判断消息类型]" %>]]></Content>
+</xml>

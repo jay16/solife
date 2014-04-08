@@ -1,0 +1,88 @@
+
+    默认参数: <br>
+<pre>    //地图及容器属性的默认设置
+    var defaults = { 
+      /*加载地图的容器样式自定义设置，eg: div,span..
+        可以自定义样式覆盖默认样式 */
+      &quot;container_style&quot;: { 
+        &quot;border&quot;:     &quot;1px solid blue&quot;, //容器的边框
+        &quot;background&quot;: &quot;white&quot;, //窗口的背景颜色
+        &quot;width&quot;:      &quot;500px&quot;,   //容器的宽度
+        &quot;height&quot;:     &quot;420px&quot;,   //窗口的高度
+        &quot;box-shadow&quot;: &quot;0 0 1em blue inset&quot;
+      },
+      /*地图样式自定义设置
+        可以自定义样式覆盖默认样式 */
+     &quot;map&quot;: {
+        &quot;text&quot;:      &quot;name&quot;,           //省名显示类型: name,pinyin,tranditional_name
+        &quot;font-size&quot;: &quot;10px&quot;,           //省名字体大小
+        &quot;color&quot;:     &quot;#000000&quot;,        //省名字体颜色
+        &quot;fill&quot;:      &quot;gray&quot;,        //地图默认填充的颜色
+        &quot;selected_color&quot;: &quot;#A020F0&quot;,   //点击后显示颜色
+        &quot;is_hover&quot;:  true,             //是否需要鼠标悬浮效果
+        &quot;hover&quot;:    &quot;#00FF00&quot;,         //地图鼠标悬浮时的颜色
+      },
+      /*地图鼠标悬浮时提示框样式自定义设置
+        可以自定义样式覆盖默认样式 
+        &lt;div desc=&quot;tooltip&quot;&gt;
+          &lt;div desc=&quot;title&quot;&gt;&lt;/div&gt;
+          &lt;div desc=&quot;body&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      */
+      &quot;is_tooltip&quot;: true,
+      &quot;tooltip_title&quot;: &quot;name&quot;,  //没有指定提示框标题时显示name
+      &quot;tooltip_body&quot;: &quot;pinyin&quot;, //没有指定提示框内容时显示pinyin
+      &quot;tooltip&quot;: {
+        /*提示框整体、外框默认样式*/
+        &quot;style&quot;: {
+          &quot;position&quot;:   &quot;absolute&quot;,
+          &quot;text-align&quot;: &quot;left&quot;,
+          &quot;display&quot;:    &quot;none&quot;,
+          &quot;min-width&quot;:  &quot;50px&quot;,
+          &quot;min-height&quot;: &quot;30px&quot;,
+          &quot;background&quot;: &quot;#D3D3D3&quot;,
+          &quot;border-radius&quot;:&quot;5px&quot;,
+          &quot;padding&quot;:    &quot;10px&quot;,
+          &quot;z-index&quot;:    &quot;10000&quot;
+        },
+        /*提示框标题默认样式*/
+       &quot;title&quot;: {
+          &quot;font-size&quot;:   &quot;10px&quot;,
+          &quot;color&quot;:       &quot;#000000&quot;,
+          &quot;margin-bottom&quot;: &quot;5px&quot;,
+          &quot;background&quot;:  &quot;#D3D3D3&quot;
+        },
+        /*提示框主体默认样式*/
+      &quot;body&quot;: {
+        &quot;font-size&quot;: &quot;12px&quot;,
+        &quot;color&quot;:     &quot;#000000&quot;
+        },
+      },    
+      &quot;refer&quot;: &quot;name&quot;,      //参照比较类型，可为: pinyin,name,fanti
+      &quot;line_break&quot;: &quot;&lt;br&gt;&quot;, //分行符
+      &quot;data&quot;: [
+         { 
+          &quot;refer_to&quot;: &quot;黑龙江&quot;,       //指定省份的标识，与refer相关
+          &quot;fill&quot;: &quot;red&quot;,              //自定义各省份地图背景色
+          &quot;title&quot;: &quot;黑龙江-访客流量&quot;, //提示框标题
+          &quot;body&quot;: {                   //提示框内容
+              &quot;datas&quot;: [                //显示数据
+                [ &quot;人数&quot;, &quot;1234-次&quot; ],  //显示格式为: &quot;人数: 6666次&quot;
+                [ &quot;人次&quot;, &quot;123-人&quot; ]   //多行显示为: &quot;人数: 6666次&lt;br&gt;人次: 6666人&quot;
+                ]
+            }
+          },
+         { 
+          &quot;refer_to&quot;: &quot;河南&quot;,       //指定省份的标识，与refer相关
+          &quot;fill&quot;: &quot;green&quot;,              //自定义各省份地图背景色
+          &quot;title&quot;: &quot;河南-访客流量&quot;, //提示框标题
+          &quot;body&quot;: {                   //提示框内容
+              &quot;datas&quot;: [                //显示数据
+                [ &quot;人数&quot;, &quot;4567-次&quot; ],  //显示格式为: &quot;人数: 6666次&quot;
+                [ &quot;人次&quot;, &quot;456-人&quot; ]   //多行显示为: &quot;人数: 6666次&lt;br&gt;人次: 6666人&quot;
+                ]
+            }
+          }
+      ], 
+    }
+</pre>

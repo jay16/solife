@@ -1,0 +1,26 @@
+$("#modal").modal("hide");
+
+var label_id = "consume_<%= @consume[:y_m_d] %>";
+
+//已经有当天的消费则替换
+//没有则创建，放置在累积值位置之前
+if($("#"+label_id).length>0) {
+   $("#"+label_id).replaceWith("<%= j render partial: 'consumes/consume' %>");
+} else {
+  $("#<%= @consume[:y_m] %>_figure .label:last").before("<%= j render partial: 'consumes/consume' %>");
+}
+
+$(".loading").css("display","none");
+
+
+//jquery自动更新显示的累积值
+var sum_value = 0;
+$("#<%= @consume[:y_m] %>_figure .consume .value").each(function(){
+  console.log(":"+$(this).text());
+  sum_value = sum_value + parseFloat($(this).text());
+});
+
+//浮点型保留一位小数
+sum_value = Math.round(sum_value*10)/10;
+$("#<%= @consume[:y_m] %>_figure .calculation .value").html(sum_value);
+

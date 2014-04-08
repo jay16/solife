@@ -1,0 +1,43 @@
+<div class="span3">
+  <table>
+    <tr>
+      <td>xSOLife</td>
+      <td><span class="label label-info">订阅号</span></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	<img width="150" src="/photos/f6326272-2513-304e-83a8-c39f5063ca71/2d95aa33-2ee2-3e94-b2ce-1f0a9ece5ea0.jpg">
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="span9">
+<style>
+#modal, #modal .modal-body {
+  width: auto;
+  max-width: 600px;
+  height: auto;
+  max-height: 700px;
+}
+</style>
+  <table class="table table-striped">
+    <thead>
+      <th>user</th>
+      <th>msg-type</th>
+      <th>at</th>
+      <th>detail</th>
+    </thead>
+    <tbody>
+      <% @records.each do |record| %>
+	<tr>
+	  <td width="20%"><%= record.from_user_name %></td>
+	  <td width="20%"><%= record.msg_type %></td>
+	  <td width="40%"><%= record.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+	  <td width="10%"><%= link_to t("btn.show"), weixin_path(record.id), class: "btn btn-mini", remote: true %></td>
+	</tr>
+      <% end if @records %> 
+    </body>
+  </table>
+  
+  <%= render partial: "modal" %>
+</div>

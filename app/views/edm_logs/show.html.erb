@@ -1,0 +1,20 @@
+<table class="table">
+  <tr>
+    <td>Name:</td>
+    <td><%= @site.name %> | <%= link_to "link", @site.url, target: "_blank" %></td>
+  </tr>
+  <tr>  
+    <td>Url:</td>
+    <td><%= @site.url %></td>
+  </tr>
+  <tr>
+    <td>Desc:</td>
+    <td><%= @site.desc  %></td>
+  </tr>
+  <tr>
+    <td>Action:</td>
+    <td><%= link_to "Edit", edit_favority_site_path(@favority,@site), remote: true %> |
+        <%= link_to "Remove", [@favority,@site], method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
+    </td>
+  </tr>
+</table>

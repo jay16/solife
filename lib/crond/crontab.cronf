@@ -1,0 +1,4 @@
+* * * * * echo $(date) > /home/work/solife/log/chkcrond.log 2>&1
+15 * * * * /home/work/solife/lib/crond/git_push.sh  > /home/work/solife/log/git_push.log 2>&1
+15 * * * * /bin/bash -l -c '/home/work/solife/lib/crond/lastest-updated.sh'  > /home/work/solife/log/lastest-updated.log 2>&1
+15 6 * * * /bin/bash -l -c '/home/work/solife/lib/crond/solife_db_bak.sh'  > /home/work/solife/log/solife_db_bak.log 2>&1

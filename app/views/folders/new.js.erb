@@ -1,0 +1,4 @@
+hideLoading();
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("<%= t('btn.new')+' '+t('layout.photo') %>");
+$("#modal .modal-body").html("<%= j render partial: 'form', formats: [:html], handler: [:erb] %>");

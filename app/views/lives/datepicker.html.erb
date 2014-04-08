@@ -1,0 +1,18 @@
+  
+  <%= javascript_include_tag "jquery-1.9.js" %>
+  <%= stylesheet_link_tag    "bootstrap.css" %>
+  <%= javascript_include_tag "bootstrap.js" %>
+  <%= stylesheet_link_tag    "bootstrap-datepicker.css" %>
+  <%= javascript_include_tag "bootstrap-datepicker.js" %>
+  <span class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+    <input class="span2" size="16" type="text" value="12-02-2012">
+    <span class="add-on"><i class="icon-th"></i></span>
+  </span>
+
+
+<script>
+ 
+ $(function(){
+    $("#dp3").datepicker('show');
+  });
+ </script>

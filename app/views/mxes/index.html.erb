@@ -1,0 +1,23 @@
+<h2>Email Mx</h2>
+ 
+<table class="table table-bordered table-hover table-condensed">
+  <tr>
+    <th>Domain</th>
+    <th>Exchange</th>
+    <th>Preference</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+  </tr>
+ 
+<% @mxes.each do |mx| %>
+  <tr>
+    <td><%= mx.domain %></td>
+    <td><%= mx.exchange %></td>
+    <td><%= mx.preference %></td>
+    <td><%= f mx.created_at %><% link_to "Remove", mx, method: :delete, data: { confirm: "Are you sure?" } %></td>
+    <td><%= f mx.updated_at %><% link_to "Edit", edit_mx_path(mx) %></td>
+  </tr>
+<% end if @mxes %>
+</table>
+ 
+

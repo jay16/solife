@@ -1,0 +1,79 @@
+<style>
+.accordion .span3 {
+  margin: 5px 1px;
+  padding: 0px;
+  height:20px;
+  line-height:20px;
+  border: 1px solid transparent;
+  vertical-align: middle;
+}
+
+.row-fluid .span3 {
+  margin: 0 auto;
+  text-align: left;
+  width: 25%;
+}
+.accordion .label { 
+ height: 15px;
+ line-height:15px; 
+ padding: 5px;
+}
+.accordion .label a{
+  color: white;
+}
+
+</style>
+<%= link_to "添加",  new_favority_path, :remote => true, class: "",
+  onclick: "$('.loading').css('display','block');" if user_signed_in? %>
+
+<div class="accordion" id="favor_accordion">
+
+  <% @favorities.each_with_index do |favority, index| %> 
+    <div class="accordion-group">
+	<div class="accordion-heading">
+	    <a class="accordion-toggle nolink" data-parent="#favor_accordion" data-toggle="collapse" href="#<%= dom_id favority %>" onclick="chk_collapse_state(this);">
+	      <%= favority.label %>[<%= favority.sites.size %>]|<span class="collapse-state"><%=  index == 0 ? '收起' : '展开' %></span>
+	    </a>
+
+	    <%= link_to "添加", new_favority_site_path(favority), :remote => true, class: " right", style: "margin-top: -33px;",
+			onclick: "$('.loading').css('display','block');" if user_signed_in? %>
+	</div>
+
+	<div class="accordion-body collapse <%= index == 0 ? 'in' : '' %>" id="<%= dom_id favority %>">
+	    <div class="accordion-inner">
+		<% array_slice(favority.sites,4).each_with_index do |array, i| %>
+                  <div class="row-fluid">
+		    
+		    <% array.each do |site| %>
+		      <% if site %>
+			<div class="span3">
+			    <label class="label label-info"><%= link_to site.name, site.url, target: "_blank" %></label>
+			</div>
+		      <% end %>
+		    <% end unless array.empty? %>
+                  </div>
+		<% end %>
+	    </div>
+	    <!-- accordion-inner-->
+	</div>
+	<!--accordion-body-->
+    </div>
+    <!--accordion-group-->
+  <% end %>
+
+</div>
+
+<%= render partial: "favorities/modal" %>
+<script>
+function chk_collapse_state(e) {
+  $(".accordion-toggle").each(function() {
+      $(this).children(".collapse-state").html("展开");
+   });
+
+  if($(e).children(".collapse-state").html()=="展开"){
+    $(e).children(".collapse-state").html("收起");
+  } else {
+    $(e).children(".collapse-state").html("展开");
+  }
+}
+</script>

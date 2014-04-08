@@ -1,0 +1,48 @@
+<style>
+.form-horizontal {
+  margin-left: 10px;
+}
+.form-horizontal .control-group {
+    margin-bottom: 10px;
+}
+.form-horizontal .controls {
+    margin-left: 50px;
+}
+.form-horizontal .control-label {
+    float: left;
+    padding-top: 5px;
+    text-align: right;
+    width: 100px;
+}
+</style>
+
+       <div id="<%= dom_id @segment %>_box" class="@segment_box">
+	  <div class="segment" id="<%= dom_id @segment %>">
+
+	    <h4><%= @segment.title %></h4>
+
+	    <div class="tags-zone">
+		<% @segment.tags.each do |tag| %>
+		   <span class="label label-important"><%= tag.label %></span>
+		   <span class="label label-info"><%= tag.type %></span>
+		<% end if @segment.tags %>
+	    </div>
+
+	    <div class="content">
+                <pre>该文章未被公开,查看请联系作者！</pre>
+                <div class="notice"></div>
+		<%= form_tag(view_personal_path(params[:year],params[:month],params[:day],@segment.permlink), :remote => true, :class=>"form-horizontal span6") do %>
+		  <div class="control-group">
+		    <label class="control-label" for="subtitle">暗号</label>
+		    <div class="controls">
+		       <%= text_field_tag 'private_words', nil, :placeholder => '芝麻开门'  %>
+		     <%= submit_tag "提交", :class=>"btn" %>
+		    </div>
+		  </div>
+		<% end %>
+            </div>
+          
+           </div>
+         </div>
+
+

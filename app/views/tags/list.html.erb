@@ -1,0 +1,41 @@
+
+<div id="tags_list" style="margin-bottom:40px;">
+  <% if @tags_list.size > 0 %>
+      <%= form_tag(:controller => "tags", :action => "build", :segment_id => @segment.id,:remote => true) do %>
+        <div class="tags">
+          <% nogrouptags = @tags_list %>
+            <table class="table table-bordered">
+	      <% @taggroups.each do |taggroup| %>
+              <% nogrouptags = nogrouptags - taggroup.tags %>
+                <tr>
+		  <td> <%= "#{taggroup.label}(#{taggroup.tags.size})" %></td>
+                  <td>
+	       	    <% taggroup.tags.each_with_index do |tag, index| %>
+		      <span class="label label-info"><%= tag.label %></span>
+		      <input type="checkbox" name="tags_list_<%= tag.id %>" id="tag_<%= tag.id %>" <%= @tags_sel.include?(tag.id) ? "checked=checked" : "" %>/>
+		    <% end  %>
+	          </td>
+                 </tr>
+                <% end %>
+                <tr><td>nogroups</td>
+                 <td><% nogrouptags.each do |tag| %>
+		        <span class="label label-info"><%= tag.label %></span>
+                        <input type="checkbox" name="tags_list_<%= tag.id %>" id="tag_<%= tag.id %>" />
+                     <% end %>
+                 </td>
+                </tr>
+             </table>
+          </div>
+
+	<div>
+	  <span style="float:right;"><%= submit_tag "submit", :class => "btn btn-mini" %></span>
+	</div>
+      <% end %>
+   
+      <span class="tag_form span5" style="margin-top:-15px;">
+       <%= link_to ">>", tags_new_path(), :remote =>true %> 
+      </span>
+  <% else %>
+      <span class="label label-warnning"> No Tags! </span>
+  <% end %>
+</div>

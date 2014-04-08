@@ -1,0 +1,24 @@
+ <%= form_for([@folders.first, @photo], remote: true,html: {class: "form-horizontal"}) do |f| %>   
+  <table id="image_preview_table">
+     <tr>
+       <td><%= select_tag "imgurl_album", options_from_collection_for_select(@folders, "id", "name",@folders.first.id),{:include_blank => true, :style => "width: 220px", :class => "chosen-select", :"data-placeholder" => "选择相册"} %>
+       </td>
+     </tr>
+     <tr class="imageurl">
+       <td>URL:<%= text_field_tag "imgurl",nil, "place-holder" => "web image url", class: "span8" %></td>
+       <td><%= link_to "preview", "javascript:void(0);", onclick:"image_preview()", class: "nolink span1" %></td>
+       <td><%= link_to "+", "javascript:void(0);", onclick:"add_imageurl()", class: "nolink span1" %></td>
+     </tr>
+   </table>
+    <td><%= submit_tag "submit", class: "nolink btn" %></td>
+ <% end %>
+
+
+<script>
+  function image_preview(){
+    var img_url = $("#imgurl").val();
+    //alert(img_url);
+    var tr = "<tr><td><img src='"+img_url+"' style='max-width:500px;'></td></tr>";
+    $("#image_preview_table").append(tr);
+ }
+</script>

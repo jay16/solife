@@ -1,0 +1,11 @@
+<% if target.errors.any? %>  
+ <div class="alert alert-block alert-error">
+   <a class="close" data-dismiss='alert' href="#">×</a>
+   <p><strong><%= target.errors.count %> Errors:</strong></p>
+   <ul>
+   <% target.errors.full_messages.each do |msg| %>
+     <li><%= msg %></li>
+   <% end %>
+   </ul>
+ </div>
+<% end %>

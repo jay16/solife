@@ -1,0 +1,51 @@
+<!--按月分群显示-->
+<% consume_months = consumes.select { |c| c.year == consume_year }
+    .map { |c| c.month }.uniq.sort 
+%>
+<div id="consume_list_<%= consume_year %>">
+    <ol>
+      <%= consume_months.each do |consume_month| %>
+         <li id="<%= consume_year %>_<%= consume_month %>">
+                <h2><span><%= "#{consume_year}/#{consume_month}" %></span></h2>
+                <div>
+                 <figure id="<%= consume_year %>_<%= consume_month %>_figure">
+		      <% month_sum = 0 %>
+		      <% consumes.select { |c| c.year == consume_year and c.month == consume_month }
+			  .sort { |x, y| x.day <=> y.day }.each do |consume| %>
+                          
+			  <% month_sum += consume.sum_value %>
+			  <span id="consume_<%= y_m_d(consume) %>" class="span2 consume label label-<%= label_level(consume.sum_value) %>">
+			  <%= day_nth(consume.day) %>:<span class="value"><%= consume.sum_value.to_f.round(1) %></span>元
+			  <%= link_to "", consume_detail_path("#{consume_year}#{consume_month}#{consume.day}"), class: "icon-list", remote: true, onclick: "$('.loading').css('display','block');" %>
+		       </span>
+		      <% end %>
+		      <span style="background:black;" id="consume_<%= consume_year %>_<%= consume_month %>_sum" class="calculation span2 label label-<%= label_level(month_sum) %>">
+			累计:<span class="value"><%= month_sum.to_f.round(1) %></span>元
+		      </span>
+                         <figcaption class="ap-caption"><%= "#{consume_year}/#{consume_month}" %></figcaption>
+                 </figure>
+                </div>
+         </li>
+      <% end %>
+    </ol>
+</div>
+
+<script>
+(function($, d) { 
+    $("#consume_list_<%= consume_year %>").liteAccordion({
+            onTriggerSlide : function() { 
+             this.find('figcaption').fadeOut();
+            },
+            onSlideAnimComplete : function() { 
+             this.find('figcaption').fadeIn();
+            },
+            autoPlay : false,
+            pauseOnHover : true,
+            firstSlide: <%= consume_months.size %>,
+            theme : 'stitch',
+            rounded : true,
+            enumerateSlides : true
+    }).find('figcaption:last').show();
+
+})(jQuery, document);
+</script>

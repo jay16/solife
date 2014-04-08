@@ -1,0 +1,31 @@
+<table class="table">
+  <tr>
+    <td><%= t("member.name") %></td>
+    <td><%= @member.name %></td>
+  </tr>
+  <tr>
+    <td><%= t("member.email") %></td>
+    <td><%= @member.email %></td>
+  </tr>
+  <tr>
+    <td><%= t("member.type") %></td>
+    <td>
+       <% @member.tags.each do |tag| %>
+         <span class="label label-info"><%= tag.label %></span>
+       <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= t("member.isvalid") %></td>
+    <td><%= @member.isvalid %>
+     <%= link_to 'validate', validate_member_path(@member), remote: true, class: "btn btn-mini" if @member.isvalid != true %></td>
+  </tr>
+  <tr>
+    <td><%= t("member.issubscribed") %></td>
+    <td><%= @member.issubscribed %></td>
+  </tr>
+  <tr>
+    <td><%= t("member.msg") %></td>
+    <td><%= @member.msg %></td>
+  </tr>
+</table>

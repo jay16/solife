@@ -1,0 +1,2 @@
+$("#modal").modal("hide");
+$("table tbody").append("<%= j render template: "/members/create", formats: [:html], handler: [:erb], locals: { member: @member } %>");

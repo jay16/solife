@@ -1,0 +1,25 @@
+<h1>Listing Traffics<small>current ip:<%= request.remote_ip %></small></h1>
+
+<%= javascript_include_tag "china_map_chart" %>
+
+<div id="solife_traffic_map"></div>
+
+<script>
+$(function(){
+  chart_data = [];
+  <% china_map_chart_data.each do |p| %>
+   chart_data.push({
+     "refer_to": "<%= p['refer_to'] %>",
+     "fill": "<%= p['fill'] %>",
+     "title": "<%= p['title'] %>",
+     "body": "<%= p['body'] %>"
+   });
+  <% end %>
+  $("#solife_traffic_map").china_map_chart({
+    "is_list": false,
+    "data": chart_data
+
+  });
+});
+</script>
+

@@ -1,0 +1,2 @@
+$("#life_<%= @life.id %>").replaceWith("<%= j render :partial => "lives/life", :locals => { :life => @life } %>");
+$(".new_life").remove();

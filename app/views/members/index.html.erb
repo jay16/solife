@@ -1,0 +1,40 @@
+<h2>
+  <%= t("layout.member") %>
+  <small>
+  <%= link_to t("btn.new"), new_member_path, :remote => true, class: "btn btn-primary" %>
+  <%= link_to "List Mx", mxes_path, :remote => true, class: "btn btn-primary" %>
+  </small>
+</h3>
+ 
+<table class="table">
+  <tr>
+    <th><%= t("member.name") %></th>
+    <th><%= t("member.email") %></th>
+    <th><%= t("member.type") %></th>
+    <th><%= t("member.detail") %></th>
+    <th><%= t("member.mx") %></th>
+    <th><%= t("member.edit") %></th>
+    <th><%= t("member.del") %></th>
+  </tr>
+ 
+<% @members.each do |member| %>
+  <tr id="<%= dom_id member %>">
+    <td><%= member.name %></td>
+    <td><%= member.email %></td>
+    <td>
+       <% member.tags.each do |tag| %>
+         <span class="label label-info"><%= tag.label %></span>
+       <% end %>
+    </td>
+    <td><%= link_to t("btn.show"), member, remote: true, class: "btn btn-mini btn-info" %></td>
+    <td><%= link_to "mx", mx_member_path(member), remote: true,class: "btn btn-mini btn-success" %></td>
+    <td><%= link_to t("btn.edit"), edit_member_path(member), remote: true,class: "btn btn-mini btn-success" %></td>
+    <td><%= link_to t("btn.del"), member, method: :delete, remote: true, data: { confirm: "Are you sure?" },class: "btn btn-mini btn-danger" %></td>
+  </tr>
+<% end if @members %>
+</table>
+ 
+<br />
+ 
+
+<%= render :partial => "members/modal", formats: [:html], hander: [:erb]  %>

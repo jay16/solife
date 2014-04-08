@@ -1,0 +1,27 @@
+<!--klass--->
+<ul class="nav nav-tabs" id="<%= taggroups.first.type %>">
+  <% taggroups.each_with_index do |taggroup, index| %>
+    <li class="<%= index == 0 ? 'active' : '' %>"><a href="#<%= dom_id taggroup %>"><%= taggroup.label %></a></li>
+  <% end if taggroups %>
+ </ul>
+     
+ <div class="tab-content">
+   <% target_tags = target.tags %>
+   <% taggroups.each_with_index do |taggroup, index| %>
+       <div class="tab-pane <%= index == 0 ? 'active' : '' %>" id="<%= dom_id taggroup %>">
+         <% taggroup.tags.each do |tag| %>
+         <span class="label label-success"><%= tag.label %></span>
+         <%= check_box_tag "tag_#{tag.id}", "checked", target_tags.include?(tag) %>
+         <% end if taggroup.tags %>
+       </div>
+   <% end if taggroups %>
+ </div>
+
+ <script>
+   $(function () {
+      $("#<%= taggroups.first.type %> a").click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+      });
+   });
+ </script>

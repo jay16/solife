@@ -1,0 +1,3 @@
+$(".loading").css("diaplsy","none");
+$("#modal").modal("hide");
+$("#<%= dom_id @site %>").replaceWith("<%= j render template: "/sites/create", formats: [:html], handler: [:erb], locals: { favority: @favority, site: @site } %>");

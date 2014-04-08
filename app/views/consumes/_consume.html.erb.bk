@@ -1,0 +1,7 @@
+  <tr id="<%= dom_id consume %>">
+    <td><%= consume.value %></td>
+    <td><%= f consume.created_at %></td>
+    <td>
+        <%= link_to t("btn.show"), consume, remote: true, onclick: "$('.loading').css('display','block');" %>
+    </td>
+  </tr>

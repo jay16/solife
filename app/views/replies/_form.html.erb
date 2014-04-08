@@ -1,0 +1,31 @@
+<%= form_for([segment, reply],:remote => true, :html => { :class => "form-horizontal"}) do |f| %>
+  <div class="error-message-field">
+    <%= render :partial => "replies/error-message", :locals => { :target => reply } %>
+  </div>
+  
+  <fieldset>
+    <div class="control-group">
+      <div class="controls">
+        <div class="input-prepend">
+	  <div class="add-on">称呼</div>
+	  <%= f.text_field :name, :placeholder => "如何称呼"  %>
+	</div>
+      </div>
+
+      <div class="controls">
+        <div class="input-prepend">
+          <div class="add-on">邮箱</div>
+          <%= f.text_field :email, :placeholder => "如何联系？[可选]"  %>
+	</div>
+      </div>
+
+      <div class="controls">
+	 <%= f.submit "发表", :id => "reply-submit", :class => "btn btn-primary btn-success",
+	    :onclick => "this.disabled = true", :data => { :disable_with => "发表中..."}  %>
+      </div>
+
+    <div class="control-group">
+      <%= f.text_area :content, "data-provide" => "markdown", :rows=>"10", :placeholder=>"有何评论？！" %>
+    </div>
+  </fieldset>
+<% end %> 

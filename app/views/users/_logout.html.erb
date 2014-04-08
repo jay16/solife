@@ -1,0 +1,13 @@
+<%= form_tag("/users/logout",:remote => true,:class=>"form-horizontal width", :id=>"login_form") do%>
+
+  <div class="control-group">
+    <div class="input-prepend">
+      <span class="add-on"><i class="icon-envelope"></i></span>
+      <%= text_field_tag 'name', @user.email, placeholder: 'Username', :class => "span12", :disabled => "disabled"  %>
+    </div>
+  </div>
+
+  <div class="left">
+     <%= submit_tag t("user.logout"), :class=>"btn" %>
+  </div>
+<% end %>

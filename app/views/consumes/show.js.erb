@@ -1,0 +1,4 @@
+$(".loading").css("display","none");
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("记录说明");
+$("#modal .modal-body").html("<%= j render template: 'consumes/show', formats: [:html], handler: [:erb] %>");

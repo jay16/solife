@@ -1,0 +1,86 @@
+<style>
+.main .row {
+  margin: 0px;
+}
+.row-fluid [class*="span"] {
+  margin: 0px;
+}
+.album-cover {
+    background-color: #DDDDDD;
+    display: block;
+    height: 130px;
+    margin: 4px;
+    overflow: hidden;
+    width: 154px;
+}
+.album-cover img {
+    background-color: #DDDDDD;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    vertical-align: middle;
+}
+.album-conver .photo-num {
+    display: none;
+}
+.main .form-horizontal {
+  margin: 0px;padding:0px;width:450px;
+}
+#upload_modal {
+   min-width:500px;
+   width: 500px;
+}
+
+.form-horizontal .control-group .control-label {
+  width: 60px;
+}
+.form-horizontal .control-group .controls {
+  margin-left: 70px;
+  text-align: left;
+}
+</style>
+<div class="row">
+  <h2>相册 
+    <%= link_to t("btn.new"), new_folder_path(), class: "btn btn-primary", remote: true, onclick: "showLoading();" %>
+    <%= link_to "上传图片", upload_photos_path(), class: "btn btn-primary", remote: true, onclick: "showLoading();" %>
+  </h2>
+
+  <%= render partial: "modal" %>
+</div>
+
+<div class="row album-list">
+  <% @folders.each do |folder| %>
+    <%= render partial: "album", locals: {folder: folder} %>
+  <% end %>
+</div>
+
+<script>
+$(function(){
+  $(".album-list .album-cover img").each(function(){
+    var tmp_img = new Image(); 
+    $img = $(this)
+    tmp_img.src = $img.attr("src");
+    var width = tmp_img.width;
+    var height = tmp_img.height;
+
+    if(width >= height) {
+      var mini_width = parseInt(width/(height/130), 10);
+      var more_width = parseInt((mini_width - 154)/2,10);
+      $img.css({"width":String(mini_width)+"px","height":"130px"});
+    } else {
+      var mini_height = parseInt(height/(width/154),10);
+      var more_height = parseInt((mini_height - 130)/2,10);
+      $img.css({"height":String(mini_height)+"px","width":"154px"});
+    }
+    
+  });
+
+  showLoading = function() {
+    return $(".loading").css("display", "block");
+  };
+  hideLoading = function() {
+    return $(".loading").css("display", "none");
+  }; 
+});
+</script>

@@ -1,0 +1,19 @@
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t("form.value").capitalize %></th>
+      <th><%= t("form.date").capitalize %></th>
+      <th><%= t("btn.show").capitalize %></th>
+    </tr>
+  </thead>
+
+  <% consumes = @consumes.select { |consume| consume.taggroup == taggroup }  %>
+
+  <tbody> 
+    <% consumes.each do |consume| %>
+       <%= render partial: "consumes/consume", formats: [:html], hander: [:erb], locals: { consume: consume }  %>
+    <% end if consumes %>
+  </tbody> 
+
+</table>

@@ -1,0 +1,5 @@
+$(".new_life").remove();
+
+$("<%= j render :partial => 'lives/form' %>").insertBefore("#life_<%= @life.id %>");
+
+$(".new_life").removeClass("hidden");

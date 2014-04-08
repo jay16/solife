@@ -1,0 +1,13 @@
+<%= form_for(member,html: { html: "form-horizontal" }, remote: true) do |f| %>
+  <p>
+    <b>name</b>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <b>email</b>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.submit "submit", class: "btn btn-primary" %>
+  </p>
+<% end %>

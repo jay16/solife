@@ -1,0 +1,61 @@
+
+
+<form class="form-horizontal span7" style="padding-left:10px;">
+   <!-- new user-->
+  <div class="control-group">
+    <label class="control-label" for="title">Label</label>
+    <div class="controls">
+       <%= text_field_tag 'label', nil, :placeholder => 'Label'  %>
+    </div>
+  </div>
+  
+  
+  <%= button_tag "Submit", :type => "button", :class=>"btn",:onclick=>"create_tag_submit();", :style => "float:right;" %>
+</form>
+
+
+
+<script>
+  function create_tag_submit(){
+   var label     = $("#label").val();
+     
+   if(label.length > 0){
+     alert("Yes:\n"+label);
+   }else{
+    alert("Error:\n"+label);
+    return -1;
+   }
+   
+   var strhost = window.location.host;
+   var strprotocol = window.location.protocol;
+   var strport = window.location.port;
+   if(strport > 0){
+     if(strhost.indexOf(strport)==-1){
+      strhost = strhost + ":"+String(strport)
+     }
+   }
+   var strurl = strprotocol+"//"+strhost+"/tags/create";
+ 
+   
+    $.ajax({
+    type: 'POST',
+    url: strurl,
+    contentType: 'multipart/form-data',
+     headers: {
+           'X-Transaction': 'POST Example',
+           'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+         },
+    datatype: 'json',
+    data:{"label": label },
+    success:function(data)
+    {
+       alert(data)
+    },
+    error:function(xhr,r,e)
+    {
+       alert("No");
+    }
+   });
+   
+ }
+</script>

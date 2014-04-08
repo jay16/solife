@@ -1,0 +1,4 @@
+$(".loading").css("display","none");
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("微信消息");
+$("#modal .modal-body").html("<%= j render partial: 'weixin/record', formats: [:html], handler: [:erb] %>");

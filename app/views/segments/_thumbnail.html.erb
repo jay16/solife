@@ -1,0 +1,51 @@
+		  <!-- thumbnail -->
+		  <div class="thumbnail" id="<%= dom_id segment %>_thumbnail">
+		      <table style="width:680px;">
+			<tr width="100%">
+			   <td width="90%" style=" border-bottom:1px solid #F2F2F2;">
+			     <h4><%= segment.title %></h4> 
+                             <span class="tags-zone"><%= render partial: "segments/tag_zone", locals: { segment: segment } %></span>
+			   </td>
+			   <td width="10%">
+			      <div class="timestamp-box">
+				<div class="timestamp-detail">
+				  <div class="timestamp-time"  ><%= segment.created_at.strftime("%H:%M") %></div>
+       
+				  <div class="timestamp-date">
+				    <span class="timestamp-week"><%= segment.created_at.strftime("%a") %></span>
+				    <span class="timestamp-day"><%= segment.created_at.strftime("%b %d") %></span>            
+				  </div>
+				</div>
+			      </div>
+			   </td>
+			</tr>
+		      </table>
+
+
+		   
+		     <!-- thumbnail image -->
+		      <table>
+			<tr>
+			  <td style="vertical-align:top;display:none;">
+			      <div class="thumbnail_box">
+				<div class="thumbanil_img" style="width:140px;height:80px;">
+				   <%#= image_tag("thumbnail_img#{Integer(rand())%3}.png", :size => "140x80") %>
+				</div>
+			      </div>
+			  </td>
+			  <td style="vertical-align:top;">
+			      <div class="right" style="width:680px;"><!--width:500px-->
+                                                      <!-- Kramdown::Document.new()-->
+				<div class="content"><pre><%= escape_html(segment.content[0..80]).html_safe %></pre></div>
+			      </div>
+			  </td>
+			</tr>
+		      </table>
+		     <!-- thumbnail image -->
+                     <span style="padding:9.5px">......<span>
+  		      <div class="right readmore badge badge-info" onclick="thumbnail_toggle(<%= segment.id %>,true)">快速阅读</div>
+		      <%= link_to "全屏阅读", segments_permlink(segment), :class => "right readmore badge badge-info" %>
+		  </div>
+
+		  <!-- thumbnail -->
+

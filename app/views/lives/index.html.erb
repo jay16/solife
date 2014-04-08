@@ -1,0 +1,240 @@
+
+  <%= stylesheet_link_tag    "bootstrap.css" %>
+  <%= javascript_include_tag "bootstrap.js" %>
+  <%= stylesheet_link_tag    "bootstrap-datepicker.css" %>
+  <%= javascript_include_tag "bootstrap-datepicker.js" %>
+
+<style>
+body {
+  margin-top: -10px;
+}
+.span8 {
+    width: 740px;
+    max-width: 740px;
+    margin-left: 25px;
+}
+.span3 {
+    width: 255px;
+    max-width: 255px;
+    margin-left: 0px;
+}
+.thumbnail {
+  padding-bottom: 25px;
+}
+.thumbnail .thumbnail_box {
+    border: 1px solid #CCCCCC;
+    float: left;
+    height: 80px;
+    margin: 17px 10px 8px;
+    padding: 4px;
+    width: 140px;
+}
+
+.top-header {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("assets/header-bg.png") repeat scroll left top transparent;
+    border-color: -moz-use-text-color rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.3);
+    border-image: none;
+    border-radius: 0 0 8px 8px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-style: none solid solid;
+    border-width: medium 1px 1px;
+    box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1);
+    height: 70px;
+    line-height: 70px;
+    margin: 0 auto 20px;
+    position: relative;
+    width: 1124px;
+}
+.logo,.blog-ame, header {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+.blog-name {
+  padding-top:15px;
+}
+
+.blog-name a {
+    color: #E7E7E7;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 15px 0 0 30px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    font-family: 'Open Sans',sans-serif;
+}
+.blog-name small {
+  height: 100%;
+  margin-bottom: 5px;
+  //float: right;
+  color: lightgray;
+  font-size: 45%;
+}
+.segment h4 {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+ul, ol {
+    margin: 0 0 10px 5px;
+    padding: 0;
+}
+
+.roll {
+    background: url("/assets/roll.png") no-repeat scroll 0 0 transparent;
+    height: 250px;
+    display: block;
+    position: fixed;
+    right: 10%;
+    top: 30%;
+    width: 15px;
+}
+#roll_top,#roll_bottom {
+    cursor: pointer;
+    height: 93px;
+    position: relative;
+    width: 11px;
+}
+</style>
+
+<header class="top-header">
+            <div class="logo">
+                  <h1 class="blog-name"><a title="Clovery" href="http://www.xsolife.com">SOLife</a><small>    - Segment Of Life</small></h1>
+            </div>
+</header>
+
+<div class="container clearfix" style="margin-bottom:15px;">
+  <div class="span12">
+  <div class="row">
+    
+
+     <div class="span8">
+       <div class="lives">
+        <%= render :partial => "segments/life", :locals => { :segments => @segments } %>
+       </div>    
+
+
+	  <div class="row">
+	    <div class="span8 hidden" id="segment_new">
+	      loadding...
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="span8 hidden" id="segment_edit">
+	      loadding...
+	    </div>
+	  </div>
+
+    </div>
+
+    <div class="span3" style="height:500px;">
+
+      <!-- 近期文章 -->
+      <div class="row" style="margin-left: 0px;">
+        <div class="banner">近期文章</div>
+
+        <div class="line-separator"></div>
+        
+        <div class="span3">
+           <%= render :template => "segments/lastest_segments" %>
+        </div>
+      </div>
+      <!-- 近期文章 -->
+
+      <!-- 标签云 -->
+      <div class="row" style="margin-left: 0px;">
+        <div class="banner">标签云</div>
+
+        <div class="line-separator"></div>
+        
+        <div class="span3" style="padding:5px;">
+           <%= render :template => "tags/tags_cloud" %>
+        </div>
+      </div>
+      <!-- 标签云 -->
+
+      <!-- 用户登陆 -->
+      <div class="row" style="margin-left: 0px;">
+        <div class="banner">用户登陆</div>
+
+        <div class="line-separator"></div>
+
+        <div class="span3">
+           <% if session[:user_id] then %>
+             <span>登陆用户:<%= current_user.email %></span><br>
+             <%= link_to "退出", user_logout_path(), :remote => true, :style => "color: black;" %><br>
+             <%= link_to "写日志", segments_new_path(), :remote => true, :style => "color: black;" %>
+           <% else %>
+             <%= render :template => "users/login.html.erb" %>
+           <% end %>
+        </div>
+      </div>
+      <!-- 用户登陆 -->
+
+    </div> <!-- span3 -->
+  
+    <div class="span1 roll" style="margin-left:0px;width:15px;">
+       <div id="roll_top" title="回到顶部"></div><div id="roll_bottom" title="转到底部"></div></div>
+    </div>
+  </div>
+
+
+
+ </div>
+</div>
+  
+
+
+
+<script>
+ 
+ $(function(){
+    $('#roll_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+    $('#ct').click(function(){$('html,body').animate({scrollTop:$('#comments').offset().top}, 800);});
+    $('#roll_bottom').click(function(){$('html,body').animate({scrollTop:$('.footer').offset().top}, 800);}); 
+
+    $(".lives").each(function(){
+       var $lives   = $(this);
+       var $life    = $lives.children(".life:first");
+       var $title   = $life.children(".title:first");
+       var $segments  = $lives.children(".segment");
+       var $life_edit = $life.children(".edit-pane:first");
+       
+       //默认隐藏编辑选项框
+       //$title_edit.addClass("");
+       
+       $title.dblclick(function(){ 
+          $life_edit.toggleClass("hide"); 
+       });
+       
+       $segments.each(function(){
+         var $segment = $(this);
+         var $segment_content = $segment.children(".content:first");
+         var $segment_edit    = $segment.children(".edit-pane:first");
+         
+         //默认隐藏编辑选项框
+         //$segment_edit.addClass("hide");
+         
+         $segment_content.dblclick(function(){ 
+            //首先隐藏所有编辑选项框再显示当前选项框
+            var isHide = $segment_edit.hasClass("hide");
+            $(".edit-pane").addClass("hide");
+            isHide ? $segment_edit.removeClass("hide") : $segment_edit.addClass("hide")
+         });
+         
+       });
+  
+    });
+    
+ });
+
+</script>
+

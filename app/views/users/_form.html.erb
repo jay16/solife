@@ -1,0 +1,14 @@
+<%= form_for(user,html: { html: "form-horizontal" }, remote: true) do |f| %>
+  <p>
+    <b><%= t("member.name") %></b>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <b><%= t("member.email") %></b>
+    <%= f.text_field :email %>
+  </p>
+  <%= render :partial => "taggroups/grouptype", locals: { taggroups: @taggroups, target: user } %>
+  <p>
+    <%= f.submit t("btn.submit"), class: "btn btn-primary" %>
+  </p>
+<% end %>

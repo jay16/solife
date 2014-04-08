@@ -1,0 +1,35 @@
+<!--klass--->
+<ul class="nav nav-tabs" id="<%= taggroups.first.type %>">
+  <% taggroups.each_with_index do |taggroup, index| %>
+    <li class="<%= index == 0 ? 'active' : '' %>"><a href="#<%= dom_id taggroup %>"><%= taggroup.label %></a></li>
+  <% end if taggroups %>
+ </ul>
+     
+ <div class="tab-content">
+   <% taggroups.each_with_index do |taggroup, index| %>
+       <div class="tab-pane <%= index == 0 ? 'active' : '' %>" id="<%= dom_id taggroup %>">
+           <%= link_to "新建标签", new_taggroup_tag_path(taggroup), remote: true, class: "btn btn-primary btn-mini" %>
+           <%= link_to "修改标签组", edit_taggroup_path(taggroup), remote: true, class: "btn btn-mini btn-success" %><br>
+	   <table class="table">
+	     <tr> 
+	       <th width="70%">Label</th>
+	       <th width="10%"><%= taggroup.type.capitalize %></th>
+	       <th width="10%">明细</th>
+	       <th width="10%">编辑</th>
+	     </tr>
+	     <% taggroup.tags.each do |tag| %>
+		 <%= render template: "tags/tag", locals: { taggroup: taggroup, tag: tag } %>
+	     <% end if taggroup.tags %>
+	   </table>
+       </div>
+   <% end if taggroups %>
+ </div>
+
+ <script>
+   $(function () {
+      $("#<%= taggroups.first.type %> a").click(function (e) {
+	e.preventDefault();
+	$(this).tab('show');
+      });
+   });
+ </script>

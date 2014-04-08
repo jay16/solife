@@ -1,0 +1,105 @@
+<head>
+<meta charset="utf-8" />
+<title>jQuery UI Datepicker - Default functionality</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+$(function() {
+$( "#datepicker" ).datepicker();
+});
+</script>
+</head>
+<body>
+<p>Date: <input type="text" id="datepicker" /></p>
+
+<div class="container">
+  <div class="row">
+     <div class="span8 offset2">
+
+       <form class="form-horizontal span7" style="padding-left:10px;">
+          <!-- new life -->
+         <div class="control-group">
+           <label class="control-label" for="title">Title</label>
+           <div class="controls">
+              <%= text_field_tag 'title', nil, :placeholder => 'Title'  %>
+           </div>
+         </div>
+         
+         <div class="control-group">
+           <label class="control-label" for="subtitle">SubTitle</label>
+           <div class="controls">
+              <%= text_field_tag 'subtitle', nil, :placeholder => 'SubTitle'  %>
+           </div>
+         </div>
+         
+         <div class="control-group">
+           <label class="control-label" for="info">Info</label>
+           <div class="controls">
+              <%= text_area_tag 'info', nil, :placeholder => 'Description goes here...', :size => "25x3", :class => "span5"%>
+           </div>
+         </div>
+         <!-- end new life -->
+         
+         <!-- new segment -->
+         <div class="control-group">
+           <label class="control-label" for="segment">Content</label>
+           <div class="controls">
+              <%= text_area_tag 'segment', nil, :placeholder => 'Description goes here...', :size => "25x10", :class => "text_area span5"%>
+           </div>
+         </div>
+         <!-- end new segment -->
+         
+         <%= button_tag "Submit",:type => "button", :class=>"btn",:onclick=>"life_with_segment_submit();", :style => "float:right;" %>
+       </form>
+
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function life_with_segment_submit(){
+   var strhost = window.location.host;
+   var strprotocol = window.location.protocol;
+   var strport = window.location.port;
+   if(strport > 0){
+     if(strhost.indexOf(strport)==-1){
+      strhost = strhost + ":"+String(strport)
+     }
+   }
+   var strurl = strprotocol+"//"+strhost+"/lives/create";
+   alert(strurl);
+   //--life
+   var title    = $("#title").val();
+   var subtitle = $("#subtitle").val();
+   var info     = $("#info").val();
+   //--segment
+   var segment  = $("#segment").val();
+   
+    $.ajax({
+    type: 'POST',
+    url: strurl,
+    contentType: 'multipart/form-data',
+     headers: {
+           'X-Transaction': 'POST Example',
+           'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+         },
+    datatype: 'json',
+    data:{"title":     title,
+          "subtitle":  subtitle,
+          "info":      info,
+          "segment":  segment},
+    success:function(data)
+    {
+       alert(data)
+    },
+    error:function(xhr,r,e)
+    {
+       alert("No");
+    }
+   });
+ }
+
+</script>

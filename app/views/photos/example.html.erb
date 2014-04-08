@@ -1,0 +1,13 @@
+	<script src="/assets/demo/multiple-file-element/multifile_compressed.js"></script>
+
+<%= form_tag(photo_create_path(), :multipart=>true, :remote => true) do %>
+	<input id="my_file_element" type="file" name="file_1" multiple="true" >
+         <div id="files_list"></div>
+   <%= submit_tag "subit" %>
+<% end %>
+<script>
+	<!-- Create an instance of the multiSelector class, pass it the output target and the max number of files -->
+	var multi_selector = new MultiSelector( document.getElementById( 'files_list' ), 3 );
+	<!-- Pass in the file element -->
+	multi_selector.addElement( document.getElementById( 'my_file_element' ) );
+</script>

@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+          <div class="span5">
+                <div class="tabbable tabs-left">
+                   <% domains,emails = domain_group(@mails) %>
+                   <ul class="nav nav-tabs">
+                     <% domains.each_with_index do |domain,index| %>
+                         <li class="<%= index == 0 ? 'active' : '' %>">
+                             <a data-toggle="tab" href="#<%= domain.gsub('.','_') %>"><%= domain %></a>
+                         </li>
+                         
+                     <% end %>
+                     <li> <a href="#new_mail_modal" role="button" data-toggle="modal">New Mail</a></li>
+                     <li> <a onclick="paginate('.tab-pane','p');">Paginate</a></li>
+                     
+                   </ul>
+                   
+                   <div class="tab-content">
+                      <% domains.each_with_index do |domain,index| %>
+                          <div id="<%= domain.gsub('.','_') %>" class="tab-pane <%= index == 0 ? 'active' : '' %>">
+                            <% email_group(@mails,domain).each do |email| %>
+                                <p>
+                                    <%= email.login_name %>(<%= email.sign_index %>)
+                                    <a onclick="mail_checker('<%= email.login_name %>')">Checker</a>
+                                    <a href="#edit_mail_modal" role="button" data-toggle="modal"  onclick="edit_mail('<%= email.login_name %>')">Edit</a>
+                                    <a onclick="show_inbox('<%= email.login_name %>')">Inbox</a>
+                                </p>
+                            
+                            <% end %>
+                          </div>
+                      <% end %>
+                   </div>
+                </div>
+          </div>
+          
+          <div class="span7" id="inbox_zone">
+          </div>
+          
+    </div>
+</div>
+
+ <!-- add mail Modal -->
+ <div id="new_mail_modal" class="modal hide fade" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+     <h3 style="display:inline;">New Mail</h3>
+   </div>
+   
+   <div class="modal-body">
+      <%= render :template => "tools_mailer/new" %>
+   </div>
+   
+   <div class="modal-footer">
+     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+     <button class="btn btn-primary" onclick="new_mail_submit()">Submit</button>
+   </div>
+ </div>
+ 
+ <!-- edit mail Modal -->
+ <div id="edit_mail_modal" class="modal hide fade" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+     <h3 style="display:inline;">Edit Mail</h3>
+   </div>
+   
+   <div class="modal-body">
+      Loading Info...
+   </div>
+   
+   <div class="modal-footer">
+     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+     <button class="btn btn-primary" onclick="update_mail_submit()">Submit</button>
+   </div>
+ </div>
+<script>
+$(function(){
+ paginate(".tab-pane","p")
+});
+ 
+</script>
+

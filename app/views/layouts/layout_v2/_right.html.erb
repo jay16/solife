@@ -1,0 +1,27 @@
+<div class="page-header">
+    <h1><%= t("layout.module") %></h1>
+</div>
+
+<div class="label label-success block-bar">
+   <%= link_to t("layout.blog"),blog_path(), :class => "nolink",
+   "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.blog")
+   %>/
+   <%= link_to "Octopress","http://octopress.solife.us", :class => "nolink",
+   target: "_blank", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>"自己写的代码恶心住自己了" %>
+</div>
+
+<div class="label label-success block-bar">
+  <%= link_to t("layout.consume"),consumes_path(), :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.consume") %>
+</div>
+
+<div class="label label-success block-bar">
+  <%= link_to t("layout.photo"),"/photos", :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.photo") %>
+</div>
+
+<div class="label label-success block-bar">
+  <%= link_to t("layout.editor"),editor_demo_path(), :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.editor") %>
+</div>
+<div class="label label-success block-bar">
+  <%= link_to t("layout.traffic"),"/traffics", :class => "nolink", "data-placement"=>"top","data-toggle"=>"tooltip","data-original-title"=>t("tooltip.traffic") %>
+</div>
+

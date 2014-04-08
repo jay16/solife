@@ -1,0 +1,2 @@
+$("#modal").modal("hide");
+$("<%= j render template: "/sites/create", formats: [:html], handler: [:erb], locals: { favority: @favority, site: @site } %>").replaceWith("#<%= dom_id @site %>")

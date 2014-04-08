@@ -1,0 +1,2 @@
+$("#tags_list").remove();
+$("<%= j render :template => 'tags/list.html.erb' %>").insertAfter("#segment_<%= @segment.id %>")

@@ -1,0 +1,11 @@
+            
+<% @segments.each_with_index do |segment, index| %>
+  <%= render :partial => "segments/segment", :locals => { :segment => segment } %>
+<% end %>
+
+<div class="center">
+  <%= will_paginate @segments ,:inner_window => 1, :outer_window => 1 , :previous_label => '上一页 ' , :next_label => '下一页 ' %>
+</div>
+
+            
+

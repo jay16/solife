@@ -1,0 +1,9 @@
+<div id="<%= dom_id segment %>_box" class="segment_box"> 
+  <% if (params[:controller] == "home" and %w(index tags_show layout_v1 layout_v2).include?(params[:action])) or params[:action]=="tags_show" %>
+    <%= render :partial => "segments/thumbnail", :locals => { :segment => segment } %>
+    <%= render :partial => "segments/overview", :locals => { :segment => segment } %>
+  <% else %>
+    <%= render :partial => "segments/overview", :locals => { :segment => segment } %>
+  <% end  %>
+</div>
+

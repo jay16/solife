@@ -1,0 +1,14 @@
+<table class="shell-output" cellspacing="0" cellpadding="0" border="0">
+  <tr><td>jay.li@solife# <%= params["shell-input"] %></td></tr>
+
+  <% @result.each do |line| %>
+    <tr><td><%= line.gsub(" ","&nbsp;").html_safe %></td></tr>
+  <% end %>
+    <tr><td>&nbsp;</td></tr>
+</table>
+
+<table class="taken shell-output" cellspacing="0" cellpadding="0" border="0">
+  <% (2..20-@result.length).each do |i| %>
+  <tr><td>&nbsp;</td></tr>
+  <% end if @result.length < 20 %>
+<table>

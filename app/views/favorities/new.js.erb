@@ -1,0 +1,5 @@
+$(".loading").css("display","none");
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("New Favority");
+$("#modal .modal-body").html("<%= j render partial: 'form', locals: { favority: @favority } %>"); 
+

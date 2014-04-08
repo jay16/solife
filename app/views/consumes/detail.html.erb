@@ -1,0 +1,33 @@
+<table class="table">
+  <tr>
+    <td><%= t("form.date") %></td>
+    <td><%= @consume[:created_at].strftime("%Y/%m/%d %H:%M:%S %a") %></td>
+  </tr>
+  <tr>
+    <td><%= t("form.value") %></td>
+    <td><%= @consume[:value] %></td>
+  </tr>
+  <tr>
+    <td><%= t("form.msg") %></td>
+    <td><pre><%= @consume[:msg] %></pre></td>
+  </tr>
+  <tr>
+    <td><%= t("form.tag") %></td>
+    <td>
+      <% @consume[:tags].each do |tag| %>
+       <span class="label label-info"><%= tag.label %></span>
+      <% end if @consume[:tags] %>
+      <%= "no-tag" unless @consume[:tags] %>
+    </td>
+  </tr>
+
+  <% for consume in @consume[:list] %> 
+    <tr id="<%= dom_id consume %>_edit">
+      <td colspan="2">
+        ￥<%= consume.value %> - <%= consume.created_at.strftime("%Y/%m/%d %H:%M") %> - 
+        <%= link_to "编辑", edit_consume_path(consume), remote: true, class: "btn btn-mini" %>
+        <%= link_to "删除", consume, method: :delete, remote: true, data: { confirm: "确认删除该消费记录?" }, class: "btn btn-mini btn-danger" %>
+      </td>
+    </tr>
+  <% end if user_signed_in? and @consume[:list] %>
+</table>

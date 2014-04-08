@@ -1,0 +1,124 @@
+<style type="text/css" media="screen">
+#preview h1 {
+  font-size: 24px;
+}
+#preview h2 {
+  font-size: 20px;
+}
+#preview h3 {
+  font-size: 16px;
+}
+.row-fluid .span6 {
+  width:50%;
+  margin:0px;
+  padding:0;
+}
+#markdown {
+  height: 450px;
+  width: 95%;
+  border-radius:4px;
+  box-shadow: 1px 1px 20px;
+}
+#preview {
+  height: 450px;
+  width: 95%;
+  border-radius:4px;
+  overflow:auto;
+  font-size:12px;
+  background:white;
+  color:black;
+  box-shadow: 1px 1px 20px;
+}
+#preview pre {
+  font-size: 12px;
+  line-height: 12px;
+}
+</style>
+<div class="span6">
+  <div id="markdown"></div>
+
+  <%= form_for(@segment, class: "span8") do |f| %>
+     <%= f.text_field :title, class: "span8" %>
+     <%= f.text_field :permlink, class: "span8" %>
+     <%= f.text_area :content, class: "span12", style: "display:none;" %>
+     <%= f.submit t("btn.submit"), class: "btn btn-primary", style: "display:inline;"  %>
+     <%= link_to "preview", "javascript:void(0);", onclick: "$('.loading').css('display','block');preview();", class: "btn" %>
+     <%= render partial: "taggroups/grouptype", locals: {target: @segment, taggroups: @taggroups } %>
+   <% end %> 
+</div>
+<div class="span6">
+  <div id="preview">
+  </div>
+</div>
+
+
+
+
+<script>
+function preview(){
+  var strhost = window.location.host;
+  var strprotocol = window.location.protocol;
+  var strport = window.location.port;
+  if(strport > 0){
+     if(strhost.indexOf(strport)==-1){
+      strhost = strhost + ":"+String(strport)
+     }
+  }
+  var strurl = strprotocol+"//"+strhost+"/segments/preview";
+  var content = $("#segment_content").val();
+
+  $.ajax({
+  type: 'POST',
+  url: strurl,
+  contentType: 'multipart/form-data',
+   headers: {
+	 'X-Transaction': 'POST Example',
+	 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+       },
+  datatype: 'json',
+  data:{"content": content},
+    success:function(data)
+    {
+       $(".loading").css("display","none");
+       $("#preview").html(data);
+    },
+    error:function(xhr,r,e)
+    {
+       $(".loading").css("display","none");
+       alert("Preview Fail!");
+    }
+  });
+}
+
+function getScrollHeight(e) {
+      return e[0].scrollHeight !== undefined ? e[0].scrollHeight : e.find("html")[0].scrollHeight !== undefined && e.find("html")[0].scrollHeight !== 0 ? e.find("html")[0].scrollHeight : e.find("body")[0].scrollHeight
+}
+
+function syncPreview() {
+    var e = ace.edit("markdown"),
+	t = $("#preview"),
+	converter = new Showdown.converter();
+	
+    $("#segment_content").val(e.getValue());
+    content = converter.makeHtml(e.getValue());
+    t.html(content);
+    
+    var r = getScrollHeight(t),
+	n = e.getSession().getLength(),
+	i = e.getFirstVisibleRow() / n;
+	t.scrollTop(i * r)
+}
+
+$(function(){
+  var editor = ace.edit("markdown"),
+      t = $("#preview"),
+      converter = new Showdown.converter();
+
+  editor.setValue($("#segment_content").val());
+  t.html(converter.makeHtml(editor.getValue()));
+
+  editor.getSession().setUseWrapMode(true);
+  editor.session.on("changeScrollTop", syncPreview);
+  editor.session.selection.on("changeCursor", syncPreview);
+});
+</script>

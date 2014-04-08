@@ -1,0 +1,9 @@
+   <tr id="<%= dom_id todo %>">
+      <td><%= todo.todo %></td>
+      <td>
+          <% todo.tags.each do |tag| %>
+            <span class="label label-info"><%= tag.label %></span>
+          <% end %>
+      </td>
+      <td><%= link_to t("btn.show"), todo, remote: true, class: "btn btn-mini btn-info" %></td>
+    </tr>

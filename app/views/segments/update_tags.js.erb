@@ -1,0 +1,3 @@
+$(".loadding").css("display","none");
+$("#modal_<%= dom_id @segment %>").modal("hide");
+$("#<%= dom_id @segment %> .tags-zone").html("<%= j render partial: 'segments/tag_zone', locals: { segment: @segment } %>");

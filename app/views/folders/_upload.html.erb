@@ -1,0 +1,20 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#local_upload" data-toggle="tab">本地上传</a></li>
+    <li class=""><a href="#web_upload" data-toggle="tab">网页图片</a></li>
+    <li class=""><a href="#imageurl_upload" data-toggle="tab">图片网址</a></li>
+  </ul>
+
+  <div class="tab-content">
+   <div class="tab-pane active" id="local_upload">
+      <%= render partial: "folders/local_upload" %>
+   </div>
+   <div class="tab-pane" id="web_upload">
+      <%= render partial: "folders/web_upload" %>
+   </div>
+   <div class="tab-pane" id="imageurl_upload">
+      <%= render partial: "folders/imgurl_upload" %>
+   </div>
+  </div>
+
+</div>

@@ -1,0 +1,7 @@
+<% if session[params[:permlink].to_s] %>
+  window.location.reload();
+<% else %>
+  $("article .notice").html("<pre style=color:green>您提供的密语:<strong style=color:blue><%= params[:private_words] %></strong>是错误的！</pre>");
+  $("input[name=private_words]").val('');
+<% end %>
+

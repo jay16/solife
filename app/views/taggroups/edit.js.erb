@@ -1,0 +1,3 @@
+$("#modal").modal("show");
+$("#modal .modal-header h3").html("Edit TagGroup");
+$("#modal .modal-body").html("<%= j render partial: 'form', formats: [:html], handler: [:erb], locals: { taggroup: @taggroup } %>"); 

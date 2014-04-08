@@ -1,0 +1,9 @@
+$("#login_modal").modal("show");
+
+<% if @user %>
+  $("#login_modal .modal-header h3").html('<%= t("user.logout_info") %>');
+  $("#login_modal .modal-body").html("<%= j render partial: 'users/logout', formats: [:html], handler: [:erb] %>");
+<% else %>
+  $("#login_modal .modal-header h3").html('<%= t("user.login_info") %>');
+  $("#login_modal .modal-body").html("<%= j render partial: 'users/login', formats: [:html], handler: [:erb] %>");
+<% end %>

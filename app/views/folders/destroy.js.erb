@@ -1,0 +1,5 @@
+<% if @folder.photos.size > 0 %>
+  alert("删除相册失败,请清空相册！");
+<% else %>
+  $("#folder_<%= @folder.id %>_info").remove();
+<% end %>

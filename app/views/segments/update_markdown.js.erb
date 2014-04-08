@@ -1,0 +1,4 @@
+//window.location.reload();
+$("#segment_<%= @segment.id %>_box").replaceWith("<%= j render :partial => 'segments/segment', :locals => { :segment => @segment} %>");
+$("#segment_<%= @segment.id %>_box .thumbnail").hide();
+$("#segment_<%= @segment.id %>_box .segment").fadeIn();
