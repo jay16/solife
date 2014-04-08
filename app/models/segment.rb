@@ -1,7 +1,10 @@
 #encoding: utf-8
 class Segment < ActiveRecord::Base
   attr_accessible :title, :content, :markdown, :permlink, :klass
+<<<<<<< HEAD
   attr_accessible :updated_at
+=======
+>>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
   validates :content, presence: true
   validates :title, uniqueness: true
 

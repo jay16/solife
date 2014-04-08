@@ -71,12 +71,17 @@ group :assets do
   gem "uglifier", ">= 1.0.3"
 end
 
+<<<<<<< HEAD
 
 group :test, :development do
 	#gem "rspec"
 	gem "rspec-rails"
     gem "watchr"
 end
+=======
+gem "rspec-rails", :group => [:test, :development]
+
+>>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
 
 # To use ActiveModel has_secure_password
 # gem "bcrypt-ruby", "~> 3.0.0"

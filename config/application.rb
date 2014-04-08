@@ -19,7 +19,11 @@ module Solife
 	 config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
      config.autoload_paths += Dir[Rails.root.join("lib")] + 
                               Dir[Rails.root.join("lib/solife")]+
+<<<<<<< HEAD
                               Dir[Rails.root.join("app/grape")]
+=======
+                              Dir[Rails.root.join("app/api")]
+>>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

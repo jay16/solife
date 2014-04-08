@@ -3,13 +3,22 @@ require 'base64'
 
 #		email = "i_am_jay@solife.us"
 #		pwd   = "hello world"
+<<<<<<< HEAD
 #		dd = Solife::ApiTool.encode(email,pwd)
+=======
+#
+#		dd = SOLife::ApiTool.encode(email,pwd)
+>>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
 #		puts dd
 #		puts "*"*10
 #		kk = SOLife::ApiTool.decode(dd).join("-")
 #		puts kk
 
+<<<<<<< HEAD
 module Solife
+=======
+module SOLife
+>>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
   class ApiTool
     class << self
 
