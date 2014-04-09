@@ -1,8 +1,4 @@
 require "digest/sha2"
-<<<<<<< HEAD
-require "api_tool"
-=======
->>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -38,25 +34,18 @@ class User < ActiveRecord::Base
     Consume.where("user_id <> #{self.id} and id > #{consume_id}")
   end
 
-<<<<<<< HEAD
-=======
   def find_user_with_api_token token
     api_token == Digest::MD5.hexdigest(self.email+self.password) 
   end
 
->>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
   private
 
   def chk_ruler(n)
     self.update_attribute(:ruler,"000000000000000") if self.ruler.nil?
     return self.ruler[n] == "1"
   end
-<<<<<<< HEAD
-=======
-
   def api_authen(api_token = "")
     api_token == Digest::MD5.hexdigest(self.email+self.password)
   end
 
->>>>>>> 0962647787fdc6e198dc1c52e3c02e67807e5c79
 end
